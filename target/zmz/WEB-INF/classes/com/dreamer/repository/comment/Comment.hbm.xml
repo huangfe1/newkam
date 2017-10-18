@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dreamer.domain.comment">
+	<class name="Comment" table="comment">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="agent" class="com.dreamer.domain.user.User">
+            <column name="agent">
+                <comment>评论人</comment>
+            </column>
+        </many-to-one>
+
+        <property name="gid" type="java.lang.Integer">
+            <column name="gid">
+                <comment>产品ID</comment>
+            </column>
+        </property>
+
+        <property name="goodsName" type="java.lang.String" length="128">
+            <column name="goodsName">
+                <comment>产品名字</comment>
+            </column>
+        </property>
+
+        <property name="canPublish" type="java.lang.Boolean">
+            <column name="canPublish" default="false">
+                <comment>是否可以发布</comment>
+            </column>
+        </property>
+
+        <property name="type" type="java.lang.Integer">
+            <column name="type">
+                <comment>类型</comment>
+            </column>
+        </property>
+
+        <property name="body" length="356" type="java.lang.String">
+            <column name="body">
+                <comment>评论内容</comment>
+            </column>
+        </property>
+
+
+		<property name="updateTime" type="java.util.Date">
+			<column name="update_time" length="19">
+				<comment>更新时间戳</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
