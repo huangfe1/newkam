@@ -14,6 +14,8 @@ public interface BaseHandler<T>  {
 
     T save(T object);
 
+    void delete(T object);
+
     T get(Integer id);
 
     T get(String name,Object value);

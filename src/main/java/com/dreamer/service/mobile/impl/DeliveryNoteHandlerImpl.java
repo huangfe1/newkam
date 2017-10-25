@@ -71,7 +71,7 @@ public class DeliveryNoteHandlerImpl extends BaseHandlerImpl<DeliveryNote> imple
      * @return
      */
     private List<AccountsRecord> deductLogistFee(DeliveryNote note) {
-        if (note.getApplyAgent().isMutedUser()) {//公司不用减少物流费
+        if (note.getApplyAgent().isMutedUser()||note.getLogisticsFee()==0) {//公司不用减少物流费 0不用钱
             return new ArrayList<>();
         }
         String more = "物流费-发货给" + note.getToAgent().getRealName();
@@ -89,6 +89,7 @@ public class DeliveryNoteHandlerImpl extends BaseHandlerImpl<DeliveryNote> imple
      * @return
      */
     private Double getLogisticsFee(DeliveryNote note) {
+        if(!note.getAddress().getCountry().equals("中国"))return 0.0;//不是中国不要物流费
         Logistics logistics = logisticsDao.like("provinces", "%" + note.getAddress().getProvince() + "%");
         if (logistics == null) {
             throw new ApplicationException(note.getAddress().getProvince() + "地址不存在！");

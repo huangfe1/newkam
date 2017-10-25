@@ -35,6 +35,7 @@ public class Transfer implements java.io.Serializable {
 	private Integer quantity;//总数
 	private Double amount;//总金额
 	private String 	operator;//操作员
+	private String country;//哪个国家的订单
 	private Set<TransferItem> items=new HashSet<>();
 //	private TransferApplyOrigin applyOrigin;//转货订单类型
 
@@ -47,8 +48,13 @@ public class Transfer implements java.io.Serializable {
 	}
 
 
+	public String getCountry() {
+		return country;
+	}
 
-
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
 	public Integer getQuantity() {
 		return quantity;

@@ -2,8 +2,12 @@ package com.dreamer.view.mobile;
 
 import com.dreamer.domain.account.GoodsAccount;
 import com.dreamer.domain.comment.Comment;
+import com.dreamer.domain.inter.Country;
+import com.dreamer.domain.mall.delivery.DeliveryNote;
 import com.dreamer.domain.mall.goods.Goods;
 import com.dreamer.domain.mall.goods.GoodsType;
+import com.dreamer.domain.mall.shopcart.CartItem;
+import com.dreamer.domain.mall.shopcart.ShopCart;
 import com.dreamer.domain.mall.transfer.Transfer;
 import com.dreamer.domain.user.*;
 import com.dreamer.domain.user.dto.UserDto;
@@ -11,6 +15,8 @@ import com.dreamer.domain.user.enums.AccountsTransferStatus;
 import com.dreamer.domain.user.enums.AccountsType;
 import com.dreamer.domain.wechat.WxConfig;
 import com.dreamer.service.Comment.CommentHandler;
+import com.dreamer.service.inter.CountryHandler;
+import com.dreamer.service.inter.CountryPriceHandler;
 import com.dreamer.service.mobile.*;
 import com.dreamer.service.mobile.factory.WxConfigFactory;
 import com.dreamer.util.CommonUtil;
@@ -246,7 +252,7 @@ public class MobileController {
 
     //购物车
     @RequestMapping("/mobile/shopcart/index.html")
-    public String shopCartIndex(HttpServletRequest request, Model model) {
+    public String shopCartIndex(HttpServletRequest request, Model model,@RequestParam(required = false) Integer cid) {
         User user = (User) WebUtil.getCurrentUser(request);
         Agent agent = agentHandler.get(user.getId());
         model.addAttribute("agent", agent);
@@ -256,6 +262,55 @@ public class MobileController {
             List<AddressMy> addressMies = addressMyHandler.findAddressByAgent(agent);
             model.addAttribute("addresses", addressMies);
         }
+
+        String cn = "中国";
+
+        if(cid==null){
+            Object o = WebUtil.getSessionAttribute(request,"cid");
+            if(o!=null){
+                cid=(Integer)o;
+            }
+        }
+
+
+        //如果有选择国家 重洗一遍
+        if(cid!=null){
+            Country country = countryHandler.get(cid);
+            if(country!=null){
+                cn=country.getName();
+            }
+            WebUtil.addSessionAttribute(request,"cid",cid);//刷新全局cid
+            //重洗一遍
+            String CART = "tshopcart";
+            Object ob = WebUtil.getSessionAttribute(request, CART);
+            ShopCart cart;
+            if (Objects.nonNull(ob)) {
+                cart = (ShopCart) ob;
+                for(CartItem cartItem : cart.getItems().values()){
+
+                    //获取当前产品当前国家的价格
+                    Goods goods = goodsHandler.get(cartItem.getGoods().getId());
+                    //获取当前产品的本来价格
+                    Double price =  agent.getMainLevelPrice(cartItem.getGoods()).getPrice();
+
+                    if(cid>0){
+//                        Country country = countryHandler.get(cid);
+                        Double tem =  countryPriceHandler.getPrice(cartItem.getGoods(),country).getPrice();
+                        cartItem.setPrice(price+tem);//刷新价格
+                        cartItem.getGoods().setRetailPrice(goods.getRetailPrice()+tem);
+                    }else {
+                        cartItem.setPrice(price);//设置原价
+                        cartItem.getGoods().setRetailPrice(goods.getRetailPrice());
+                    }
+
+                }
+            }
+        }
+        //选择国家
+        List<Country> countries = countryHandler.findAll();
+        countries.stream().filter(c->c.getOpen());
+        model.addAttribute("countries",countries);
+        model.addAttribute("cn",cn);
         return "/mobile/shopcart/index";
     }
 
@@ -273,7 +328,7 @@ public class MobileController {
     @RequestMapping("/mobile/delivery/records.html")
     public String deliveryRecord(HttpServletRequest request, Model model, @RequestParam(required = false) Integer noteId) {
         User user = (User) WebUtil.getCurrentUser(request);
-        List items = deliveryNoteHandler.findDeliveryNotes(user.getId(), noteId);
+        List<DeliveryNote> items = deliveryNoteHandler.findDeliveryNotes(user.getId(), noteId);
         model.addAttribute("items", items);
         return "mobile/delivery/records";
     }
@@ -707,6 +762,9 @@ public class MobileController {
     @Autowired
     private CommentHandler commentHandler;
 
+    @Autowired
+    private CountryHandler countryHandler;
+
 
     @Autowired
     private GoodsAccountHandler goodsAccountHandler;
@@ -719,6 +777,9 @@ public class MobileController {
 
     @Autowired
     private AccountsHandler accountsHandler;
+
+    @Autowired
+    private CountryPriceHandler countryPriceHandler;
 
 //    @Autowired
 //    private WxConfigFactory wxConfigFactory;

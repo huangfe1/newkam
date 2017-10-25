@@ -135,7 +135,13 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
     public List<T> searchByPage(SearchParameter<T> parameter, DetachedCriteria criteria) {
         //获取总数
         criteria.setProjection(Projections.rowCount());
-        parameter.setTotalRows(((Long) getCriteria(criteria).uniqueResult()).intValue());
+        Object o =  getCriteria(criteria).uniqueResult();
+        if(o==null){
+            parameter.setTotalRows(0);
+        }else {
+            parameter.setTotalRows(((Long) getCriteria(criteria).uniqueResult()).intValue());
+        }
+
         //取消总数  分页查询
         criteria.setProjection(null);
         parameter.gotoPage();//下一页

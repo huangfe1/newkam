@@ -175,7 +175,7 @@ public class TransferController {
             Agent fromAgent = muteUserHandler.getMuteUser();
 
             //扣钱转货操作
-            transferHandler.transferAutoConfirm(fromAgent.getId(), user.getId(), goodsIds, quantitys, remark);
+            transferHandler.transferAutoConfirm(fromAgent.getId(), user.getId(), goodsIds, quantitys, remark,null);
             WebUtil.removeSessionAttribute(request, TCART);
             return Message.createSuccessMessage();
         } catch (Exception e) {

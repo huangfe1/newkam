@@ -1,6 +1,8 @@
 package com.dreamer.service.mobile.impl;
 
 import com.dreamer.domain.account.GoodsAccount;
+import com.dreamer.domain.inter.Country;
+import com.dreamer.domain.inter.CountryPrice;
 import com.dreamer.domain.mall.delivery.DeliveryNote;
 import com.dreamer.domain.mall.goods.*;
 import com.dreamer.domain.mall.transfer.Transfer;
@@ -11,6 +13,8 @@ import com.dreamer.repository.mobile.AccountsRecordDao;
 import com.dreamer.repository.mobile.AgentDao;
 import com.dreamer.repository.mobile.GoodsDao;
 import com.dreamer.repository.mobile.TransferDao;
+import com.dreamer.service.inter.CountryHandler;
+import com.dreamer.service.inter.CountryPriceHandler;
 import com.dreamer.service.mobile.*;
 import com.dreamer.util.CommonUtil;
 import com.dreamer.util.PreciseComputeUtil;
@@ -43,18 +47,30 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         StringBuffer sb = new StringBuffer();
         sb.append("利润--");
         sb.append(transfer.getToAgent().getRealName()).append("购买:");
+        Country country = countryHandler.get("name",transfer.getCountry());
+        List<Double> cvs = new ArrayList<>();
         transfer.getItems().forEach(p -> {
+            if(country!=null){
+                CountryPrice cp = countryPriceHandler.getPrice(p.getGoods(),country);
+                Double cv = cp.getProfit()*p.getQuantity();
+                cvs.add(cv);
+            }
             sb.append(p.getGoods().getName()).append("X").append(p.getQuantity()).append("  ");
         });
         String more = sb.toString();
-        //获取整个的返利
+        //获取整个国际的返利
         HashMap<Agent, Double> map = getAgentsWithVoucher(transfer.getToAgent(), transfer.getItems());
+        Double cvsum = PreciseComputeUtil.round(cvs.stream().mapToDouble(c->c).sum());
+        if(country!=null&&cvsum!=0){
+            map.put(country.getAgent(),cvsum);
+        }
         for (Agent agent : map.keySet()) {
             //增加返利库存
             records.add(accountsHandler.increaseAccountAndRecord(AccountsType.VOUCHER, agent, transfer.getToAgent(), map.get(agent), more));
         }
         return records;
     }
+
 
 
     /**
@@ -107,21 +123,19 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
             }
             parent = parent.getParent();
         }
+
+//        Double countryVoucher = 0.0;//国际返利
+
         //开始返利
         items.forEach(
                 item -> {
                     //装载所有返利
-                    CommonUtil.putAll(maps,accountsHandler.rewardVoucher(parents,item.getGoods().getVoucher(),item.getQuantity()));
+                    CommonUtil.putAll(maps, accountsHandler.rewardVoucher(parents, item.getGoods().getVoucher(), item.getQuantity()));
                 }
         );
 
         return maps;
     }
-
-
-
-
-
 
 
     /**
@@ -173,10 +187,10 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         transfer.getItems().stream().forEach(
                 p -> {
                     //这里要判断是不是公司转出，或者公司转入
-                    if(fromAgent.isMutedUser()){//如果转出人是公司
-                        goodsHandler.reduceBalacne(p.getGoods().getId(),p.getQuantity());//减少公司余额
-                    }else if (toAgent.isMutedUser()){//如果接收方是公司
-                        goodsHandler.addBalance(p.getGoods().getId(),p.getQuantity());//增加公司余额
+                    if (fromAgent.isMutedUser()) {//如果转出人是公司
+                        goodsHandler.reduceBalacne(p.getGoods().getId(), p.getQuantity());//减少公司余额
+                    } else if (toAgent.isMutedUser()) {//如果接收方是公司
+                        goodsHandler.addBalance(p.getGoods().getId(), p.getQuantity());//增加公司余额
                     }
                     GoodsAccount fromGoodsAccount = goodsAccountHandler.getGoodsAccount(fromAgent, p.getGoods(), fromAgentMain);
                     goodsAccountHandler.deductGoodsAccount(fromGoodsAccount, p.getQuantity());//减少库存
@@ -191,15 +205,15 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         agent.setId(1);
         Agent agent1 = new Agent();
         agent1.setId(2);
-        Map<Agent,Double> map = new HashedMap();
-        map.put(agent1,1.0);
-        Map<Agent,Double> map1 = new HashedMap();
-        map1.put(agent,2.0);
-        map1.put(agent1,2.0);
-        Map<Agent,Double> map2 = new HashedMap();
-        CommonUtil.putAll(map2,map);
-        CommonUtil.putAll(map2,map1);
-        for (Double d : map2.values()){
+        Map<Agent, Double> map = new HashedMap();
+        map.put(agent1, 1.0);
+        Map<Agent, Double> map1 = new HashedMap();
+        map1.put(agent, 2.0);
+        map1.put(agent1, 2.0);
+        Map<Agent, Double> map2 = new HashedMap();
+        CommonUtil.putAll(map2, map);
+        CommonUtil.putAll(map2, map1);
+        for (Double d : map2.values()) {
             System.out.println(d);
         }
 
@@ -262,11 +276,15 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
      *
      * @return
      */
-    private Transfer initTransfer(Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark) {
+    private Transfer initTransfer(Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark, String country) {
         Agent fromAgent = agentDao.get(fromUid);
         Agent toAgent = agentDao.get(toUid);
         //生成订单
         Transfer transfer = new Transfer(toAgent, fromAgent, new Timestamp(new Date().getTime()), remark);
+        if(country==null){
+            country="中国";
+        }
+        transfer.setCountry(country);
         buildItems(transfer, goodsIds, amounts);//组装货物
         return transfer;
     }
@@ -298,6 +316,7 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
 
 
     private void buildItems(Transfer transfer, Integer[] goodsIds, Integer[] amounts) {
+        String country = transfer.getCountry();
         Agent toAgent = transfer.getToAgent();
         Agent fromAgent = transfer.getFromAgent();
         Set<TransferItem> items = new HashSet<>();
@@ -305,14 +324,22 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         for (int i = 0; i < goodsIds.length; i++) {
             Goods goods = goodsDao.get(goodsIds[i]);
             Integer quantity = amounts[i];
+            Double dP;
             Price price;
-            if(toAgent.isMutedUser()){
+            if (toAgent.isMutedUser()) {
                 price = priceHandler.getPrice(fromAgent, goods);
-            }else {
+            } else {
                 price = priceHandler.getPrice(toAgent, goods);
             }
-
-            item = new TransferItem(transfer, quantity, price.getPrice(), goods, price.getAgentLevel().getName());
+            dP=price.getPrice();
+            if (country != null) {
+                Country c = countryHandler.get("name", country);
+                if (c != null) {
+                    CountryPrice cp = countryPriceHandler.getPrice(goods, c);
+                    dP+=cp.getPrice();
+                }
+            }
+            item = new TransferItem(transfer, quantity, dP, goods, price.getAgentLevel().getName());
             items.add(item);
         }
         transfer.setItems(items);
@@ -361,7 +388,7 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
     @Override
     @Transactional
     public void transfer(Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark) {
-        Transfer transfer = initTransfer(fromUid, toUid, goodsIds, amounts, remark);
+        Transfer transfer = initTransfer(fromUid, toUid, goodsIds, amounts, remark, null);
         //提交订单
         applyTransfer(transfer);
         //主动转货
@@ -386,7 +413,7 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
     public void applyBackTransfer(Integer uid, Integer[] goodsIds, Integer[] amounts, String remark) {
         MutedUser mutedUser = muteUserHandler.getMuteUser();
         //退给公司的订单
-        Transfer transfer = initTransfer(uid, mutedUser.getId(), goodsIds, amounts, remark);
+        Transfer transfer = initTransfer(uid, mutedUser.getId(), goodsIds, amounts, remark, null);
         applyBackTransfer(transfer);
         merge(transfer);
     }
@@ -548,8 +575,8 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
      */
     @Override
     @Transactional
-    public void transferAutoConfirm(Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark) {
-        Transfer transfer = initTransfer(fromUid, toUid, goodsIds, amounts, remark);
+    public void transferAutoConfirm(Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark, String country) {
+        Transfer transfer = initTransfer(fromUid, toUid, goodsIds, amounts, remark, country);
         applyTransfer(transfer);//提交 初始化相关参数
         //扣除费用
         List<AccountsRecord> records = deductMoney(transfer);
@@ -582,15 +609,20 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
     @Override
     @Transactional
     public void transferAutoConfirmAndDelivery(AddressMy address, Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark) {
-        transferAutoConfirm(fromUid, toUid, goodsIds, amounts, remark);//公司转出去
-        if(address.getConsigneeCode()!=null&&!address.getConsigneeCode().equals("")){//
-            Agent toAgent =  agentHandler.get("agentCode",address.getConsigneeCode().trim());
-            if(toAgent==null){
+        String country = address.getCountry();
+        if(address.getId()!=null){
+            Address add = addressMyHandler.get(address.getId());
+            country=add.getCountry();
+        }
+        transferAutoConfirm(fromUid, toUid, goodsIds, amounts, remark, country);//公司转出去
+        if (address.getConsigneeCode() != null && !address.getConsigneeCode().equals("")) {//
+            Agent toAgent = agentHandler.get("agentCode", address.getConsigneeCode().trim());
+            if (toAgent == null) {
                 throw new ApplicationException("收货人编号对应的代理不存在！请检查");
             }
             fromUid = toAgent.getId();
-        }else {
-            fromUid= toUid;
+        } else {
+            fromUid = toUid;
         }
         deliveryNoteHandler.deliveryGoods(address, toUid, fromUid, goodsIds, amounts, remark);
     }
@@ -608,7 +640,7 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
     @Override
     @Transactional
     public Integer applyTransfer(Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark) {
-        Transfer transfer = initTransfer(fromUid, toUid, goodsIds, amounts, remark);
+        Transfer transfer = initTransfer(fromUid, toUid, goodsIds, amounts, remark, null);
         //申请
         applyTransfer(transfer);
         //保存
@@ -673,5 +705,12 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
     @Autowired
     private GoodsHandler goodsHandler;
 
+    @Autowired
+    private CountryHandler countryHandler;
 
+    @Autowired
+    private CountryPriceHandler countryPriceHandler;
+
+    @Autowired
+    private AddressMyHandler addressMyHandler;
 }

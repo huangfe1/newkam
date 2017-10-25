@@ -236,7 +236,7 @@
 <%--</header>--%>
 
 
-<%--<div id="letter"></div>--%>
+<div id="letter"></div>
 <div class="sort_box">
 
     <div class="company">

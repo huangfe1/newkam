@@ -16,6 +16,15 @@
    </column>
   </property>
 
+  <set name="countryPrices" cascade="save-update,all">
+      <key>
+          <column name="goods">
+              <comment>所属产品</comment>
+          </column>
+      </key>
+      <one-to-many class="com.dreamer.domain.inter.CountryPrice"/>
+  </set>
+
   <many-to-one name="category" class="GoodsCategory"  not-null="true" lazy="no-proxy">
    <column name="category">
     <comment>产品分类</comment>

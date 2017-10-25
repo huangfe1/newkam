@@ -63,7 +63,7 @@
             outline: none;
             display: inline-block;
             font-size: 1em;
-
+            border: none;
             width: 6em;
             /*border-bottom: 1px solid red;*/
         }
@@ -96,7 +96,7 @@
     <div class="form">
         <div class="code">
             <span>编号</span>
-            <span>zmz123445</span>
+            <span>${user.agentCode}</span>
         </div>
 
         <div class="password">

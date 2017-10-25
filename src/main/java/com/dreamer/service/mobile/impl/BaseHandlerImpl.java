@@ -25,8 +25,15 @@ public class BaseHandlerImpl<T> implements BaseHandler<T> {
     }
 
     @Override
+    @Transactional
     public T save(T object) {
         return baseDao.merge(object);
+    }
+
+    @Override
+    @Transactional
+    public void delete(T object) {
+        baseDao.delete(object);
     }
 
     @Override

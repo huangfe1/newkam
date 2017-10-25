@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dreamer.domain.inter">
+    <class name="Country" table="country">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="native"></generator>
+        </id>
+
+        <many-to-one name="agent" class="com.dreamer.domain.user.User" not-found="ignore">
+            <column name="agent">
+                <comment>返利人</comment>
+            </column>
+        </many-to-one>
+
+        <property name="name" type="java.lang.String">
+            <column name="name">
+                <comment>名字</comment>
+            </column>
+        </property>
+
+        <property name="open" type="java.lang.Boolean" not-null="false" >
+            <column name="open" default="true">
+                <comment>是否开启</comment>
+            </column>
+        </property>
+
+
+
+
+
+    </class>
+</hibernate-mapping>

@@ -397,13 +397,19 @@
             window.location.href=url;
         });
 
+        <%--//注销按钮--%>
+        <%--$("#zx").click(function () {--%>
+            <%--if (confirm("将取消当前账号与微信的绑定，是否继续！")) {--%>
+                <%--window.location.href = "<c:url value='/mobile/out.html'/>";--%>
+            <%--}--%>
+        <%--})--%>
+
         //注销按钮
         $("#zx").click(function () {
-            if (confirm("将取消当前账号与微信的绑定，是否继续！")) {
-                window.location.href = "<c:url value='/mobile/out.html'/>";
-            }
+//            if (confirm("将取消当前账号与微信的绑定，是否继续！")) {
+            window.location.href = "<c:url value='/mobile/set.html'/>";
+//            }
         })
-
 
         $("#qrBtn").click(function (e) {
             e.stopPropagation();

@@ -1,6 +1,8 @@
 package com.dreamer.view.goods;
 
 import com.dreamer.domain.account.GoodsAccount;
+import com.dreamer.domain.inter.Country;
+import com.dreamer.domain.inter.CountryPrice;
 import com.dreamer.domain.mall.delivery.DeliveryNote;
 import com.dreamer.domain.mall.goods.Goods;
 import com.dreamer.domain.mall.goods.GoodsType;
@@ -8,6 +10,7 @@ import com.dreamer.domain.mall.goods.Price;
 import com.dreamer.domain.user.Agent;
 import com.dreamer.domain.user.AgentLevel;
 import com.dreamer.domain.user.User;
+import com.dreamer.service.inter.CountryHandler;
 import com.dreamer.service.mobile.*;
 import com.dreamer.view.mall.goods.GoodsDTO;
 import org.slf4j.Logger;
@@ -57,6 +60,20 @@ public class GoodsQueryController {
                 Price p = ite.next();
                 maps.put(p.getAgentLevel().getId(), p);
             }
+
+            Set<CountryPrice> countryPrices = parameter.getEntity().getCountryPrices();
+            HashMap<Integer, CountryPrice> cmaps = new HashMap<>();
+            Iterator<CountryPrice> cite = countryPrices.iterator();
+            while (cite.hasNext()) {
+                CountryPrice cp = cite.next();
+                cmaps.put(cp.getCountry().getId(), cp);
+            }
+
+            //查找出所有的国家
+            List<Country> countries = countryHandler.findAll();
+            model.addAttribute("countries",countries);
+            model.addAttribute("cps",cmaps);//国际价格
+
             model.addAttribute("types", GoodsType.values());
             model.addAttribute("levels", levels);
             model.addAttribute("prices", maps);
@@ -176,6 +193,9 @@ public class GoodsQueryController {
 
     @Autowired
     private AgentLevelHandler agentLevelHandler;
+
+    @Autowired
+    private CountryHandler countryHandler;
 
     @Autowired
     private CategoryHandler categoryHandler;

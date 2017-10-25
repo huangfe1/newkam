@@ -260,13 +260,12 @@
             background-color: white;
         }
 
-
-        nav{
+        nav {
             overflow: scroll;
         }
 
-        #selectAddress{
-            margin-bottom:5em;
+        #selectAddress {
+            margin-bottom: 5em;
         }
 
     </style>
@@ -275,11 +274,11 @@
 <body>
 <div id="st-container" class="st-container con">
     <%--<header>--%>
-        <%--<a href="javascript:history.go(-1)" class="Return">--%>
-            <%--<span></span>--%>
-        <%--</a>--%>
-        <%--<span class="Title">购物车</span>--%>
-        <%--<a href="<c:url value="/dmz/mall/index.html"/>" class="Home"><span></span></a>--%>
+    <%--<a href="javascript:history.go(-1)" class="Return">--%>
+    <%--<span></span>--%>
+    <%--</a>--%>
+    <%--<span class="Title">购物车</span>--%>
+    <%--<a href="<c:url value="/dmz/mall/index.html"/>" class="Home"><span></span></a>--%>
     <%--</header>--%>
 
     <div class="cartItems">
@@ -314,20 +313,40 @@
             </c:forEach>
         </ul>
     </div>
+
+
     <div class="result">
         <c:if test="${tshopcart!=null&&not empty tshopcart&&tshopcart.quantity>0}">
-        <span>会员价:</span>
-        <span class="totalPrice">￥${tshopcart.amount}</span>
-        <c:if test="${isVip}">
-            <span class="toDelivery st-trigger-effects" data-effect="st-effect-1">直接发货</span>
-            <span class="toTransfer">转入库存</span>
-        </c:if>
+            <span>会员价:</span>
+            <span class="totalPrice">￥${tshopcart.amount}</span>
+            <c:if test="${isVip}">
+                <span class="toDelivery st-trigger-effects" data-effect="st-effect-1">直接发货</span>
+                <c:if test="${cid<=0}">
+                    <span class="toTransfer">转入库存</span>
+                </c:if>
+
+            </c:if>
         </c:if>
         <c:if test="${tshopcart==null or  empty tshopcart or tshopcart.quantity<1}">
             <span>购物车为空</span>
             <a href="<c:url value="/dmz/mobile/index.html"/>"><span class="toHome">继续购物</span></a>
         </c:if>
     </div>
+
+
+    <select id="cs" style="margin-top: 2em" class="form-control">
+        <option value="-1">发国外点我</option>
+        <option value="0">中国</option>
+        <c:forEach items="${countries}" var="c">
+
+            <option
+                    <c:if test="${cid==c.id}">selected</c:if>
+                    value="${c.id}">${c.name}</option>
+        </c:forEach>
+    </select>
+
+    <a href="<c:url value="/dmz/mobile/index.html"/>" style="margin-top: 2em;text-align: center"
+       class="btn-danger form-control">继续购物</a>
 
     <nav class="st-menu st-effect-1" id="menu-1">
         <p style="text-align: center;padding: 1em 0">选择或者新增收货地址</p>
@@ -341,47 +360,74 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="addrPhone" placeholder="收货人手机号">
             </div>
-            <div class="form-inline">
-                <div data-toggle="distpicker">
-                    <div class="form-group">
-                        <select id="addrProvince" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <select id="addrCity" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <select id="addrCounty" class="form-control"></select>
+
+            <c:if test="${cid==null||cid<=0}">
+                <div class="form-inline">
+                    <div data-toggle="distpicker">
+                        <div class="form-group">
+                            <select id="addrProvince" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <select id="addrCity" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <select id="addrCounty" class="form-control"></select>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </c:if>
+
+            <br>
+
+            <!--国际地址大于0-->
+            <c:if test="${cid>0}">
+                <div class="form-inline">
+                    <div>
+                        <div class="form-group">
+                            <select readonly="" id="country" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <select id="addrProvince" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <select id="addrCity" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </c:if>
+
+
             <div class="form-group">
-                    <%--<label for="exampleInputPassword1">Password</label>--%>
+                <%--<label for="exampleInputPassword1">Password</label>--%>
                 <textarea class="form-control" id="address" placeholder="详细地址"></textarea>
             </div>
 
             <div class="form-group">
-                    <%--<label for="exampleInputPassword1">Password</label>--%>
+                <%--<label for="exampleInputPassword1">Password</label>--%>
                 <button id="submitBtn" type="button" class="btn btn-danger form-control">确定发货</button>
             </div>
         </div>
         <div id="selectAddress">
             <c:forEach var="address" items="${addresses}" varStatus="sta">
-                <div class="address ">
-                    <input type="hidden" class="aid" value="${address.id}">
-                    <div class="info">
-                        <div class="addrImg"><span></span></div>
-                        <p>
-                            <span class="adrName">收件人:${address.consignee} &nbsp; &nbsp;${address.consigneeCode}</span>
-                            <span class="adrPhone">${address.mobile}</span>
-                        </p>
-                        <p class="adrDetail">地址：${address.mobile}</p>
+                <c:if test="${cn==address.country}">
+                    <div class="address ">
+                        <input type="hidden" class="aid" value="${address.id}">
+                        <div class="info">
+                            <div class="addrImg"><span></span></div>
+                            <p>
+                                <span class="adrName">收件人:${address.consignee} &nbsp; &nbsp;${address.consigneeCode}</span>
+                                <span class="adrPhone">${address.mobile}</span>
+                            </p>
+                            <p class="adrDetail">地址：${address.address}</p>
+                        </div>
+                        <a href=""><span class="toEdit"></span></a>
                     </div>
-                    <a href=""><span class="toEdit"></span></a>
-                </div>
+                </c:if>
             </c:forEach>
 
             <div class="form-group" style="margin-top: 1em">
-                    <%--<label for="exampleInputPassword1">Password</label>--%>
+                <%--<label for="exampleInputPassword1">Password</label>--%>
                 <button id="addBtn" type="button" class="btn btn-danger form-control">新增地址</button>
             </div>
 
@@ -396,9 +442,30 @@
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="${ctx}/resources/malljs/classie.js"></script>
 <script src="${ctx}/resources/malljs/sidebarEffects.js"></script>
+
+<script type="text/javascript">
+    var areaObj = [];
+
+    function initLocation(e) {
+        var a = 0;
+        for (var m in e) {
+            areaObj[a] = e[m];
+            var b = 0;
+            for (var n in e[m]) {
+                areaObj[a][b++] = e[m][n];
+            }
+            a++;
+        }
+    }
+</script>
+<script type="text/javascript" src="${ctx}/resources/malljs/inter/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/malljs/inter/area_chs.js"></script>
+<script type="text/javascript" src="${ctx}/resources/malljs/inter/location_chs.js"></script>
+
 <script src="https://cdn.bootcss.com/distpicker/2.0.0-rc/distpicker.min.js"></script>
 <script>
     $(function () {
+
         $(".sup").click(function (e) {
             e.stopPropagation();
             e.preventDefault();
@@ -444,14 +511,14 @@
                 }
             });
         });
-        
-        
+
+
         $(".inp").click(function () {
             var value = prompt("请输出数量");
-            if(!isNaN(value)){
+            if (!isNaN(value)) {
                 $(this).val(value);
                 $(this).change();
-            }else{
+            } else {
                 alert("请输入数字");
             }
 
@@ -469,10 +536,13 @@
             var inp = $(this);
 
             var id = $(this).attr("data-id");
+
+            var cid = $("#cs").find("option:selected").val();
             $.post("<c:url value='/vmall/shopcart/put.json'/>",
                 {
                     "goodsId": id,
-                    "quantity": inp.val()
+                    "quantity": inp.val(),
+                    "cid": cid
                 }
                 ,
                 function (data, status, jqXHR) {
@@ -494,7 +564,7 @@
 
         var canClick = true;
         $(".toTransfer").click(function () {
-            if (!canClick)return;
+            if (!canClick) return;
             $(this).html("提交....");
             canClick = false;
             commitOrPay();
@@ -532,16 +602,21 @@
                 alert("电话不能为空");
                 return;
             }
+
+            var addrCountry = "${cn}";
+
+//            alert(addrCountry);
+
             var addrProvince = $("#addrProvince").val();
             if (addrProvince == "") {
                 alert("省份不能为空");
                 return;
             }
             var addrCity = $("#addrCity").val();
-            if (addrCity == "") {
-                alert("市区不能为空");
-                return;
-            }
+//            if (addrCity == "") {
+//                alert("市区不能为空");
+//                return;
+//            }
             var addrCounty = $("#addrCounty").val();
 //            if (addrCounty == "") {
 //                alert("县不能为空");
@@ -557,6 +632,7 @@
                 "consignee": addrName,
                 "consigneeCode": addrCode,
                 "mobile": addrPhone,
+                "country": addrCountry,
                 "province": addrProvince,
                 "city": addrCity,
                 "county": addrCounty,
@@ -617,6 +693,24 @@
         }
 
 
+        //选择国家
+        $("#cs").change(function () {
+            var sel = $(this).find("option:selected");
+//            if(sel.val()==0){
+//                $(".toTransfer").show();
+//            }else {
+//                $(".toTransfer").hide();
+//            }
+            window.location.href = "<c:url value="/mobile/shopcart/index.html?cid="/>" + sel.val();
+        });
+
+
+//        //修改显示价格
+//        var  changePrice = function(price){
+//            $(".price")
+//        }
+
+
         function calcTotal() {
             var totalPrice = 0;
             var qs = $(".inp"), as = $(".nums"), totalQuantity = 0, totalAmount = 0.0;
@@ -631,6 +725,60 @@
             $(".totalPrice").text("￥" + totalPrice.toFixed(2));
         }
     })
+
+    //地址相关
+
+    var cn = "${cn}";
+
+    var country = '';
+    for (var a = 0; a <= _areaList.length - 1; a++) {
+        var objContry = _areaList[a];
+
+        if (cn == objContry) {
+            console.log(cn);
+            country += '<option selected value="' + objContry + '" a="' + (a + 1) + '">' + objContry + '</option>';
+        } else {
+            country += '<option value="' + objContry + '" a="' + (a + 1) + '">' + objContry + '</option>';
+        }
+
+    }
+    $("#country").html(country);
+    $("#country").chosen().change(function () {
+        var a = $("#country").find("option[value='" + $("#country").val() + "']").attr("a");
+        var _province = areaObj[a];
+        var province = '';
+        for (var b in _province) {
+            var objProvince = _province[b];
+            if (objProvince.n) {
+                province += '<option value="' + objProvince.n + '" b="' + b + '">' + objProvince.n + '</option>';
+            }
+        }
+        if (!province) {
+            province = '<option value="0" b="0">------</option>';
+        }
+        $("#addrProvince").html(province).chosen().change(function () {
+            var b = $("#addrProvince").find("option[value='" + $("#addrProvince").val() + "']").attr("b");
+            var _city = areaObj[a][b];
+            var city = '';
+            for (var c in _city) {
+                var objCity = _city[c];
+                if (objCity.n) {
+                    city += '<option value="' + objCity.n + '">' + objCity.n + '</option>';
+                }
+            }
+            if (!city) {
+                var city = '<option value="0">------</option>';
+            }
+            $("#addrCity").html(city).chosen().change();
+            $(".dept_select").trigger("chosen:updated");
+        });
+        $("#addrProvince").change();
+        $(".dept_select").trigger("chosen:updated");
+    });
+    $("#country").change();
+    //    $("button").click(function(){
+    //        alert($("#country").val()+$("#province").val()+$("#city").val());
+    //    });
 
 
 </script>

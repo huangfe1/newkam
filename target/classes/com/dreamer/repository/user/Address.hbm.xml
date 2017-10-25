@@ -14,6 +14,13 @@
 				<comment>记录属于的代理</comment>
 			</column>
 		</many-to-one>
+
+		<property name="country" type="java.lang.String">
+			<column name="country" not-null="false" default="中国">
+				<comment>国家</comment>
+			</column>
+		</property>
+
 		<property name="province" type="java.lang.String" lazy="false" >
 			<column name="province">
 				<comment>省</comment>

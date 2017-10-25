@@ -204,8 +204,8 @@
                                     <h3><span>${item.goods.name}</span></h3>
                                     <h4>数量:X${item.quantity}&nbsp;</h4>
                                 </div>
-                                <div class="price accountsInfo"  style="float: right;margin-left: 0">
-                                    <%--<h3><span>${item.price}￥</span></h3>--%>
+                                <div class="price accountsInfo" style="float: right;margin-left: 0">
+                                        <%--<h3><span>${item.price}￥</span></h3>--%>
                                     <h4><i>
                                         <del>${item.goods.retailPrice}￥</del>
                                     </i></h4>
@@ -237,15 +237,22 @@
                     </span>
                     </c:if>
 
-                    <c:if test="${cart.status.desc ne '已发货'}">
+                    <c:if test="${cart.status.desc ne '已发货'&&cart.address.country eq '中国'}">
                     <span data-id="${cart.id}" class="deleteDelivery" style="float: right;color: red">
                         暂未发货/点击取消
                     </span>
                     </c:if>
 
+                    <c:if test="${cart.status.desc ne '已发货'&&cart.address.country ne '中国'}">
+                      <span data-id="${cart.id}" class="" style="float: right;color: red">
+                        暂未发货/退货找管理员
+                    </span>
+                    </c:if>
+
 
                         <%--<h4>地址:${cart.address.province}${cart.address.city}${cart.address.county}${cart.address.address}${cart.address.mobile}</h4>--%>
-                    <h4 style="padding-top: 0.5em">地址: ${cart.address.address}${cart.address.mobile}${cart.address.consignee}收</h4>
+                    <h4 style="padding-top: 0.5em">
+                        地址: ${cart.address.address}${cart.address.mobile}${cart.address.consignee}收</h4>
                     <p>
                             <%--${cart.logistics}:${cart.logisticsCode}--%>
 
@@ -259,15 +266,15 @@
 </div>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    
+
     $(function () {
         $(".deleteDelivery").click(function () {
 
-            if(!confirm("是否确定删除"))return;
+            if (!confirm("是否确定删除")) return;
 
-            var  id = $(this).attr("data-id");
+            var id = $(this).attr("data-id");
             var url = "<c:url value="/delivery/remove.json"/>";
-            $.post(url, {"id":id},
+            $.post(url, {"id": id},
                 function (data, status, jqXHR) {
                     var m = data;
                     if (m.flag == "0") {
@@ -288,7 +295,7 @@
             });
         })
     })
-    
+
 </script>
 
 </body>

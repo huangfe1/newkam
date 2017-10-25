@@ -26,7 +26,7 @@ public interface TransferHandler extends BaseHandler<Transfer> {
     void confirm(Transfer transfer);
 
 
-    void transferAutoConfirm(Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark);
+    void transferAutoConfirm(Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark,String country);
 
     void transferAutoConfirmAndDelivery(AddressMy address, Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark);
 

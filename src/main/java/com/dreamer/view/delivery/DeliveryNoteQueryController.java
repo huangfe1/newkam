@@ -109,7 +109,14 @@ public class DeliveryNoteQueryController {
 			m.put(13,"");
 			m.put(14,"");
 			m.put(15,"");
-			m.put(16,order.getAddress().getProvince()+order.getAddress().getCity()+order.getAddress().getCounty()+order.getAddress().getAddress());//收货人地址
+			String country = order.getAddress().getCountry();
+			String address = order.getAddress().getProvince()+order.getAddress().getCity()+order.getAddress().getCounty()+order.getAddress().getAddress();
+			if(country!=null&&country.equals("中国")){
+				address=country+address;
+			}
+
+			m.put(16,address);//收货人地址
+
 			m.put(17,"");
 			m.put(18,"");
 			m.put(19,"");

@@ -1,6 +1,8 @@
 package com.dreamer.domain.mall.goods;
 
 import com.dreamer.domain.authorization.AuthorizationType;
+import com.dreamer.domain.inter.Country;
+import com.dreamer.domain.inter.CountryPrice;
 import com.dreamer.domain.user.AgentLevel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -37,6 +39,8 @@ public class Goods implements java.io.Serializable {
 	private String spec;
 	private Double retailPrice;
 	private String detailImg;//详情页名字
+
+	private Set<CountryPrice> countryPrices = new HashSet<>();//国家
 
     @JsonIgnore
     private GoodsCategory category;
@@ -83,7 +87,16 @@ public class Goods implements java.io.Serializable {
 		return null;
 	}
 
-	public Boolean getCanDelivery() {
+
+    public Set<CountryPrice> getCountryPrices() {
+        return countryPrices;
+    }
+
+    public void setCountryPrices(Set<CountryPrice> countryPrices) {
+        this.countryPrices = countryPrices;
+    }
+
+    public Boolean getCanDelivery() {
 		return canDelivery;
 	}
 
@@ -117,6 +130,11 @@ public class Goods implements java.io.Serializable {
 		price.setGoods(this);
 		prices.add(price);
 	}
+
+    public void addCountryPrice(CountryPrice countryPrice){
+        countryPrice.setGoods(this);
+        countryPrices.add(countryPrice);
+    }
 	
 	public void clearPrices(){
 		Iterator<Price> ips=prices.iterator();

@@ -143,7 +143,7 @@
 															</div>
 														</div>
 														<a style="height:100px;width:120px;" href="#" class="imgBox">
-															<div class="uploadImg" style="width:105px"><img id="uploadImage_0" class="upload_image" src="<%=TokenInfo.IMG_HEAD_PATH%>/dmz/img/goods/${val}"
+															<div class="uploadImg" style="width:105px"><img id="uploadImage_0" class="upload_image" src="${dmzImgPath}${val}"
 																											style="width:expression(this.width > 105 ? 105px : this.width)">
 															</div>
 														</a>
@@ -398,6 +398,41 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="col-md-12 col-xs-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								国外市场
+							</div>
+							<div class="table-responsive">
+								<table id="countryTable" class="table table-condensed">
+									<thead>
+									<tr>
+										<th>公司名称</th>
+										<th>产品差价</th>
+										<th>产品利润</th>
+										<%--<th>接收编号</th>--%>
+									</tr>
+									</thead>
+									<tbody>
+									<c:forEach var="c" items="${countries}" varStatus="s">
+
+										<c:set var="cP" value="${cps[c.id]}" />
+										<tr class="lc">
+											<td>${c.name}
+												<input  type="hidden"   name="cpids" value="${cP.id}">
+												<input  type="hidden" 	name="cids"  value="${c.id}">
+											</td>
+											<td><input   type="number" name="cps" tabindex="${s.count+19}"  value="${cP.price}" ></td>
+											<td><input   type="number" name="profits" tabindex="${s.count+20}" value="${cP.profit}"></td>
+										</tr>
+									</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
 				</div>
 				</form>
 			</div>

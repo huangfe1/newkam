@@ -189,7 +189,7 @@
                 scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                 success: function (res) {
                     code = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                    if(code.indexOf("zmz365")>=0){
+                    if(code.indexOf("hzc365")>=0||code.indexOf("zmz365")>=0){
                         var sc=code.substr(code.lastIndexOf("=")+1,code.length);
                         if(code.indexOf("code")>=0){
                             if($.inArray(i,arr)==-1){

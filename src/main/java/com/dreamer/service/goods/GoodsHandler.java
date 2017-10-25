@@ -1,6 +1,8 @@
 package com.dreamer.service.goods;
 
 import com.dreamer.domain.account.GoodsAccount;
+import com.dreamer.domain.inter.Country;
+import com.dreamer.domain.inter.CountryPrice;
 import com.dreamer.domain.mall.goods.Goods;
 import com.dreamer.domain.mall.goods.GoodsCategory;
 import com.dreamer.domain.mall.goods.Price;
@@ -14,6 +16,8 @@ import com.dreamer.repository.mobile.GoodsCategoryDao;
 import com.dreamer.repository.system.SystemParameterDAOInf;
 import com.dreamer.repository.user.AgentLevelDAO;
 import com.dreamer.repository.user.MutedUserDAO;
+import com.dreamer.service.inter.CountryHandler;
+import com.dreamer.service.inter.CountryPriceHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +48,10 @@ public class GoodsHandler {
 	}
 
 	@Transactional
-	public Goods saveOrUpdateGoods(Goods goods, Double[] levelPrice, Integer[] levelThreshold, Integer[] levelId, Integer[] priceId) {
+	public Goods saveOrUpdateGoods(Goods goods, Double[] levelPrice, Integer[] levelThreshold, Integer[] levelId, Integer[] priceId,Integer[] cids,Integer[] cpids,Double[] cps,Double[] profits) {
 		assemblePrice(goods, levelPrice, levelThreshold, levelId, priceId);//价格重新计算
-		Goods instance = goodsDAO.merge(goods);
+		assembleCountryPrice(goods,cps,profits,cids,cpids);//增加国际价格
+        Goods instance = goodsDAO.merge(goods);
 		return instance;
 	}
 
@@ -77,7 +82,7 @@ public class GoodsHandler {
 							   Integer[] levelThreshold, Integer[] levelId, Integer[] priceId) {
 		if (levelId != null && levelId.length > 0) {
 			for (int index = 0; index < levelId.length; index++) {
-				Price price = null;
+				Price price ;
 				if (priceId[index] != null) {
 					price = priceDAO.findById(priceId[index]);
 				} else {
@@ -89,6 +94,27 @@ public class GoodsHandler {
 				price.setPrice(levelPrice[index]);
 				price.setThreshold(levelThreshold[index]);
 				goods.addPrice(price);
+			}
+		}
+	}
+
+
+
+	private void assembleCountryPrice(Goods goods, Double[] cps,Double[] profits
+							   , Integer[] cids, Integer[] cpids) {
+		if (cids != null && cids.length > 0) {
+			for (int index = 0; index < cids.length; index++) {
+				CountryPrice price ;
+                if (cpids.length>0&&cpids[index] != null) {
+					price = countryPriceHandler.get(cpids[index]);
+				} else {
+					price = new CountryPrice();
+					Country country = countryHandler.get(cids[index]);
+					price.setCountry(country);
+				}
+				price.setPrice(cps[index]);
+				price.setProfit(profits[index]);
+				goods.addCountryPrice(price);
 			}
 		}
 	}
@@ -139,6 +165,13 @@ public class GoodsHandler {
 	private SystemParameterDAOInf systemParameterDAO;
 	@Autowired
 	private MutedUserDAO mutedUserDAO;
+
+	@Autowired
+	private CountryPriceHandler countryPriceHandler;
+
+	@Autowired
+	private CountryHandler countryHandler;
+
 
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 

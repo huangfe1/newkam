@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class Address implements Serializable,Cloneable{
     private Integer id;
     private Agent agent;
+    private String country;//国家
     private String province;//省
     private String city;//市
     private String county;//县
@@ -54,6 +55,13 @@ public class Address implements Serializable,Cloneable{
         this.city = city;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public String getCounty() {
         return county;

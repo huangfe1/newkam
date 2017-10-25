@@ -30,5 +30,6 @@ public class AddressClone extends Address {
         setMobile(addressMy.getMobile());
         setConsignee(addressMy.getConsignee());
         setConsigneeCode(addressMy.getConsigneeCode());
+        setCountry(addressMy.getCountry());
     }
 }
