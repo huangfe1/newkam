@@ -30,6 +30,7 @@ public class AccountsRecordController {
            User user = (User) WebUtil.getCurrentUser(request);
            AccountsType accountsType = AccountsType.stateOf(typeState);
            parameter.getEntity().setAccountsType(accountsType);
+          parameter.getEntity().setCanShow(true);
            List<AccountsRecord> accountsRecords = accountsRecordHandler.findAccountsRecords(parameter,user);
            WebUtil.turnPage(parameter, request);
            model.addAttribute("records",accountsRecords);

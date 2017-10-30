@@ -18,6 +18,7 @@ import java.util.List;
 public class AccountsTransferDao extends BaseDaoImpl<AccountsTransfer> {
 
     public List<AccountsTransfer> findAccountsTransfer(SearchParameter<AccountsTransfer> parameter, User user) {
+        parameter.getEntity().setCanShow(true);
         Example example = Example.create(parameter.getEntity());
         DetachedCriteria dc = DetachedCriteria.forClass(AccountsTransfer.class);
         dc.add(example);

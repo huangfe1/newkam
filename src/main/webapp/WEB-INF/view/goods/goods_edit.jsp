@@ -411,6 +411,7 @@
 										<th>公司名称</th>
 										<th>产品差价</th>
 										<th>产品利润</th>
+										<th>产品图片</th>
 										<%--<th>接收编号</th>--%>
 									</tr>
 									</thead>
@@ -425,6 +426,8 @@
 											</td>
 											<td><input   type="number" name="cps" tabindex="${s.count+19}"  value="${cP.price}" ></td>
 											<td><input   type="number" name="profits" tabindex="${s.count+20}" value="${cP.profit}"></td>
+											<td><input   type="file" accept="image/png,image/jpeg,image/gif"  name="cfiles" tabindex="${s.count+21}" ></td>
+
 										</tr>
 									</c:forEach>
 									</tbody>

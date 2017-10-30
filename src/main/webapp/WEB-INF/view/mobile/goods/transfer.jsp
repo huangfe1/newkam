@@ -758,6 +758,7 @@
                 "province": addrProvince,
                 "city": addrCity,
                 "county": addrCounty,
+                "country": "中国",
                 "address": address,
                 "goodsIds": goodsIds,
                 "amounts": amounts,

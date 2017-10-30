@@ -26,6 +26,7 @@ public class AccountsTransfer implements java.io.Serializable {
     private AccountsTransferStatus status;
     private AccountsType type;
     private String out_trade_no;//订单号码
+    private Boolean canShow;//是否能展示
 
     // Constructors
 
@@ -39,6 +40,15 @@ public class AccountsTransfer implements java.io.Serializable {
         this.amount = amount;
         this.type = type;
         this.updateTime = updateTime;
+        this.canShow=true;
+    }
+
+    public Boolean getCanShow() {
+        return canShow;
+    }
+
+    public void setCanShow(Boolean canShow) {
+        this.canShow = canShow;
     }
 
     public Integer getId() {

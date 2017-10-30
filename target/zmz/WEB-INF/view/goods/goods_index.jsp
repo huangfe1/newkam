@@ -37,9 +37,22 @@
 								<label class="">产品名称</label> <input type="text"
 									value="${parameter.entity.name}" name="entity.name" id="name"
 									autofocus class="typeahead form-control" placeholder="产品名称">
-								<label class="">积分系数</label> <input type="number"
-									value="${parameter.entity.pointFactor}" name="entity.pointFactor" id="pointFactor"
-									autofocus class="typeahead form-control" placeholder="产品积分系数">
+								<%--<label class="">积分系数</label> <input type="number"--%>
+									<%--value="${parameter.entity.pointFactor}" name="entity.pointFactor" id="pointFactor"--%>
+									<%--autofocus class="typeahead form-control" placeholder="产品积分系数">--%>
+                                <select name="entity.shelf" id="status" class="form-control">
+                                    <option value="">是否上架</option>
+                                    <option value="true" >
+                                        上架</option>
+
+                                    <option value="false" >
+                                        下架</option>
+                                    <%--<c:forEach items="${status}" var="s">--%>
+                                        <%--<option value="${s}" <c:if test="${parameter.entity.status==s}">selected</c:if>>--%>
+                                                <%--${s.desc}</option>--%>
+                                    <%--</c:forEach>--%>
+                                </select>
+
 
 								<button type="submit" class="btn btn-primary" id="search"
 									name="search">

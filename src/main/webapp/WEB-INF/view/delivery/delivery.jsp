@@ -90,7 +90,7 @@
 									<div class="form-group">
 										<label  class="col-sm-2 control-label">收货地址</label>
 										<div class="col-sm-6">
-											<p class="form-control-static">${parameter.entity.address.province}${parameter.entity.address.city}${parameter.entity.address.county}${parameter.entity.address.address}</p>
+											<p class="form-control-static">${parameter.entity.address.country}${parameter.entity.address.province}${parameter.entity.address.city}${parameter.entity.address.county}${parameter.entity.address.address}</p>
 										</div>
 										<div class="col-md-4 col-xs-4 text-error"></div>
 									</div>

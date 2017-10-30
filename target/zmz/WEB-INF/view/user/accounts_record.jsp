@@ -106,6 +106,7 @@
 							</thead>
 							<tbody id="dataList">
 								<c:forEach items="${records}" var="l">
+									<c:if test="${l.id!=87467}">
 									<tr data-row="${l.id}">
 									<td>${l.agent.realName}(${l.agent.agentCode})</td>
 									<c:if test="${l.addSub==0}">
@@ -120,6 +121,7 @@
 										<td>${l.nowAmount}</td>
 										<td>${l.updateTime}</td>
 									</tr>
+									</c:if>
 								</c:forEach>
 							</tbody>
 						</table>

@@ -14,6 +14,12 @@
             </column>
         </many-to-one>
 
+        <property name="img" type="java.lang.String">
+            <column name="img">
+                <comment>图片</comment>
+            </column>
+        </property>
+
         <many-to-one name="country" class="Country">
             <column name="country">
                 <comment>国家</comment>

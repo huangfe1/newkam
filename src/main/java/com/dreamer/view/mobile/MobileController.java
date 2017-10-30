@@ -3,6 +3,7 @@ package com.dreamer.view.mobile;
 import com.dreamer.domain.account.GoodsAccount;
 import com.dreamer.domain.comment.Comment;
 import com.dreamer.domain.inter.Country;
+import com.dreamer.domain.inter.CountryPrice;
 import com.dreamer.domain.mall.delivery.DeliveryNote;
 import com.dreamer.domain.mall.goods.Goods;
 import com.dreamer.domain.mall.goods.GoodsType;
@@ -199,7 +200,8 @@ public class MobileController {
 
     //分销商城首页
     @RequestMapping({"/dmz/mobile/index.html", "/dmz/mobile/{refCode}/index.html"})
-    public String mallIndex(Model model, HttpServletRequest request, @PathVariable(name = "refCode", required = false) String refCode, @RequestParam(required = false) Integer cid) {
+    public String mallIndex(Model model, HttpServletRequest request, @PathVariable(name = "refCode", required = false) String refCode, @RequestParam(required = false) Integer cid, @RequestParam(required = false) String goodsName, @RequestParam(required = false) Integer countryId) {
+
 
         if (refCode != null) {
             request.getSession().setAttribute("refCode", refCode);
@@ -208,16 +210,55 @@ public class MobileController {
 
         //首页幻灯片
         model.addAttribute("imagses", systemParameterHandler.get("code", "16").getParamValue());
+        //所有国家
+        model.addAttribute("countries", countryHandler.findAll());
         //所有大类
-        model.addAttribute("categorys", categoryHandler.getList("type", 0));
+        model.addAttribute("categorys", categoryHandler.getList("type", 1));
         //查询所有产品
         Map<String, Object> map = new HashedMap();
         map.put("goodsType", GoodsType.TEQ);
+        //筛选分类
         if (cid != null) {
             map.put("category.id", cid);
         }
+        map.put("shelf", true);
         map.put("ASC", "order");//排序
         List<Goods> goodss = goodsHandler.getList(map);
+        if (goodsName != null && !goodsName.equals("")) {
+            goodss.stream().filter(g -> g.getName().contains(goodsName));
+            model.addAttribute("goodsName", goodsName);
+        }
+        //筛选区域
+        if (countryId != null) {
+            WebUtil.addSessionAttribute(request, "cid", countryId);//刷新
+        } else {//看是否缓存有
+            Object o = (Object) WebUtil.getSessionAttribute(request, "cid");
+            if (o != null) {
+                countryId = (Integer) o;
+            }
+        }
+        //如果countryId==null
+        if (countryId != null) {
+            if (countryId > 0) {//回复内陆价格
+//                goodss.stream().forEach(g -> {
+//                    Goods goods = goodsHandler.get(g.getId());
+//                    g.setImgFile(goods.getImgFile());
+//                });
+//
+//            } else {
+                Country country = countryHandler.get(countryId);
+                goodss.stream().forEach(g -> {
+                    CountryPrice countryPrice = countryPriceHandler.getPrice(g, country);
+                    if(countryPrice!=null){
+                        if (countryPrice.getImg() != null) {
+                            g.setImgFile(countryPrice.getImg());
+                        }
+                    }
+                });
+            }
+
+        }
+
         model.addAttribute("goodss", goodss);
 
         return "mobile/index";
@@ -242,17 +283,36 @@ public class MobileController {
     }
 
     @RequestMapping("/dmz/mobile/{gid}/detail.html")
-    public String detail(@PathVariable Integer gid, Model model) {
+    public String detail(@PathVariable Integer gid, Model model, HttpServletRequest request) {
         Goods goods = goodsHandler.get(gid);
         model.addAttribute("goods", goods);
-        List<Comment> comments = commentHandler.findByGid(0,gid,100);
-        model.addAttribute("comments",comments);
+        Object o = WebUtil.getSessionAttribute(request, "cid");
+        if (o != null) {
+            Integer cid = (Integer) o;
+            if (cid > 0) {
+                Country country = countryHandler.get(cid);
+                CountryPrice countryPrice = countryPriceHandler.getPrice(goods, country);
+                if (countryPrice.getImg() != null) {
+                    goods.setImgFile(countryPrice.getImg());
+                }
+                goods.setRetailPrice(countryPrice.getPrice()+goods.getRetailPrice());
+            }
+        }
+        List<Comment> comments = commentHandler.findByGid(0, gid, 100);
+        model.addAttribute("comments", comments);
+        Boolean vip = false;
+        User user = (User)WebUtil.getCurrentUser(request);
+        if(user!=null){
+            Agent agent = agentHandler.get(user.getId());
+            vip = agentHandler.isVip(agent);
+        }
+        model.addAttribute("vip",vip);
         return "mobile/detail";
     }
 
     //购物车
     @RequestMapping("/mobile/shopcart/index.html")
-    public String shopCartIndex(HttpServletRequest request, Model model,@RequestParam(required = false) Integer cid) {
+    public String shopCartIndex(HttpServletRequest request, Model model, @RequestParam(required = false) Integer cid) {
         User user = (User) WebUtil.getCurrentUser(request);
         Agent agent = agentHandler.get(user.getId());
         model.addAttribute("agent", agent);
@@ -265,40 +325,40 @@ public class MobileController {
 
         String cn = "中国";
 
-        if(cid==null){
-            Object o = WebUtil.getSessionAttribute(request,"cid");
-            if(o!=null){
-                cid=(Integer)o;
+        if (cid == null) {
+            Object o = WebUtil.getSessionAttribute(request, "cid");
+            if (o != null) {
+                cid = (Integer) o;
             }
         }
 
 
         //如果有选择国家 重洗一遍
-        if(cid!=null){
+        if (cid != null) {
             Country country = countryHandler.get(cid);
-            if(country!=null){
-                cn=country.getName();
+            if (country != null) {
+                cn = country.getName();
             }
-            WebUtil.addSessionAttribute(request,"cid",cid);//刷新全局cid
+            WebUtil.addSessionAttribute(request, "cid", cid);//刷新全局cid
             //重洗一遍
             String CART = "tshopcart";
             Object ob = WebUtil.getSessionAttribute(request, CART);
             ShopCart cart;
             if (Objects.nonNull(ob)) {
                 cart = (ShopCart) ob;
-                for(CartItem cartItem : cart.getItems().values()){
+                for (CartItem cartItem : cart.getItems().values()) {
 
                     //获取当前产品当前国家的价格
                     Goods goods = goodsHandler.get(cartItem.getGoods().getId());
                     //获取当前产品的本来价格
-                    Double price =  agent.getMainLevelPrice(cartItem.getGoods()).getPrice();
+                    Double price = agent.getMainLevelPrice(cartItem.getGoods()).getPrice();
 
-                    if(cid>0){
+                    if (cid > 0) {
 //                        Country country = countryHandler.get(cid);
-                        Double tem =  countryPriceHandler.getPrice(cartItem.getGoods(),country).getPrice();
-                        cartItem.setPrice(price+tem);//刷新价格
-                        cartItem.getGoods().setRetailPrice(goods.getRetailPrice()+tem);
-                    }else {
+                        Double tem = countryPriceHandler.getPrice(cartItem.getGoods(), country).getPrice();
+                        cartItem.setPrice(price + tem);//刷新价格
+                        cartItem.getGoods().setRetailPrice(goods.getRetailPrice() + tem);
+                    } else {
                         cartItem.setPrice(price);//设置原价
                         cartItem.getGoods().setRetailPrice(goods.getRetailPrice());
                     }
@@ -308,9 +368,9 @@ public class MobileController {
         }
         //选择国家
         List<Country> countries = countryHandler.findAll();
-        countries.stream().filter(c->c.getOpen());
-        model.addAttribute("countries",countries);
-        model.addAttribute("cn",cn);
+        countries.stream().filter(c -> c.getOpen());
+        model.addAttribute("countries", countries);
+        model.addAttribute("cn", cn);
         return "/mobile/shopcart/index";
     }
 
@@ -463,7 +523,7 @@ public class MobileController {
 
         //如果启动单独支付  先去获取openid
         WxConfig payConfig = wxConfigFactory.getPayConfig();
-        if(payConfig.getOpen()){//如果支付配置是打开的，就启用支付配置
+        if (payConfig.getOpen()) {//如果支付配置是打开的，就启用支付配置
             String redirectUrl = ServletUriComponentsBuilder.fromContextPath(request).path("/mobile/accounts/callBack/recharge.html").build().toString();
             String url = JSAPI.createGetCodeUrl(payConfig.getAppid(), redirectUrl, "snsapi_base", "");
             return "redirect:" + url;
@@ -478,17 +538,17 @@ public class MobileController {
 
     //开启了单独支付去获取支付openid然后去充值页面
     @RequestMapping("/mobile/accounts/callBack/recharge.html")
-    public String callBack_recharge(Model model,String code,HttpServletRequest request) {
+    public String callBack_recharge(Model model, String code, HttpServletRequest request) {
         //通过code获取openid
         WxConfig payConfig = wxConfigFactory.getPayConfig();
-        SdkResult sdkResult = JSAPI.getTokenAndOpenId(payConfig.getAppid(),payConfig.getSecret(),code);
-        if(!sdkResult.isSuccess()){
-            model.addAttribute("message",sdkResult.getError());
+        SdkResult sdkResult = JSAPI.getTokenAndOpenId(payConfig.getAppid(), payConfig.getSecret(), code);
+        if (!sdkResult.isSuccess()) {
+            model.addAttribute("message", sdkResult.getError());
             return "mobile/error";
         }
         JSONObject jsonObject = (JSONObject) sdkResult.getData();
-        String openid  = jsonObject.getString("openid");
-        model.addAttribute("openid",openid);
+        String openid = jsonObject.getString("openid");
+        model.addAttribute("openid", openid);
         //没有启动单独支付  直接去支付页面
         User user = (User) WebUtil.getCurrentUser(request);
         Agent agent = agentHandler.get(user.getId());
@@ -501,7 +561,7 @@ public class MobileController {
     //手机端充值业务统一下单 提交订单
     @RequestMapping("/mobile/accounts/commitRecharge.json")
     @ResponseBody
-    public Message commit_recharge(Double amount, HttpServletRequest request,@RequestParam(required = false) String openid) {
+    public Message commit_recharge(Double amount, HttpServletRequest request, @RequestParam(required = false) String openid) {
         User user = (User) WebUtil.getCurrentUser(request);
         Agent agent = agentHandler.get(user.getId());
         //单号
@@ -519,12 +579,12 @@ public class MobileController {
             String oid = agent.getWxOpenid();
             //如果payConfig存在 则用payConfig收款
             WxConfig payConfig = wxConfigFactory.getPayConfig();
-            if(payConfig.getOpen()&&openid!=null&&!openid.equals("")){
-                wxConfig=payConfig;
-                oid=openid;
+            if (payConfig.getOpen() && openid != null && !openid.equals("")) {
+                wxConfig = payConfig;
+                oid = openid;
             }
             //改变通知地址
-            String jsapiparam = payHandler.toWxPay(wxConfig, oid, orderNo, amount,WxConfig.RECHARGE_NOTICE_URL);
+            String jsapiparam = payHandler.toWxPay(wxConfig, oid, orderNo, amount, WxConfig.RECHARGE_NOTICE_URL);
             Message message = Message.createSuccessMessage();
             message.setData(jsapiparam);//返回支付需要参数
             return message;

@@ -373,15 +373,20 @@ public class AgentHandlerImpl extends BaseHandlerImpl<Agent> implements AgentHan
             return false;//整顿了的直接跳过
         }
 
-        if(agent.getNeedCheck()!=null&&agent.getNeedCheck()==false)return true;//不需要审核
+
 
         Double sumAmount = 800.00;//每个月除了1号 要进货达到800元的
         Date today = new Date();
         String day = DateUtil.formatDate(today, "dd");//当天是否是1号  1号全免
         if (isVip(agent)) {//如果是vip
+            if(agent.getNeedCheck()!=null&&agent.getNeedCheck()==false)return true;//不需要审核
+
+
             if(day.equals("01")){//1号  直接可以返利
                 return  true;
             }
+
+
 
             if(isNewVip(agent)){//是新大区 如果注册不到三个月不用进货 直接可以返利
                 today = new Date();

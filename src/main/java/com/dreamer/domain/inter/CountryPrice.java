@@ -14,6 +14,15 @@ public class CountryPrice {
 
     private Double profit;//利润
 
+    private String img;//每个不同国家价格都有图片
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public Goods getGoods() {
         return goods;

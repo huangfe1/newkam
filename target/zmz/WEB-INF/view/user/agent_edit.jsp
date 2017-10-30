@@ -267,49 +267,49 @@
         $("#editTeqName").focus().select();
         var btn = null;
         var langUrl = "<c:url value='/resources/js/datatables-plugins/i18n/Chinese.json'/>";
-        var dt = $("#mainTable").DataTable({
-            language: {
-                url: langUrl
-            },
-            "processing": true,
-            "serverSide": true,
-            "searching": false,
-            "lengthChange": false,
-            "ordering": false,
-            "pageLength": 10,
-            "ajax": {
-                "url": "<c:url value='/authType/query.json'/>",
-                "data": function (d) {
-                    return $.extend({}, d, {
-                        "entity.name": $('#authName').val(), "entity.goods.name": $('#goodsName').val(),
-                        "useDatatables": "true"
-                    });
-                }
-            },
-            "columns": [{
-                "data": "name"
-            }, {
-                "data": "goods.name"
-            }, {
-                "data": "id"
-            }],
-            "columnDefs": [{
-                "render": function (data, type, row) {
-                    return "<input type='checkbox' name='ids' value='" + data + "'/>";
-                },
-                "targets": 2
-            }]
-        });
-        $('#mainTable tbody').on('click', 'tr', function () {
-            if ($(this).hasClass('selected')) {
-                $(this).removeClass('selected');
-                $(this).find("input[type='checkbox']").prop("checked", false);
-            } else {
-                dt.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-                $(this).find("input[type='checkbox']").prop("checked", true);
-            }
-        });
+        <%--var dt = $("#mainTable").DataTable({--%>
+            <%--language: {--%>
+                <%--url: langUrl--%>
+            <%--},--%>
+            <%--"processing": true,--%>
+            <%--"serverSide": true,--%>
+            <%--"searching": false,--%>
+            <%--"lengthChange": false,--%>
+            <%--"ordering": false,--%>
+            <%--"pageLength": 10,--%>
+            <%--"ajax": {--%>
+                <%--"url": "<c:url value='/authType/query.json'/>",--%>
+                <%--"data": function (d) {--%>
+                    <%--return $.extend({}, d, {--%>
+                        <%--"entity.name": $('#authName').val(), "entity.goods.name": $('#goodsName').val(),--%>
+                        <%--"useDatatables": "true"--%>
+                    <%--});--%>
+                <%--}--%>
+            <%--},--%>
+            <%--"columns": [{--%>
+                <%--"data": "name"--%>
+            <%--}, {--%>
+                <%--"data": "goods.name"--%>
+            <%--}, {--%>
+                <%--"data": "id"--%>
+            <%--}],--%>
+            <%--"columnDefs": [{--%>
+                <%--"render": function (data, type, row) {--%>
+                    <%--return "<input type='checkbox' name='ids' value='" + data + "'/>";--%>
+                <%--},--%>
+                <%--"targets": 2--%>
+            <%--}]--%>
+        <%--});--%>
+//        $('#mainTable tbody').on('click', 'tr', function () {
+//            if ($(this).hasClass('selected')) {
+//                $(this).removeClass('selected');
+//                $(this).find("input[type='checkbox']").prop("checked", false);
+//            } else {
+//                dt.$('tr.selected').removeClass('selected');
+//                $(this).addClass('selected');
+//                $(this).find("input[type='checkbox']").prop("checked", true);
+//            }
+//        });
         $("#searchDT").click(function (e) {
             dt.draw();
         });

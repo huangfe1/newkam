@@ -12,6 +12,7 @@ public class Country {
 
     private Boolean open;//是否打开
 
+
     public Boolean getOpen() {
         return open;
     }

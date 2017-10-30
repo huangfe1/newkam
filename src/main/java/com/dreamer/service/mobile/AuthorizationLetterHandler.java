@@ -60,7 +60,7 @@ public class AuthorizationLetterHandler {
 //			}
 //			gp.drawString(an, 307-an.length()*9, 627); 不要产品名字了
 			String levelName = gac.getAgentLevel().getName();
-			levelName.replace("联盟单位","分公司");
+			levelName = levelName.replace("联盟单位","分公司");
 			gp.setFont(new Font("宋体", Font.BOLD, 20));
 			gp.drawString(levelName, 307-levelName.length()*10, 640);
 			gp.setFont(new Font("宋体", Font.BOLD, 18));

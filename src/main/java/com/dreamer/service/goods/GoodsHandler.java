@@ -48,9 +48,9 @@ public class GoodsHandler {
 	}
 
 	@Transactional
-	public Goods saveOrUpdateGoods(Goods goods, Double[] levelPrice, Integer[] levelThreshold, Integer[] levelId, Integer[] priceId,Integer[] cids,Integer[] cpids,Double[] cps,Double[] profits) {
+	public Goods saveOrUpdateGoods(Goods goods, Double[] levelPrice, Integer[] levelThreshold, Integer[] levelId, Integer[] priceId,Integer[] cids,Integer[] cpids,Double[] cps,Double[] profits,String[] cfNames) {
 		assemblePrice(goods, levelPrice, levelThreshold, levelId, priceId);//价格重新计算
-		assembleCountryPrice(goods,cps,profits,cids,cpids);//增加国际价格
+		assembleCountryPrice(goods,cps,profits,cids,cpids,cfNames);//增加国际价格
         Goods instance = goodsDAO.merge(goods);
 		return instance;
 	}
@@ -101,8 +101,8 @@ public class GoodsHandler {
 
 
 	private void assembleCountryPrice(Goods goods, Double[] cps,Double[] profits
-							   , Integer[] cids, Integer[] cpids) {
-		if (cids != null && cids.length > 0) {
+							   , Integer[] cids, Integer[] cpids,String[] cfileNames) {
+	    if (cids != null && cids.length > 0) {
 			for (int index = 0; index < cids.length; index++) {
 				CountryPrice price ;
                 if (cpids.length>0&&cpids[index] != null) {
@@ -111,7 +111,12 @@ public class GoodsHandler {
 					price = new CountryPrice();
 					Country country = countryHandler.get(cids[index]);
 					price.setCountry(country);
-				}
+                }
+                if(index<cfileNames.length){
+                    if(cfileNames[index]!=null){
+                        price.setImg(cfileNames[index]);
+                    }
+                }
 				price.setPrice(cps[index]);
 				price.setProfit(profits[index]);
 				goods.addCountryPrice(price);

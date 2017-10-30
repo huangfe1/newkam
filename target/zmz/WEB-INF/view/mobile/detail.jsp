@@ -270,21 +270,21 @@
         <a href=""><img src="<c:url value="${dmzImgPath}${goods.imgFile}"/>" alt=""></a>
     </div>
     <div class="info">
-        <section class="Title">
-            <h4>${goods.name}</h4>
-            <%--<span><i class="fa fa-heart-o"></i>收藏</span>--%>
-        </section>
+        <%--<section class="Title">--%>
+            <%--<h4>${goods.name}</h4>--%>
+            <%--&lt;%&ndash;<span><i class="fa fa-heart-o"></i>收藏</span>&ndash;%&gt;--%>
+        <%--</section>--%>
         <section class="detail">
-            <p>
-                    <span>当前价格:
-                    <strong>￥${goods.retailPrice}</strong>
-                    </span>
-            </p>
-            <p>
-                    <span>产品规格:
-                    <strong>${goods.spec}</strong>
-                    </span>
-            </p>
+            <%--<p>--%>
+                    <%--<span>当前价格:--%>
+                    <%--<strong>￥${goods.retailPrice}</strong>--%>
+                    <%--</span>--%>
+            <%--</p>--%>
+            <%--<p>--%>
+                    <%--<span>产品规格:--%>
+                    <%--<strong>${goods.spec}</strong>--%>
+                    <%--</span>--%>
+            <%--</p>--%>
 
             <%--<c:if test="${goods.}"></c:if>--%>
             <%--<p>--%>
@@ -321,6 +321,8 @@
         <%--</div>--%>
 
         <%--</section>--%>
+        <c:if test="${vip}">
+
         <section class="buy">
             <span class="Title">购买数量:</span>
             <div class="inputs">
@@ -329,10 +331,14 @@
                 <span class="plus">+</span>
             </div>
         </section>
+
+
+
         <div class="buy-cart">
             <a href="" data-id="${goods.id}" class="toCart"><span>加入购物车</span></a>
             <%--<a href="<c:url value='/vmall/shopcart/index.html'/> " class="toBuy"><span>立即购买</span></a>--%>
         </div>
+        </c:if>
 
         <div class="comment">
             <div class="c-title">用户评价(${comments.size()}+) <span id="more"><a href="#">更多 >></a> </span> </div>

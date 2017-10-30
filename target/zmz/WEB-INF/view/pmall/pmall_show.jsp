@@ -13,7 +13,7 @@
     <%@include file="/WEB-INF/view/common/tc_css.jsp" %>
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://www.zmz365.com:8081/data/button.css" rel="stylesheet">
+    <link href="http://ht.hzc365.com/button.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

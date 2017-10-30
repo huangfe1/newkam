@@ -20,60 +20,68 @@ import java.util.Optional;
 public class GoodsController {
 
 
-	@RequestMapping(value = "/edit.json", method = RequestMethod.POST)
-	public Message edit(@ModelAttribute("parameter") Goods goods, MultipartHttpServletRequest request, Double[] levelPrice, Integer[] levelThreshold, Integer[] levelId, Integer[] priceId, Integer cId,Integer[] cids,Integer[] cpids,Double[] cps,Double[] profits) {
-		try {
-			if (goods.getAuthorizationType() != null) {
-				goods.getAuthorizationType().setGoods(goods);
-			}
-			MultipartFile img = request.getFile("img");
-			MultipartFile actImg = request.getFile("actImgFile");
-			if (img != null) {
-				String imgName = goodsHandler.saveImg(img);
-				goods.setImgFile(imgName);
-			}
-			if (actImg != null) {
-				String actName = goodsHandler.saveImg(actImg);
-				goods.setActImg(actName);
-			}
-			GoodsCategory category = new GoodsCategory();
-			category.setId(cId);
-			goods.setCategory(category);
-			goodsHandler.saveOrUpdateGoods(goods, levelPrice, levelThreshold, levelId, priceId,cids,cpids,cps,profits);
-			return Message.createSuccessMessage();
-		} catch (Exception exp) {
-			exp.printStackTrace();
-			LOG.error("产品编辑保存失败", exp);
-			return Message.createFailedMessage();
-		}
-	}
+    @RequestMapping(value = "/edit.json", method = RequestMethod.POST)
+    public Message edit(@ModelAttribute("parameter") Goods goods, MultipartHttpServletRequest request, Double[] levelPrice, Integer[] levelThreshold, Integer[] levelId, Integer[] priceId, Integer cId, Integer[] cids, Integer[] cpids, Double[] cps, Double[] profits, MultipartFile[] cfiles) {
+        try {
+            if (goods.getAuthorizationType() != null) {
+                goods.getAuthorizationType().setGoods(goods);
+            }
+            MultipartFile img = request.getFile("img");
+            MultipartFile actImg = request.getFile("actImgFile");
+            if (img != null) {
+                String imgName = goodsHandler.saveImg(img);
+                goods.setImgFile(imgName);
+            }
+            if (actImg != null) {
+                String actName = goodsHandler.saveImg(actImg);
+                goods.setActImg(actName);
+            }
+            String[] cfNames = new String[cfiles.length];
+            for (int i = 0;i < cfiles.length;i++) {
+                String tn = null;
+                if(cfiles[i]!=null){
+                    tn = goodsHandler.saveImg(cfiles[i]);
+                }
+                cfNames[i]=tn;
+            }
+            GoodsCategory category = new GoodsCategory();
+            category.setId(cId);
+            goods.setCategory(category);
+            goodsHandler.saveOrUpdateGoods(goods, levelPrice, levelThreshold, levelId, priceId, cids, cpids, cps, profits, cfNames);
+            return Message.createSuccessMessage();
+        } catch (Exception exp) {
+            exp.printStackTrace();
+            LOG.error("产品编辑保存失败", exp);
+            return Message.createFailedMessage();
+        }
+    }
 
-	@RequestMapping(value = "/remove.json", method = RequestMethod.DELETE)
-	public Message remove(@ModelAttribute("parameter") Goods goods, Model model) {
-		try {
-			goodsHandler.removeGoods(goods);
-			return Message.createSuccessMessage();
-		} catch (Exception exp) {
-			exp.printStackTrace();
-			LOG.error("产品删除失败", exp);
-			return Message.createFailedMessage();
-		}
-	}
+    @RequestMapping(value = "/remove.json", method = RequestMethod.DELETE)
+    public Message remove(@ModelAttribute("parameter") Goods goods, Model model) {
+        try {
+            goodsHandler.removeGoods(goods);
+            return Message.createSuccessMessage();
+        } catch (Exception exp) {
+            exp.printStackTrace();
+            LOG.error("产品删除失败", exp);
+            return Message.createFailedMessage();
+        }
+    }
 
-	@ModelAttribute("parameter")
-	public Goods preprocess(@RequestParam("id") Optional<Integer> id) {
-		Goods goods = new Goods();
-		if (id.isPresent()) {
-			goods = goodsDAO.findById(id.get());
-		}
-		return goods;
-	}
+    @ModelAttribute("parameter")
+    public Goods preprocess(@RequestParam("id") Optional<Integer> id) {
+        Goods goods = new Goods();
+        if (id.isPresent()) {
+            goods = goodsDAO.findById(id.get());
+        }
+        return goods;
+    }
 
-	@Autowired
-	private GoodsDAO goodsDAO;
-	@Autowired
-	private GoodsHandler goodsHandler;
+    @Autowired
+    private GoodsDAO goodsDAO;
+    @Autowired
+    private GoodsHandler goodsHandler;
 
-	private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private final Logger LOG = LoggerFactory.getLogger(getClass());
 
 }

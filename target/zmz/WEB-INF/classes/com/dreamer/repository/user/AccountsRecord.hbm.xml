@@ -17,6 +17,13 @@
                 <comment>属于的记录</comment>
             </column>
         </many-to-one>
+
+        <property name="canShow" type="java.lang.Boolean">
+            <column name="canShow">
+                <comment>是否能显示</comment>
+            </column>
+        </property>
+
         <many-to-one name="causedAgent" class="com.dreamer.domain.user.User" fetch="select" not-found="ignore">
             <column name="caused_agent" not-null="true">
                 <comment>因为谁产生的</comment>

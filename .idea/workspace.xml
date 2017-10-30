@@ -7,149 +7,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32b3edf8-f0f8-4de0-9675-e59ecc5a4b01" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/Country.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/CountryPrice.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/Country.hbm.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryPrice.hbm.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryPriceDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryHandlerImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryPriceHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryPriceHandlerImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/view/inter/CountryController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/view/inter/CountryQueryController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common/inter_area_js.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/inter/country_edit.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/inter/country_index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/malljs/inter/area_chs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/malljs/inter/chosen.jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/malljs/inter/location_chs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/authorization/Authorization.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/authorization/Authorization.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/mall/delivery/DeliveryNote.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/mall/delivery/DeliveryNote.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/mall/goods/Goods.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/mall/goods/Goods.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/mall/shopcart/ShopCart.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/mall/shopcart/ShopCart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/mall/transfer/Transfer.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/mall/transfer/Transfer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/Address.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/Address.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/AddressClone.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/AddressClone.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/Agent.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/Agent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/MutedUser.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/MutedUser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/User.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/account/GoodsAccountDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/account/GoodsAccountDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/authorization/AuthorizationTypeDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/authorization/AuthorizationTypeDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/GoodsDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/GoodsDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/StockBlotterDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/StockBlotterDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/TransferDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/TransferDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/mobile/BaseDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/mobile/BaseDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/user/MutedUserDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/user/MutedUserDAO.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/index_copy.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/inter/Country.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/inter/Country.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/inter/CountryPrice.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/inter/CountryPrice.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/AccountsRecord.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/AccountsRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/AccountsTransfer.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/domain/user/AccountsTransfer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/mobile/AccountsTransferDao.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/mobile/AccountsTransferDao.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/goods/GoodsHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/goods/GoodsHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/BaseHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/BaseHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/TransferHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/TransferHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/AuthorizationLetterHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/AuthorizationLetterHandler.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/AgentHandlerImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/AgentHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/BaseHandlerImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/BaseHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/DeliveryNoteHandlerImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/DeliveryNoteHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/NoticeHandlerImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/NoticeHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/OrderHandlerImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/OrderHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/TransferHandlerImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/mobile/impl/TransferHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/service/user/AgentHandlerImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/service/user/AgentHandlerImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/GoodsController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/GoodsController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/GoodsDMZQueryController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/GoodsDMZQueryController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/GoodsQueryController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/GoodsQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/PriceQueryController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/PriceQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/StockBlotterQueryController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/StockBlotterQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/TransferController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/TransferController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/TransferQueryController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/goods/TransferQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/mall/TMallIndexController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/mall/TMallIndexController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/mall/VMallIndexController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/mall/VMallIndexController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/mall/shopcart/ShopCartController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/mall/shopcart/ShopCartController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/mobile/MobileController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/mobile/MobileController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/stats/StockQueryController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/stats/StockQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/stats/market/MarketQueryController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/stats/market/MarketQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/user/AgentQueryController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/user/AgentQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/authorization/Authorization.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/authorization/Authorization.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/mall/delivery/DeliveryNote.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/mall/delivery/DeliveryNote.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/mall/goods/Goods.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/mall/goods/Goods.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/mall/shopcart/ShopCart.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/mall/shopcart/ShopCart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/mall/transfer/Transfer.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/mall/transfer/Transfer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/Address.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/Address.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/AddressClone.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/AddressClone.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/Agent.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/Agent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/MutedUser.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/MutedUser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/User.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/account/GoodsAccountDAO.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/account/GoodsAccountDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/authorization/AuthorizationTypeDAO.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/authorization/AuthorizationTypeDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/GoodsDAO.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/GoodsDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/StockBlotterDAO.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/StockBlotterDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/TransferDAO.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/TransferDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/mobile/BaseDaoImpl.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/mobile/BaseDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/user/MutedUserDAO.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/user/MutedUserDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/view/user/AccountsRecordController.class" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/view/user/AccountsRecordController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/inter/Country.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/inter/Country.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/inter/CountryPrice.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/inter/CountryPrice.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/AccountsRecord.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/AccountsRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/AccountsTransfer.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/domain/user/AccountsTransfer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/mobile/AccountsTransferDao.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/mobile/AccountsTransferDao.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/goods/GoodsHandler.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/goods/GoodsHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/BaseHandler.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/BaseHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/TransferHandler.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/TransferHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/AuthorizationLetterHandler.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/AuthorizationLetterHandler.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/AgentHandlerImpl.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/AgentHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/BaseHandlerImpl.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/BaseHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/DeliveryNoteHandlerImpl.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/DeliveryNoteHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/NoticeHandlerImpl.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/NoticeHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/OrderHandlerImpl.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/OrderHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/TransferHandlerImpl.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/mobile/impl/TransferHandlerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/user/AgentHandlerImpl.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/service/user/AgentHandlerImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/GoodsController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/GoodsController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/GoodsDMZQueryController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/GoodsDMZQueryController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/GoodsQueryController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/GoodsQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/PriceQueryController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/PriceQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/StockBlotterQueryController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/StockBlotterQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/TransferController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/TransferController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/TransferQueryController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/goods/TransferQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/mall/TMallIndexController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/mall/TMallIndexController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/mall/VMallIndexController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/mall/VMallIndexController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/mall/shopcart/ShopCartController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/mall/shopcart/ShopCartController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/mobile/MobileController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/mobile/MobileController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/stats/StockQueryController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/stats/StockQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/stats/market/MarketQueryController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/stats/market/MarketQueryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/user/AgentQueryController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/user/AgentQueryController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/user/AccountsRecordController.class" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/view/user/AccountsRecordController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/goods/Goods.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/goods/Goods.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/transfer/Transfer.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/transfer/Transfer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/Address.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/Address.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AddressClone.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AddressClone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/goods/Goods.hbm.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/goods/Goods.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/goods/Transfer.hbm.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/goods/Transfer.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/mobile/BaseDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/mobile/BaseDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/Address.hbm.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/Address.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/Country.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/Country.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/CountryPrice.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/CountryPrice.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AccountsRecord.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AccountsRecord.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AccountsTransfer.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AccountsTransfer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryPrice.hbm.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryPrice.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/mobile/AccountsTransferDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/mobile/AccountsTransferDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/AccountsRecord.hbm.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/AccountsRecord.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/AccountsTransfer.hbm.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/AccountsTransfer.hbm.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/service/goods/GoodsHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/goods/GoodsHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/BaseHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/BaseHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/TransferHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/TransferHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/BaseHandlerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/BaseHandlerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/DeliveryNoteHandlerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/DeliveryNoteHandlerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/TransferHandlerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/TransferHandlerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/util/TokenInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/util/TokenInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/view/delivery/DeliveryNoteQueryController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/view/delivery/DeliveryNoteQueryController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/AuthorizationLetterHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/AuthorizationLetterHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/AgentHandlerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/AgentHandlerImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsQueryController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsQueryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/TransferController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/TransferController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/view/mall/shopcart/ShopCartController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/view/mall/shopcart/ShopCartController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/view/mobile/MobileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/view/mobile/MobileController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dreamer/view/user/AccountsRecordController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dreamer/view/user/AccountsRecordController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/delivery/delivery.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/delivery/delivery.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_edit.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_edit.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/securityCode_scan_num.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/securityCode_scan_num.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/contacts.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/contacts.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/delivery/records.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/delivery/records.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/my.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/my.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/paw.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/paw.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/detail.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/detail.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/goods/transfer.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/goods/transfer.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/shopcart/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/shopcart/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/transfer/records.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/transfer/records.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pmall/pmall_show.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pmall/pmall_show.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/accounts_record.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/accounts_record.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/agent_edit.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/agent_edit.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/control/js/zyUpload.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/control/js/zyUpload.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/Goods.hbm.xml" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/Goods.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/Transfer.hbm.xml" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/goods/Transfer.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/user/Address.hbm.xml" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/user/Address.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/Goods.hbm.xml" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/Goods.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/Transfer.hbm.xml" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/goods/Transfer.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/user/Address.hbm.xml" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/user/Address.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/inter/CountryPrice.hbm.xml" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/inter/CountryPrice.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/user/AccountsRecord.hbm.xml" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/user/AccountsRecord.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dreamer/repository/user/AccountsTransfer.hbm.xml" afterPath="$PROJECT_DIR$/target/classes/com/dreamer/repository/user/AccountsTransfer.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/inter/CountryPrice.hbm.xml" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/inter/CountryPrice.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/user/AccountsRecord.hbm.xml" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/user/AccountsRecord.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/user/AccountsTransfer.hbm.xml" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/classes/com/dreamer/repository/user/AccountsTransfer.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/delivery/delivery.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/delivery/delivery.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/goods/goods_edit.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/goods/goods_edit.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/goods/securityCode_scan_num.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/goods/securityCode_scan_num.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/contacts.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/contacts.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/delivery/records.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/delivery/records.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/my.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/my.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/paw.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/paw.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/goods/goods_index.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/goods/goods_index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/detail.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/detail.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/goods/transfer.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/goods/transfer.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/index.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/shopcart/index.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/shopcart/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/transfer/records.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/mobile/transfer/records.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/pmall/pmall_show.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/pmall/pmall_show.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/user/accounts_record.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/user/accounts_record.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/WEB-INF/view/user/agent_edit.jsp" afterPath="$PROJECT_DIR$/target/zmz/WEB-INF/view/user/agent_edit.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/zmz/resources/control/js/zyUpload.js" afterPath="$PROJECT_DIR$/target/zmz/resources/control/js/zyUpload.js" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -181,12 +108,32 @@
     <favorites_list name="hzc-maven" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="DeliveryNoteQueryController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/delivery/DeliveryNoteQueryController.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="MobileController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/mobile/MobileController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="117" column="28" lean-forward="false" selection-start-line="117" selection-start-column="28" selection-end-line="117" selection-end-column="28" />
+            <state relative-caret-position="411">
+              <caret line="309" column="27" lean-forward="false" selection-start-line="309" selection-start-column="27" selection-end-line="309" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/detail.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="323" column="28" lean-forward="true" selection-start-line="323" selection-start-column="28" selection-end-line="323" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail.jsp" pinned="true" current-in-tab="true">
+        <entry file="remoteDeploymentFS://&lt;8dac6609-2af6-4d71-9a54-d2736e5d6fcc&gt;/WEB-INF/view/mobile/detail.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="323" column="25" lean-forward="false" selection-start-line="323" selection-start-column="22" selection-end-line="323" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -207,36 +154,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>del</find>
-      <find>inp</find>
-      <find>totalPrice</find>
-      <find>calcTotal</find>
-      <find>select</find>
-      <find>option</find>
-      <find>shopca</find>
-      <find>toTransfer</find>
-      <find>st-effect-1</find>
-      <find>省</find>
-      <find>province</find>
-      <find>id=&quot;province&quot;</find>
-      <find>alert</find>
-      <find>toDelivery</find>
-      <find>addrProvince</find>
-      <find>addrCity</find>
-      <find>addrCountry</find>
-      <find>country</find>
-      <find>applyDelivery</find>
-      <find>transferAutoConfirm</find>
-      <find>暂未发货</find>
-      <find>adrDetail</find>
-      <find>address</find>
-      <find>delivery</find>
-      <find>auto</find>
-      <find>coun</find>
-      <find>发国外</find>
-      <find>shopcartinde</find>
       <find>deliver</find>
+      <find>langUrl</find>
+      <find>mainTable</find>
+      <find>转入</find>
+      <find>canShow</find>
+      <find>充值</find>
+      <find>goodsName</find>
+      <find>产批</find>
+      <find>detau</find>
+      <find>file</find>
+      <find>cfiles</find>
+      <find>button</find>
+      <find>demo_line_02</find>
+      <find>countryId</find>
+      <find>tagsList</find>
+      <find>button.css</find>
+      <find>价格</find>
+      <find>积分</find>
+      <find>shopcartin</find>
+      <find>de;</find>
+      <find>del</find>
+      <find>index</find>
+      <find>发国外</find>
+      <find>发货</find>
+      <find>address</find>
+      <find>收货地址</find>
+      <find>加入</find>
+      <find>规格</find>
       <find>detail</find>
+      <find>vip</find>
     </findStrings>
     <replaceStrings>
       <replace>MD5</replace>
@@ -283,30 +230,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/tcjs/prodDetail.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/my.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/paw.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/securityCode_scan_num.jsp" />
-        <option value="&lt;8dac6609-2af6-4d71-9a54-d2736e5d6fcc&gt;/WEB-INF/view/goods/securityCode_scan_num.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/contacts.jsp" />
-        <option value="&lt;8dac6609-2af6-4d71-9a54-d2736e5d6fcc&gt;/WEB-INF/view/mobile/contacts.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryPrice.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/CountryPrice.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryPrice.hbm.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsQueryController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryPriceDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/BaseHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/inter/country_index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/inter/CountryController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryHandlerImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/BaseHandlerImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/inter/CountryQueryController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/goods/Goods.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/goods/GoodsHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/goods/Goods.hbm.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/Country.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/Country.hbm.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/inter/country_edit.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryPriceHandler.java" />
@@ -321,19 +244,43 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/TransferHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/TransferController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/delivery/records.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/shopcart/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/mobile/MobileController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/transfer/Transfer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/goods/Transfer.hbm.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/mobile/BaseDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/TransferHandlerImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/control/js/zyUpload.js" />
         <option value="&lt;7c53226d-507a-412d-bd0c-3e3cd34e78b1&gt;/control/js/zyUpload.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/util/TokenInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_edit.jsp" />
         <option value="&lt;8dac6609-2af6-4d71-9a54-d2736e5d6fcc&gt;/WEB-INF/view/goods/goods_edit.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/delivery/DeliveryNoteQueryController.java" />
+        <option value="$PROJECT_DIR$/target/zmz/WEB-INF/view/user/agent_edit.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/agent_edit.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/goods/transfer.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/AuthorizationLetterHandler.java" />
+        <option value="&lt;8dac6609-2af6-4d71-9a54-d2736e5d6fcc&gt;/WEB-INF/view/mobile/shopcart/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/mobile/AccountsTransferDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/AccountsTransfer.hbm.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AccountsTransfer.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/accounts_record.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/Country.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryPrice.hbm.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/CountryPrice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_edit.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pmall/pmall_show.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/control/js/zyUpload.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/transfer/records.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/shopcart/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/delivery/delivery.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/AccountsRecord.hbm.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/user/AccountsRecordController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AccountsRecord.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/goods/GoodsHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/AgentHandlerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dreamer/view/mobile/MobileController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/detail.jsp" />
       </list>
     </option>
   </component>
@@ -395,9 +342,9 @@
   <component name="MavenRunner">
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="37" />
-    <option name="y" value="30" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="36" />
+    <option name="y" value="23" />
     <option name="width" value="1404" />
     <option name="height" value="877" />
   </component>
@@ -417,6 +364,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -490,15 +439,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hzc-maven" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hzc-maven" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -508,7 +448,19 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="malljs" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="datatables-plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hzc-maven" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hzc-maven" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="datatables-plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="i18n" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hzc-maven" type="b2602c69:ProjectViewProjectNode" />
@@ -535,7 +487,17 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hzc-maven" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hzc-maven" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="pmall" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hzc-maven" type="b2602c69:ProjectViewProjectNode" />
@@ -547,14 +509,17 @@
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="hzc-maven" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hzc-maven" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -566,7 +531,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
-    <property name="SearchEverywhereHistoryKey" value="deliqu&#9;PSI&#9;JAVA://com.dreamer.view.delivery.DeliveryNoteQueryController&#10;comm&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/common/common.jsp&#10;commjs&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/common/common.jsp&#10;good&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/goods/goods_edit.jsp&#10;transf&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/domain/mall/transfer/Transfer.java&#10;countryhan&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/service/inter/CountryHandler.java&#10;shopcart/indexhtml&#9;null&#9;null&#10;transfer/recordshtml&#9;null&#9;null&#10;transfer&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/domain/mall/transfer/Transfer.java&#10;delivery/recordshtml&#9;null&#9;null&#10;mobi&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/view/mobile/MobileController.java&#10;shopcain&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/mall/shopcart/shopcart_index.jsp&#10;addre&#9;PSI&#9;JAVA://com.dreamer.domain.user.Address&#10;counpr&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/service/inter/CountryPriceHandler.java&#10;countrye&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/inter/country_edit.jsp&#10;Country&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/domain/inter/Country.java&#10;agentlee&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/target/zmz/WEB-INF/view/user/agentLevel_edit.jsp&#10;country&#9;PSI&#9;JAVA://com.dreamer.domain.inter.Country&#10;count&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/inter/country_edit.jsp&#10;price&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/domain/mall/goods/Price.java&#10;goodshx&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/repository/goods/Goods.hbm.xml&#10;goodseh&#9;null&#9;null&#10;goodseditjson&#9;null&#9;null&#10;country/indexhtml&#9;null&#9;null&#10;inter/country/indexhtml&#9;null&#9;null&#10;baseda&#9;PSI&#9;JAVA://com.dreamer.repository.mobile.BaseDao&#10;levelcon&#9;PSI&#9;JAVA://com.dreamer.view.user.AgentLevelController&#10;CountryHandler&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/service/inter/CountryHandler.java&#10;goods&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/domain/mall/goods/Goods.java&#10;coun&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/domain/inter/Country.java&#10;goodsed&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/goods/goods_edit.jsp&#10;Countryx&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/repository/inter/Country.hbm.xml&#10;accounts/indexhtml&#9;null&#9;null&#10;contac&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/mobile/contacts.jsp&#10;scan&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/goods/securityCode_scan_num.jsp&#10;secsc&#9;null&#9;null&#10;paw.jsp&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/mobile/paw.jsp&#10;my&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/mobile/my.jsp&#10;canrew&#9;PSI&#9;JAVA://com.dreamer.service.mobile.AgentHandler#canReward&#10;myjs&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/mobile/my.jsp&#10;agen&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/service/mobile/AgentHandler.java&#10;dateu&#9;PSI&#9;JAVA://com.wxjssdk.util.DateUtil&#10;transfergoods&#9;PSI&#9;JAVA://com.dreamer.service.mobile.impl.TransferHandlerImpl#transferGoods&#10;transfergoo&#9;PSI&#9;JAVA://com.dreamer.view.mobile.MobileController#transferGoods&#10;stock/indexhtml&#9;null&#9;null&#10;autoconand&#9;PSI&#9;JAVA://com.dreamer.service.mobile.TransferHandler#transferAutoConfirmAndDelivery&#10;download&#9;PSI&#9;JAVA://com.dreamer.view.delivery.DeliveryNoteQueryController#download&#10;deli&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/service/mobile/impl/DeliveryNoteHandlerImpl.java&#10;accounth&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/service/mobile/impl/AccountsHandlerImpl.java&#10;myorder&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/pmall/order/myOrder.jsp" />
+    <property name="SearchEverywhereHistoryKey" value="mo&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/view/mobile/MobileController.java&#10;rewardv&#9;PSI&#9;JAVA://com.dreamer.service.mobile.AccountsHandler#rewardVoucher&#10;agenna&#9;PSI&#9;JAVA://com.dreamer.domain.user.AgentLevelName&#10;goodse&#9;null&#9;null&#10;acco&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/domain/user/AccountsRecord.java&#10;accounts/record/indexhtml&#9;null&#9;null&#10;accounre&#9;PSI&#9;JAVA://com.dreamer.domain.user.AccountsRecord&#10;delivery/indexhtml&#9;null&#9;null&#10;deliedi&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/delivery/delivery_edit.jsp&#10;deliin&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/delivery/delivery_index.jsp&#10;shop&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/mall/shopcart/shopcart_index.jsp&#10;transfer/recordshtml&#9;null&#9;null&#10;mobi&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/view/mobile/MobileController.java&#10;shopcaindex&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/mall/shopcart/shopcart_index.jsp&#10;goods/indexhtml&#9;null&#9;null&#10;index&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/mobile/index.jsp&#10;mob&#9;PSI&#9;JAVA://com.dreamer.view.mobile.MobileController&#10;CountryPriceHandlerImpl&#9;PSI&#9;JAVA://com.dreamer.service.inter.CountryPriceHandlerImpl&#10;pmallsh&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/pmall/pmall_show.jsp&#10;shopcaindehtm&#9;null&#9;null&#10;mobil&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/view/mobile/MobileController.java&#10;pmallinde&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/pmall/pmall_index.jsp&#10;goodseditjson&#9;null&#9;null&#10;countrypr&#9;PSI&#9;JAVA://com.dreamer.domain.inter.CountryPrice&#10;country&#9;PSI&#9;JAVA://com.dreamer.domain.inter.Country&#10;price&#9;PSI&#9;JAVA://com.dreamer.domain.mall.goods.Price&#10;dmz/pmall/showhtml&#9;null&#9;null&#10;pmallindex&#9;PSI&#9;JAVA://com.dreamer.view.pmall.PmallIndexController&#10;dmz/mobile/indexhtml&#9;null&#9;null&#10;accountsreinde&#9;null&#9;null&#10;accountstr&#9;PSI&#9;JAVA://com.dreamer.domain.user.AccountsTransfer&#10;accounihtm&#9;null&#9;null&#10;shopcart/indexhtml&#9;null&#9;null&#10;letter&#9;PSI&#9;JAVA://com.dreamer.service.mobile.AuthorizationLetterHandler&#10;agendmz&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/view/user/AgentDMZQueryController.java&#10;mobile/goods/transferhtml&#9;null&#9;null&#10;agente&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/user/agent_edit.jsp&#10;rew&#9;PSI&#9;JAVA://com.dreamer.service.mobile.AccountsHandler#rewardVoucher&#10;agentedit&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/target/zmz/WEB-INF/view/user/agent_edit.jsp&#10;deliqu&#9;PSI&#9;JAVA://com.dreamer.view.delivery.DeliveryNoteQueryController&#10;comm&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/common/common.jsp&#10;commjs&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/common/common.jsp&#10;good&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/goods/goods_edit.jsp&#10;transf&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/domain/mall/transfer/Transfer.java&#10;countryhan&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/service/inter/CountryHandler.java&#10;transfer&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/domain/mall/transfer/Transfer.java&#10;delivery/recordshtml&#9;null&#9;null&#10;shopcain&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/webapp/WEB-INF/view/mall/shopcart/shopcart_index.jsp&#10;addre&#9;PSI&#9;JAVA://com.dreamer.domain.user.Address&#10;counpr&#9;FILE&#9;file:///Users/huangfei/MyCode/NewCode/hzc-maven/src/main/java/com/dreamer/service/inter/CountryPriceHandler.java" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
@@ -582,8 +547,15 @@
       <recent name="com.wxjssdk.util" />
       <recent name="com.HfPay.util" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/accounts" />
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/resources/malljs/inter" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/inter" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.dreamer.view.inter" />
@@ -592,15 +564,8 @@
       <recent name="com.dreamer.domain.inter" />
       <recent name="com.dreamer.service.Comment" />
     </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/resources/malljs/inter" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/inter" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/accounts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1404,7 +1369,19 @@
       <workItem from="1508568031279" duration="638000" />
       <workItem from="1508590216721" duration="34000" />
       <workItem from="1508749253482" duration="1787000" />
-      <workItem from="1508813255545" duration="35087000" />
+      <workItem from="1508813255545" duration="38624000" />
+      <workItem from="1508981620088" duration="1444000" />
+      <workItem from="1509000542708" duration="469000" />
+      <workItem from="1509002603180" duration="565000" />
+      <workItem from="1509011363368" duration="152000" />
+      <workItem from="1509020837282" duration="1319000" />
+      <workItem from="1509066157850" duration="445000" />
+      <workItem from="1509073093799" duration="657000" />
+      <workItem from="1509271656075" duration="11460000" />
+      <workItem from="1509286367110" duration="1346000" />
+      <workItem from="1509293243247" duration="612000" />
+      <workItem from="1509329064186" duration="416000" />
+      <workItem from="1509332390554" duration="659000" />
     </task>
     <servers />
   </component>
@@ -1441,7 +1418,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1287408000" />
+    <option name="totallyTimeSpent" value="1310489000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1453,11 +1430,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="37" y="23" width="1404" height="877" extended-state="6" />
-    <editor active="true" />
+    <frame x="36" y="23" width="1404" height="877" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32674572" sideWeight="0.51468426" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32674572" sideWeight="0.51762116" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.4941263" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2922173" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1467,22 +1443,21 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2496329" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32674572" sideWeight="0.4853157" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32674572" sideWeight="0.48237884" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.48825258" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.489721" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.49706313" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.489721" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32806325" sideWeight="0.489721" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.4941263" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.4955947" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.4941263" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21806167" sideWeight="0.41960785" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3113069" sideWeight="0.5803922" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27312776" sideWeight="0.5803922" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25844347" sideWeight="0.27919707" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2002635" sideWeight="0.479442" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21806167" sideWeight="0.41960785" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1496,6 +1471,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22540382" sideWeight="0.5046113" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.009222661" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2002635" sideWeight="0.479442" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1568,451 +1544,379 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/agent_edit.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="41" column="34" lean-forward="true" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+        <state relative-caret-position="164">
+          <caret line="302" column="16" lean-forward="false" selection-start-line="302" selection-start-column="16" selection-end-line="302" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/goods/transfer.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="752" column="26" lean-forward="true" selection-start-line="752" selection-start-column="26" selection-end-line="752" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/user/AgentDMZQueryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="44" column="32" lean-forward="false" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/dmz/agent_search.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2130">
+          <caret line="142" column="99" lean-forward="false" selection-start-line="142" selection-start-column="90" selection-end-line="142" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/AuthorizationLetterHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="62" column="24" lean-forward="false" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/AccountsTransfer.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="26" column="48" lean-forward="false" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/user/AccountsTransferController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="35" column="71" lean-forward="false" selection-start-line="35" selection-start-column="71" selection-end-line="35" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/AccountsTransferHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/AccountsTransferHandlerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11">
+          <caret line="69" column="11" lean-forward="false" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/mobile/AccountsTransferDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/accounts/recharge.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="159" column="60" lean-forward="true" selection-start-line="159" selection-start-column="60" selection-end-line="159" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AccountsTransfer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="36" column="31" lean-forward="true" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/pmall/PmallIndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="108" column="27" lean-forward="false" selection-start-line="108" selection-start-column="27" selection-end-line="108" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/goods/Goods.hbm.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common/common.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="18" column="53" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="53" />
+        <state relative-caret-position="240">
+          <caret line="16" column="2" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/index_copy.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="406" column="93" lean-forward="false" selection-start-line="406" selection-start-column="58" selection-end-line="406" selection-end-column="93" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/zmz/WEB-INF/view/user/agentLevel_edit.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/goods/Price.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="77" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="225">
+          <caret line="17" column="15" lean-forward="true" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/Country.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/CountryPrice.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AgentLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/CountryPrice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pmall/pmall_index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="119" column="45" lean-forward="false" selection-start-line="119" selection-start-column="45" selection-end-line="119" selection-end-column="45" />
           <folding>
-            <element signature="e#272#273#0" expanded="true" />
-            <element signature="e#313#314#0" expanded="true" />
-            <element signature="e#345#346#0" expanded="true" />
+            <marker date="1500516025000" expanded="true" signature="7753:7764" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/inter/Country.hbm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/inter/country_edit.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/pmall/pmall_show.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
-          <caret line="87" column="66" lean-forward="false" selection-start-line="87" selection-start-column="66" selection-end-line="87" selection-end-column="66" />
-          <folding />
+          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding>
+            <marker date="1509276679000" expanded="true" signature="12544:12561" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryPriceHandlerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/inter/CountryPrice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/shopcart/CartItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/shopcart/ShopCart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryPriceHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/mall/shopcart/ShopCartController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="75" column="72" lean-forward="false" selection-start-line="75" selection-start-column="72" selection-end-line="75" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mall/shopcart/shopcart_index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-628">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/Address.hbm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/area.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/malljs/inter/area_chs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common/hf_css_upload.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common/head_css_morris.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common/datepicker_js.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common/loginModal_js.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common/inter_area_js.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/Address.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="e#1265#1266#0" expanded="true" />
-            <element signature="e#1295#1296#0" expanded="true" />
-            <element signature="e#1341#1342#0" expanded="true" />
-            <element signature="e#1379#1380#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/AccountsHandlerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="133" column="26" lean-forward="false" selection-start-line="133" selection-start-column="26" selection-end-line="133" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AddressClone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="22" column="11" lean-forward="false" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/delivery/records.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3461">
-          <caret line="249" column="27" lean-forward="true" selection-start-line="249" selection-start-column="27" selection-end-line="249" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AddressMy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/AddressCloneHandlerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/AddressCloneHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/transfer/records.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1064">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/Agent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="260" column="17" lean-forward="false" selection-start-line="260" selection-start-column="17" selection-end-line="260" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/mobile/MobileController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="313" column="36" lean-forward="false" selection-start-line="313" selection-start-column="36" selection-end-line="313" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/shopcart/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="646" column="51" lean-forward="false" selection-start-line="646" selection-start-column="51" selection-end-line="646" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/DeliveryNoteHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/DeliveryNoteHandlerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="239" column="21" lean-forward="false" selection-start-line="239" selection-start-column="21" selection-end-line="239" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/goods/Transfer.hbm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" lean-forward="true" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/TransferController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="217" column="45" lean-forward="false" selection-start-line="217" selection-start-column="45" selection-end-line="217" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/TransferHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="30" column="9" lean-forward="false" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/inter/CountryHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/mobile/BaseDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="62" column="20" lean-forward="true" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/mobile/BaseDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/BaseHandlerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="45" column="24" lean-forward="true" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
-          <folding>
-            <element signature="e#959#960#0" expanded="false" />
-            <element signature="e#1006#1007#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/BaseHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/TransferHandlerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="53" column="46" lean-forward="true" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/transfer/Transfer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="e#1334#1335#0" expanded="true" />
-            <element signature="e#1355#1356#0" expanded="true" />
-            <element signature="e#1398#1399#0" expanded="true" />
-            <element signature="e#1427#1428#0" expanded="true" />
-          </folding>
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/control/js/zyUpload.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="33" lean-forward="true" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="37" column="41" lean-forward="false" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsQueryController.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" column="53" lean-forward="true" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
-          <folding>
-            <marker date="1508919877000" expanded="true" signature="4026:4039" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="4863:4876" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="7717:7769" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="7904:7924" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="8019:8092" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="12124:12136" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="12314:12366" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="12441:12461" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="12578:12651" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="13140:13152" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="13330:13382" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="13457:13477" ph="..." />
-            <marker date="1508919877000" expanded="true" signature="13593:13666" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/core/jq22.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="90" column="58" lean-forward="true" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#8;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#8;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1508920121000" expanded="true" signature="6021:6058" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/common/common.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="49" />
+          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/util/TokenInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="28" column="51" lean-forward="false" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
-          <folding />
+        <state relative-caret-position="57">
+          <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/core/zyFile.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/transfer/records.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="160">
+          <caret line="218" column="38" lean-forward="true" selection-start-line="218" selection-start-column="38" selection-end-line="218" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mall/shopcart/shopcart_index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="185" column="97" lean-forward="false" selection-start-line="185" selection-start-column="96" selection-end-line="185" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/shopcart/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="337" column="32" lean-forward="false" selection-start-line="337" selection-start-column="32" selection-end-line="337" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/Address.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="89" column="18" lean-forward="false" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#1862#1863#0" expanded="false" />
+            <element signature="e#1891#1892#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/mall/delivery/DeliveryNote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="60" column="24" lean-forward="false" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/delivery/delivery_index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="170" column="82" lean-forward="true" selection-start-line="170" selection-start-column="82" selection-end-line="170" selection-end-column="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/delivery/DeliveryNoteQueryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="117" column="28" lean-forward="false" selection-start-line="117" selection-start-column="28" selection-end-line="117" selection-end-column="28" />
+        <state relative-caret-position="310">
+          <caret line="321" column="30" lean-forward="false" selection-start-line="321" selection-start-column="30" selection-end-line="321" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/delivery/delivery.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="92" column="109" lean-forward="false" selection-start-line="92" selection-start-column="109" selection-end-line="92" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/delivery/delivery_edit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="95" column="38" lean-forward="false" selection-start-line="95" selection-start-column="38" selection-end-line="95" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/repository/user/AccountsRecord.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/accounts_record.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="75" lean-forward="false" selection-start-line="38" selection-start-column="75" selection-end-line="38" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/user/AccountsRecordController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="24" column="34" lean-forward="false" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AccountsRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="58" column="26" lean-forward="false" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/goods/goods_edit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="428" column="122" lean-forward="false" selection-start-line="428" selection-start-column="116" selection-end-line="428" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/goods/GoodsHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="118" column="17" lean-forward="false" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/goods/GoodsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="49" column="32" lean-forward="true" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/AccountsHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/AccountsHandlerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="189" column="37" lean-forward="false" selection-start-line="189" selection-start-column="37" selection-end-line="189" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/AgentHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="37" column="12" lean-forward="false" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/domain/user/AgentLevelName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/AgentHandlerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="382" column="0" lean-forward="false" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/service/mobile/impl/TransferHandlerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="120" column="33" lean-forward="true" selection-start-line="120" selection-start-column="33" selection-end-line="120" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dreamer/view/mobile/MobileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="309" column="27" lean-forward="false" selection-start-line="309" selection-start-column="27" selection-end-line="309" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/mobile/detail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="323" column="28" lean-forward="true" selection-start-line="323" selection-start-column="28" selection-end-line="323" selection-end-column="28" />
           <folding />
         </state>
       </provider>

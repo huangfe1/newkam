@@ -215,7 +215,7 @@
                                 </div>
                                 <div class="price accountsInfo" style="float: right;margin-left: 0">
                                     <h3><span class="cbtn" data-id="${item.goods.id}" data-type="1"><a style="color: blue" href="#"><i>评价</i></a></span></h3>
-                                    <h4><i><del>${item.goods.retailPrice}￥</del></i></h4>
+                                    <%--<h4><i><del>${item.goods.retailPrice}￥</del></i></h4>--%>
                                 </div>
                                     <%--<div class="operate" style="display: none">--%>
                                     <%--<div class="inputs">--%>

@@ -303,9 +303,9 @@
                         </div>
                         <div class="price">
                             <p>￥<strong class="nums">${item.value.price}</strong></p>
-                            <p>￥
-                                <del>${item.value.goods.retailPrice}</del>
-                            </p>
+                            <%--<p>￥--%>
+                                <%--<del>${item.value.goods.retailPrice}</del>--%>
+                            <%--</p>--%>
                             <p><span class="remove" data-id="${item.value.goods.id}">x</span></p>
                         </div>
                     </div>
@@ -321,7 +321,7 @@
             <span class="totalPrice">￥${tshopcart.amount}</span>
             <c:if test="${isVip}">
                 <span class="toDelivery st-trigger-effects" data-effect="st-effect-1">直接发货</span>
-                <c:if test="${cid<=0}">
+                <c:if test="${cid<=0||cid==null}">
                     <span class="toTransfer">转入库存</span>
                 </c:if>
 
@@ -335,8 +335,8 @@
 
 
     <select id="cs" style="margin-top: 2em" class="form-control">
-        <option value="-1">发国外点我</option>
-        <option value="0">中国</option>
+        <option value="-1">发区域市场点我</option>
+        <option value="0">内陆</option>
         <c:forEach items="${countries}" var="c">
 
             <option

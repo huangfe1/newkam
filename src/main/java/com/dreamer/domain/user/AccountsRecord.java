@@ -37,6 +37,16 @@ public class AccountsRecord implements java.io.Serializable {
 
     private Integer orderIndex;//顺序
 
+    private Boolean canShow;
+
+    public Boolean getCanShow() {
+        return canShow;
+    }
+
+    public void setCanShow(Boolean canShow) {
+        this.canShow = canShow;
+    }
+
     public AccountsRecord(Agent agent, Agent causedAgent, AccountsType accountsType, String info, Double amount, Double nowAmount, Date updateTime, Integer addSub) {
         this.agent = agent;
         this.causedAgent = causedAgent;
@@ -46,6 +56,7 @@ public class AccountsRecord implements java.io.Serializable {
         this.nowAmount = nowAmount;
         this.updateTime = updateTime;
         this.addSub = addSub;
+        this.canShow=true;
     }
 
     public Integer getOrderIndex() {
