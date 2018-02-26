@@ -102,6 +102,12 @@
 			</column>
 		</property>
 
+		<property  name="ticket" type="java.lang.Double">
+			<column default="0.00" name="ticket" precision="6">
+				<comment>总券</comment>
+			</column>
+		</property>
+
 		<property generated="never" lazy="false" name="logisticsCode"
 			type="java.lang.String">
 			<column length="64" name="logistics_code">

@@ -2,9 +2,9 @@ package com.dreamer.domain.wechat;
 
 public class WxConfig {
 
-    public final static String RECHARGE_NOTICE_URL = "http://ht.hzc365.com/hzc/dmz/mobile/accounts/recharge.json";
+    public final static String  RECHARGE_NOTICE_URL = "http://ht.kam365.com/kam/dmz/mobile/accounts/recharge.json";
 
-    public final static String PMALL_NOTICE_URL = "http://ht.hzc365.com/hzc/dmz/pmall/shopcart/wxPay.json";
+    public final static String PMALL_NOTICE_URL = "http://ht.kam365.com/kam/dmz/pmall/shopcart/wxPay.json";
 
     private Integer id;
 
@@ -13,6 +13,10 @@ public class WxConfig {
     private Boolean baseConfig;
 
     private Boolean payConfig;
+
+
+    private Integer number;//最大消费值
+
 
 
     private String wxid;
@@ -30,6 +34,14 @@ public class WxConfig {
     private String spbill_create_ip;
 
     private Boolean open;
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
 
     public Boolean getBaseConfig() {
         return baseConfig;

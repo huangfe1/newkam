@@ -19,6 +19,12 @@
                 <comment>图片</comment>
             </column>
         </property>
+        
+        <property name="open" type="java.lang.Integer">
+            <column name="open" not-null="true">
+                <comment>是否可以打开</comment>
+            </column>
+        </property>
 
         <many-to-one name="country" class="Country">
             <column name="country">

@@ -35,10 +35,10 @@ public class ShopCartController {
      * @return
      */
     private String getCartFromType(GoodsType goodsType) {
-        if (goodsType == GoodsType.MALL) {
-            return VCART;
+        if (goodsType == GoodsType.TEQ) {
+            return TCART;
         }
-        return TCART;
+        return VCART;
     }
 
     @RequestMapping(value = {"/add.json", "/put.json"}, method = RequestMethod.POST)

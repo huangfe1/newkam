@@ -25,49 +25,26 @@ public class AuthorizationLetterHandler {
         ByteArrayOutputStream out=new ByteArrayOutputStream();
 	    try {
             GoodsAccount goodsAccount = goodsAccountHandler.getMainGoodsAccount(agent);
-//            if(goodsAccount.getAgentLevel().getName().contains("亲情")){
-//                return new byte[]{};
-//            }
 			Goods goods = goodsAccount.getGoods();
 			GoodsAccount gac=agent.loadAccountForGoodsNotNull(goods);
 			ByteArrayInputStream in = new ByteArrayInputStream(Files.readAllBytes(path));
 			BufferedImage image = ImageIO.read(in);
-			BufferedImage tag = new BufferedImage(614, 820,
-					BufferedImage.TYPE_INT_ARGB);
+			BufferedImage tag = new BufferedImage(600, 866, BufferedImage.TYPE_INT_ARGB);
 			Graphics2D gp = (Graphics2D) tag.getGraphics();
 			gp.drawImage(image, 0, 0, null);
-			//gp.setBackground(Color.WHITE);
 			gp.setColor(Color.BLACK);
 			gp.setFont(new Font("宋体", Font.BOLD, 18));
-			gp.drawString(agent.getRealName(), 250, 395);
-			gp.drawString(replacePrivacy(agent.getWeixin()), 250, 432);
-			gp.drawString(replacePrivacy(agent.getMobile()), 250, 468);
-//			gp.drawString(replacePrivacy(agent.getIdCard()), 250, 505);
-			gp.drawString("********", 250, 505);
-			gp.drawString(agent.getAgentCode(), 250, 543);
-//			gp.drawString(goods.getName(), 235, 607);//
-//			String an=goods.getName();
-//			if(goods.getGoodsType()== GoodsType.TEQ) {
-//				an = "和之初专业线项目";
-////				String str="zmz727772zmz317828zmz851070zmz147846zmz812650zmz111668zmz213821";
-////				if(str.contains(agent.getAgentCode())){//特殊代理进行联盟隐藏 刘加运 zmz317828 陈禹含 zmz851070 卿佩佩 zmz147846 彭波 zmz812650 王晓兰
-////					gac.getAgentLevel().setName("大区");
-////				}
-//				//所有的联盟都设置为金董事
-//				if(gac.getAgentLevel().getName().contains("联盟")){
-//					gac.getAgentLevel().setName("金董事");
-//				}
-//			}
-//			gp.drawString(an, 307-an.length()*9, 627); 不要产品名字了
+			gp.drawString(agent.getRealName(), 211, 395);
+			gp.drawString(agent.getWeixin(), 370, 395);
+//			gp.drawString(replacePrivacy(agent.getMobile()), 250, 468);
+			gp.drawString("********", 250, 435);
+			gp.drawString(agent.getAgentCode(), 260, 463);
 			String levelName = gac.getAgentLevel().getName();
-			levelName = levelName.replace("联盟单位","分公司");
 			gp.setFont(new Font("宋体", Font.BOLD, 20));
-			gp.drawString(levelName, 307-levelName.length()*10, 640);
+			gp.drawString(levelName, 280-levelName.length()*10, 563);
 			gp.setFont(new Font("宋体", Font.BOLD, 18));
-			gp.drawString(DateUtil.date2string(agent.getJoinDate(),DateUtil.DATE_FORMAT), 240, 716);
-
+			gp.drawString(DateUtil.date2string(agent.getJoinDate(),DateUtil.DATE_FORMAT), 170, 663);
 			gp.dispose();
-
 			ImageIO.write(tag,"png",out);
 			return out.toByteArray();
 		} catch (Exception exp) {

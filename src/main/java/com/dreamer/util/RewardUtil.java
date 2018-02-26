@@ -2,7 +2,9 @@ package com.dreamer.util;
 
 import com.dreamer.domain.user.Agent;
 import com.dreamer.domain.user.AgentLevelName;
+import com.wxjssdk.util.DateUtil;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,7 @@ public class RewardUtil {
 
     /**
      * 将返利模式解析出来
+     *
      * @param str
      * @return
      */
@@ -36,16 +39,20 @@ public class RewardUtil {
      * @param quantity 数量
      * @return
      */
-    public static Double getVipVoucher( Double[] vs , int index, Integer quantity) {
-        Integer tVipSize = AgentLevelName.values().length-1;
-        int start = tVipSize + index;
+    public static Double getVipVoucher(Double[] vs, int index, Integer quantity, Date joinDate) {
+        int start = index;
         if (start < vs.length) {
+            Date date = DateUtil.formatStartTime("2017-7-20");//这个时间之后的只能接受三代的返利
+            if (joinDate.after(date)) {
+//            str = str.substring(0, findStrIndex(str, '_', 3) - 1);
+                if (start > 2) {//直返
+                    return 0.0;
+                }
+            }
             return PreciseComputeUtil.round(vs[start] * quantity);
         }
         return 0.0;
     }
-
-
 
 
 }

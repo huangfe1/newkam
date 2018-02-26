@@ -1,7 +1,6 @@
 package com.dreamer.view.mall;
 
 import com.dreamer.domain.mall.goods.Goods;
-import com.dreamer.domain.mall.goods.GoodsType;
 import com.dreamer.domain.user.Agent;
 import com.dreamer.domain.user.User;
 import com.dreamer.repository.goods.GoodsDAO;
@@ -209,7 +208,7 @@ public class VMallIndexController {
 		SearchParameter<Goods> param = new SearchParameter<Goods>();
 		Goods goods = new Goods();
 		//代理商城
-		goods.setGoodsType(GoodsType.MALL);
+//		goods.setGoodsType(GoodsType.MALL);
 		param.setEntity(goods);
 		return param;
 	}

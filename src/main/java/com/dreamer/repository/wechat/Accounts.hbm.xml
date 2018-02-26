@@ -14,6 +14,9 @@
 			</column>
 		</property>
 
+
+		<property name="number" type="java.lang.Integer"/>
+
         <property name="baseConfig" type="java.lang.Boolean">
             <column name="baseConfig">
                 <comment>是否是基础公众号</comment>

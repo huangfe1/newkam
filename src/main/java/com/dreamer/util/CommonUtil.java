@@ -29,10 +29,10 @@ public class CommonUtil {
     //创建单号
     public static String createNoByTime() {
         Date date = new Date();
-        String str = DateUtil.formatDate(date,"yyyyMMddHHmmssSSS");
+        String str = DateUtil.formatDate(date, "yyyyMMddHHmmssSSS");
         Random random = new Random();
-        for(int i = 0;i<5;i++){
-            str+= random.nextInt(10);
+        for (int i = 0; i < 5; i++) {
+            str += random.nextInt(10);
         }
 //        System.out.println(str.length());
         return str;
@@ -40,8 +40,8 @@ public class CommonUtil {
 
     public static void main(String[] args) {
 //        System.out.println(createNoByTime());
-        String str = createNoByTime()+"_zmz123456";
-        System.out.println(str.substring(str.indexOf("_")+1,str.length()));
+        String str = createNoByTime() + "_zmz123456";
+        System.out.println(str.substring(str.indexOf("_") + 1, str.length()));
         Double v = 9.9;
 
     }
@@ -55,23 +55,77 @@ public class CommonUtil {
     }
 
     //将一个map 加入另外一个map
-    public static void putAll(Map<Agent,Double> mapAll, Map<Agent,Double> mapTemp){
-        for(Agent key : mapTemp.keySet() ){
+    public static void putAll(Map<Agent, HashMap<String, Object>> mapAll, Map<Agent, HashMap<String, Object>> mapTemp) {
+        for (Agent key : mapTemp.keySet()) {
+            HashMap<String, Object> nowSbMap = mapTemp.get(key);
+            Double nowTem = (Double) nowSbMap.get("v");
+            String nowMore = (String) nowSbMap.get("s");
+            Double sum;
+            String sm;
+            if (mapAll.containsKey(key)) {//包含
+                Map<String, Object> sbMap = mapAll.get(key);
+                Double tem = (Double) sbMap.get("v");
+                String more = (String) sbMap.get("s");
+                sum = PreciseComputeUtil.add(tem, nowTem);
+                sm = more + nowMore;
+            } else {//不包含
+                sum = nowTem;
+                sm = nowMore;
+            }
+            nowSbMap.put("v", sum);
+            nowSbMap.put("s", sm);
+            mapAll.put(key, nowSbMap);
+        }
+    }
+
+
+    //将一个map 加入另外一个map
+    public static void putAllN(Map<String, HashMap<Agent, Integer>> mapAll, Map<String, HashMap<Agent, Integer>> mapTemp) {
+        for (String key : mapTemp.keySet()) {
+            HashMap<Agent, Integer> tem = mapTemp.get(key);
+            if(mapAll.containsKey(key)){
+                HashMap<Agent, Integer> all = mapAll.get(key);
+                for (Agent k : tem.keySet()) {
+                    Integer nowQ = tem.get(k);
+                    if (all.containsKey(k)) {
+                        all.put(k, nowQ + all.get(k));
+                    } else {
+                        all.put(k, nowQ);
+                    }
+                }
+            }else {
+                mapAll.put(key,tem);
+            }
+        }
+
+    }
+
+    //将一个map 加入另外一个map
+    public static void putAll(Map<Agent, Double> mapAll, Map<Agent, Double> mapTemp, Boolean isAdd) {
+        for (Agent key : mapTemp.keySet()) {
             Double nowTem = mapTemp.get(key);
             Double sum;
-            if(mapAll.containsKey(key)){//包含
+            if (mapAll.containsKey(key)) {//包含
                 Double tem = mapAll.get(key);
-                sum = PreciseComputeUtil.add(tem,nowTem);
-            }else {//不包含
-                sum =nowTem;
+                if (isAdd) {
+                    sum = PreciseComputeUtil.add(tem, nowTem);
+                } else {
+                    sum = PreciseComputeUtil.sub(tem, nowTem);
+                }
+            } else {//不包含
+                if (isAdd) {
+                    sum = nowTem;
+                } else {
+                    sum = -nowTem;
+                }
             }
-            mapAll.put(key,sum);
+            mapAll.put(key, sum);
         }
     }
 
 
     //写入文件
-    public static void writeImgFile(byte[] imgBytes, String fileName,String pathStr) {
+    public static void writeImgFile(byte[] imgBytes, String fileName, String pathStr) {
         try {
             Path path = Paths.get(pathStr);
             if (!Files.exists(path)) {

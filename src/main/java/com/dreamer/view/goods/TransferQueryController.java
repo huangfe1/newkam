@@ -313,7 +313,7 @@ public class TransferQueryController {
                     ab+=order.getPurchase();
                 }
                 m.put(5,order.getStatus().getDesc());
-                m.put(6,order.getRemittance());
+                m.put(6,order.getRemittance()+"--"+order.getRemark());
                 m.put(7,"");
                 StringBuffer stringBuffer=new StringBuffer();
                 //统计金钱

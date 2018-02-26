@@ -36,19 +36,28 @@ public class Transfer implements java.io.Serializable {
 	private Double amount;//总金额
 	private String 	operator;//操作员
 	private String country;//哪个国家的订单
+	private Boolean notShow;//不显示 0,null显示 1不显示
 	private Set<TransferItem> items=new HashSet<>();
 //	private TransferApplyOrigin applyOrigin;//转货订单类型
-
 
 	public Transfer(Agent userByToAgent, Agent userByFromAgent, Date updateTime, String remark) {
 		this.toAgent = userByToAgent;
 		this.fromAgent = userByFromAgent;
 		this.updateTime = updateTime;
 		this.remark = remark;
+		this.notShow = false;
 	}
 
 
-	public String getCountry() {
+    public Boolean getNotShow() {
+        return notShow;
+    }
+
+    public void setNotShow(Boolean notShow) {
+        this.notShow = notShow;
+    }
+
+    public String getCountry() {
 		return country;
 	}
 
@@ -83,6 +92,8 @@ public class Transfer implements java.io.Serializable {
     public void setPurchase(Double purchase) {
         this.purchase = purchase;
     }
+
+
 
 
     public String getOperator() {

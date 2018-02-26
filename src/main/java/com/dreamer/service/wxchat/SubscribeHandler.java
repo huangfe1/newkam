@@ -43,7 +43,10 @@ public class SubscribeHandler extends EventHandler {
         try {
             String openId = subscribeEvent.getFromUserName();//当前用户的  openid
             String parentId = subscribeEvent.getEventKey().replace("qrscene_", "");
-            logger.info("处理扫码关注事件parentId:{}", parentId);
+            if(parentId==null||parentId.equals("")){
+                logger.info("处理扫码关注事件parentId不存在:{}", parentId);return "";
+            }
+
             //获取用户信息
             SdkResult<JSONObject> sdkResult = JSAPI.getUserInfo(TokenInfo.getAccessToken(wxConfigFactory.getBaseConfig().getAppid()), openId);
             if (sdkResult.isSuccess()) {//成功
@@ -52,6 +55,7 @@ public class SubscribeHandler extends EventHandler {
                 String nickname = jsonObject.getString("nickname");
                 String headimgurl = jsonObject.getString("headimgurl");
                 //创建用户
+                logger.error("扫了谁的码：{}", parentId);
                 Agent agent = agentHandler.createVisitor(unionId, openId, nickname, headimgurl,parentId);
                 //创建回复消息
                 NewsReply newsReply = initUserSubReply(agent);
@@ -78,16 +82,16 @@ public class SubscribeHandler extends EventHandler {
         if (agent.getAgentCode() != null) {//有编号的用户
             Article article = new Article();
             article.setTitle("欢迎回来！亲爱的" + agent.getRealName());
-            article.setDescription("让更多的人用上优惠的好产品");
-            article.setPicUrl("http://ht.hzc365.com/hzc/resources/mallimages/template.jpg");
-            article.setUrl("http://ht.hzc365.com/hzc/dmz/pmall/show.html");
+            article.setDescription("让这个世界心生爱目！");
+            article.setPicUrl("http://ht.kam365.com/kam/resources/mallimages/template.jpg");
+            article.setUrl("http://ht.kam365.com/kam/dmz/pmall/show.html");
             articles.add(article);
         } else {//新用户
             Article article = new Article();
-            article.setTitle("和之初商城--让更多的人用上优惠的好产品！");
+            article.setTitle("让这个世界心生爱目！");
             article.setDescription("");
-            article.setPicUrl("http://ht.hzc365.com/hzc/resources/mallimages/template.jpg");
-            article.setUrl("http://ht.hzc365.com/hzc/dmz/pmall/show.html");
+            article.setPicUrl("http://ht.kam365.com/kam/resources/mallimages/template.jpg");
+            article.setUrl("http://ht.kam365.com/kam/dmz/pmall/show.html");
             //信息
             Article info = new Article();
             info.setTitle(
@@ -97,26 +101,26 @@ public class SubscribeHandler extends EventHandler {
             );
             info.setDescription("");
             info.setPicUrl(agent.getHeadimgurl());
-            info.setUrl("http://ht.hzc365.com/hzc/mobile/my.html");
+            info.setUrl("http://ht.kam365.com/kam/mobile/my.html");
             //直接购买
             Article buy = new Article();
             buy.setTitle("【点击进入】购买产品");
             buy.setDescription("");
-            buy.setPicUrl("http://ht.hzc365.com/hzc/resources/mallimages/template.jpg");
-            buy.setUrl("http://ht.hzc365.com/hzc/dmz/pmall/show.html");
+            buy.setPicUrl("http://ht.kam365.com/kam/resources/mallimages/template.jpg");
+            buy.setUrl("http://ht.kam365.com/kam/dmz/pmall/show.html");
             //完善信息
             Article register = new Article();
             register.setTitle("【点击进入】完善信息");
             register.setDescription("");
-            register.setPicUrl("http://ht.hzc365.com/hzc/resources/mallimages/template.jpg");
+            register.setPicUrl("http://ht.kam365.com/kam/resources/mallimages/template.jpg");
             //带refCode，openid，unionId
-            register.setUrl("http://ht.hzc365.com/hzc/mobile/register.html?refCode="+agent.getParent().getId()+"&s_openid="+agent.getWxOpenid()+"&s_unionid="+agent.getWxUnionID());
+            register.setUrl("http://ht.kam365.com/kam/mobile/register.html?refCode="+agent.getParent().getId()+"&s_openid="+agent.getWxOpenid()+"&s_unionid="+agent.getWxUnionID());
 //            //直接登录
 //            Article login = new Article();
 //            login.setTitle("老客户点击此处直接登录");
 //            login.setDescription("");
 //            login.setPicUrl("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089399937,1684001946&fm=26&gp=0.jpg");
-//            login.setUrl("http://ht.hzc365.com/hzc/login.html?");
+//            login.setUrl("http://ht.kam365.com/kam/login.html?");
 
             articles.add(article);
             articles.add(info);

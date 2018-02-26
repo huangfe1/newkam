@@ -65,7 +65,7 @@ public class AuthorizationQueryController {
 			map.put("agentCode",agentCode);
 			List<Agent> agents = agentHandler.getOr(map);
 			Agent agent = null;
-			if(agents.size()>0){
+			if(agents!=null&&agents.size()>0){
 				agent = agents.get(0);
 			}
 
@@ -81,7 +81,7 @@ public class AuthorizationQueryController {
 			try{
 				out.close();
 			}catch(Exception e){
-				LOG.error("关闭流异常"+e);
+				LOG.error("关闭流异常"+e.getMessage());
 			}
 		}
 	}

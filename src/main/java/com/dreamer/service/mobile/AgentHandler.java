@@ -53,8 +53,19 @@ public interface AgentHandler extends BaseHandler<Agent> {
 
     void changeAgentLevel(Agent agent, Integer gid, Integer lid);
 
+    Boolean canChangeLevelByAgent(Agent agent,Agent operater);
+
     void changeStatus(Integer uid,Integer tid);
 
     AgentLevel getLevel(Agent agent);
+
+    Agent findBoss(Integer aid);//找一个代理的领袖
+
+    Boolean isAteam(Integer aid,Integer bid);//一个团队
+
+    Boolean isUp(Integer aid,Integer pid);//上面的人
+
+    List<Agent> getAllChildrens(String agentCode);//获取下面所有的代理
+
 
 }

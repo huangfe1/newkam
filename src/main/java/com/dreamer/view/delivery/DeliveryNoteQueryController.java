@@ -96,7 +96,7 @@ public class DeliveryNoteQueryController {
 			m=new HashedMap();
 			m.put(0,"");
 			m.put(1,"");
-			m.put(2,"和之初");
+			m.put(2,"咖盟");
 			m.put(3,"");
 			m.put(4,"");
 			m.put(5,"");
@@ -413,16 +413,16 @@ public class DeliveryNoteQueryController {
 			m=new HashedMap();
 			m.put(0,"");
 			m.put(1,"");
-			m.put(2,"和之初");
+			m.put(2,"咖盟");
 			m.put(3,"");
 			m.put(4,"17775862960");
 			m.put(5,"");
 			m.put(6,"");
 			m.put(8,"湖南长沙");
 			m.put(9,"");
-			m.put(10,order.getAddress().getConsignee());//收货人姓名
+			m.put(10,order.getAddress().getConsignee()+order.getAddress().getConsigneeCode());//收货人姓名
 			m.put(11,"");
-			m.put(12,order.getAddress().getMobile()+order.getAddress().getConsigneeCode());//收货人手机
+			m.put(12,order.getAddress().getMobile());//收货人手机
 			m.put(13,"");
 			m.put(14,"");
 			m.put(15,"");

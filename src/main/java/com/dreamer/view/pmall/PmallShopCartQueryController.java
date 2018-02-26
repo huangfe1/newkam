@@ -10,6 +10,7 @@ import com.dreamer.service.mobile.AgentHandler;
 import com.dreamer.service.mobile.OrderHandler;
 import com.dreamer.service.mobile.PayHandler;
 import com.dreamer.service.mobile.factory.WxConfigFactory;
+import com.wxjssdk.JSAPI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ps.mx.otter.utils.WebUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,26 +61,35 @@ public class PmallShopCartQueryController {
         }
         //没有支付的openid 就去获取
         WxConfig wxConfig = wxConfigFactory.getBaseConfig();
-//        if (agent.getPayOpenid() == null) {//如果支付的openid为空 跳转到获取code的地址
-//            String redirectUrl = ServletUriComponentsBuilder.fromContextPath(request).path("/pmall/shopcart/callBack.html").build().toString();
-//            String url = JSAPI.createGetCodeUrl(wxConfig.getAppid(), redirectUrl, "snsapi_base", id);
-//            return "redirect:" + url;
-//        }
+        //获取实际支付金额
+        Double amount = orderHandler.getActualAmount(order);
+        //获取实际支付积分
+        Double ticket = orderHandler.getActualAdvance(order);
+        String jsApiParam = "{}";
+        if(amount>0){//如果需要付款
+            WxConfig payConfig = wxConfigFactory.getPayConfig();
+            if(payConfig.getOpen()){//支付配置开启
+                //跳转到获取支付openid的地址
+                String redirectUrl = ServletUriComponentsBuilder.fromContextPath(request).path("/dmz/pmall/shopcart/callBack.html").build().toString();
+                String url = JSAPI.createGetCodeUrl(payConfig.getAppid(), redirectUrl, "snsapi_base", String.valueOf(order.getId()));
+                return "redirect:" + url;
+            }
+            jsApiParam = payHandler.toWxPay(wxConfig, agent.getWxOpenid(), order.getOrderNo(), amount, WxConfig.PMALL_NOTICE_URL);
+        }
         //去支付
-        String jsApiParam = payHandler.toWxPay(wxConfig, agent.getWxOpenid(), order.getOrderNo(), order.getAmount(),WxConfig.PMALL_NOTICE_URL);
         model.addAttribute("jsApiParam", jsApiParam);
         model.addAttribute("agent", agent);
         model.addAttribute("order", order);
+        model.addAttribute("amount",amount);
+        model.addAttribute("ticket",ticket);
         return "pmall/shopcart/pay";
     }
-
-
 
 
     //获取用户支付的id 再去支付
     @RequestMapping("/callBack.html")
     public String resetOpenIdPay(String code, String state, HttpServletRequest request, Model model) {
-        String jsApiParam ="";
+        String jsApiParam = "";
         try {// TODO 这里要捕获异常 但是总是抛出一个莫名其妙的异常
 //            System.out.println("callBack支付页面");
             jsApiParam = orderHandler.resetOpenIdToPay(code, state);
@@ -90,9 +101,20 @@ public class PmallShopCartQueryController {
             System.out.println("下单异常" + e.getMessage());
         }
         Order order = orderHandler.get(Integer.valueOf(state));
+        //获取实际支付金额
+        Double amount = orderHandler.getActualAmount(order);
+        //获取实际支付积分
+        Double ticket = orderHandler.getActualAdvance(order);
+        //更新订单的券与金额
+//        order.setAmount(amount);
+//        order.setTicket(ticket);
+//        orderHandler.merge(order);
         model.addAttribute("jsApiParam", jsApiParam);
         model.addAttribute("agent", order.getUser());
         model.addAttribute("order", order);
+        model.addAttribute("amount",amount);
+        model.addAttribute("ticket",ticket);
+        model.addAttribute("callback","true");
         return "pmall/shopcart/pay";
 
     }

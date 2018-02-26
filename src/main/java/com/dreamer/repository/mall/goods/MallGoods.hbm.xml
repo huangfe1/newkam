@@ -32,6 +32,12 @@
 			</column>
 		</property>
 
+		<property name="ticketPrice" type="java.lang.Double">
+			<column name="ticketPrice">
+				<comment>置换券价格</comment>
+			</column>
+		</property>
+
 
 		<property name="sel" type="java.lang.Integer">
 			<column name="sel" default="0">

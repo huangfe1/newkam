@@ -16,6 +16,16 @@ public class CountryPrice {
 
     private String img;//每个不同国家价格都有图片
 
+    private Integer open;//0 代表关闭  1代表打开
+
+    public Integer getOpen() {
+        return open;
+    }
+
+    public void setOpen(Integer open) {
+        this.open = open;
+    }
+
     public String getImg() {
         return img;
     }

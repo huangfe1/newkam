@@ -84,19 +84,7 @@ public class Agent extends User {
 //		return optional.orElse(null);
 //	}
 
-	/**
-	 * 是否是特权商城的Vip 大区/发起者
-	 * @return true or false
-     */
-	public boolean isTeqVip(){
-		String name1=AgentLevelName.大区.toString();
-		String name2=AgentLevelName.联盟单位.toString();
-		String name3=AgentLevelName.董事.toString();
-		String name4=AgentLevelName.金董.toString();
-		String names=name1+name2+name3+name4;
-		GoodsAccount account=getGoodsAccounts().stream().filter(g->g.getGoods().getGoodsType().equals(GoodsType.TEQ)&&(names.contains(g.getAgentLevel().getName()))).findFirst().orElse(null);
-		return !Objects.isNull(account);
-	}
+
 
 
 

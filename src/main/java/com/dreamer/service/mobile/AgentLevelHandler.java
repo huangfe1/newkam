@@ -13,5 +13,7 @@ public interface AgentLevelHandler extends BaseHandler<AgentLevel> {
 
     List<AgentLevel> findAllOrderByLevel();
 
+    Boolean canChangeByAgent(AgentLevel level);
+
 
 }

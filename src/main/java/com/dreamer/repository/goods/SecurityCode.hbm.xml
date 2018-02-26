@@ -18,6 +18,13 @@
                 <comment>防伪码</comment>
             </column>
         </property>
+
+        <property name="box" type="java.lang.String">
+            <column name="box" length="64">
+                <comment>大码</comment>
+            </column>
+        </property>
+
         <property name="owner" type="java.lang.String">
             <column name="owner" length="64" not-null="true">
                 <comment>货物拥有者实名</comment>

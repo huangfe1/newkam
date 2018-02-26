@@ -5,8 +5,9 @@ import com.dreamer.domain.mall.delivery.DeliveryApplyOrigin;
 import com.dreamer.domain.mall.delivery.DeliveryItem;
 import com.dreamer.domain.mall.delivery.DeliveryNote;
 import com.dreamer.domain.mall.delivery.DeliveryStatus;
-import com.dreamer.domain.mall.goods.*;
-import com.dreamer.domain.mall.transfer.Transfer;
+import com.dreamer.domain.mall.goods.Goods;
+import com.dreamer.domain.mall.goods.Logistics;
+import com.dreamer.domain.mall.goods.Price;
 import com.dreamer.domain.user.*;
 import com.dreamer.domain.user.enums.AccountsType;
 import com.dreamer.repository.mobile.*;
@@ -172,9 +173,12 @@ public class DeliveryNoteHandlerImpl extends BaseHandlerImpl<DeliveryNote> imple
             throw new ApplicationException("删除失败,正在出货/已经出货");
         }
         List<AccountsRecord> accountsRecords = new ArrayList<>();
-        //退物流费
-        String more = "物流费退回-来自给" + note.getToAgent().getRealName() + "的订单取消发货";
-        accountsRecords.add(accountsHandler.increaseAccountAndRecord(AccountsType.VOUCHER, note.getApplyAgent(), note.getToAgent(), note.getLogisticsFee(), more));
+        if(note.getLogisticsFee()>0){
+            //退物流费
+            String more = "物流费退回-来自给" + note.getToAgent().getRealName() + "的订单取消发货";
+            accountsRecords.add(accountsHandler.increaseAccountAndRecord(AccountsType.VOUCHER, note.getApplyAgent(), note.getToAgent(), note.getLogisticsFee(), more));
+        }
+
         //货物退回
 //        Transfer transfer = transferHandler.transferFromDeleteNote(note);
 //        transferHandler.merge(transfer);
@@ -250,8 +254,11 @@ public class DeliveryNoteHandlerImpl extends BaseHandlerImpl<DeliveryNote> imple
         applyDeliveryNote(deliveryNote);//提交申请
         //减少库存
         deductGoodsAccounts(deliveryNote);
-        //减少物流费 生成记录
-        List<AccountsRecord> records = deductLogistFee(deliveryNote);
+        deliveryNote.setLogisticsFee(0.0);//暂时不收不物流费
+        List<AccountsRecord> records = new ArrayList<>();
+        if(deliveryNote.getLogisticsFee()>0){
+            records =  deductLogistFee(deliveryNote);
+        }
         //保存
         deliveryNote = deliveryNoteDao.merge(deliveryNote);
         //保存记录

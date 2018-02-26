@@ -26,7 +26,7 @@ public class TokenInfo {
     @Autowired
     public static RedisDao redisDao;
 
-    public static String IMG_HEAD_PATH = "http://ht.hzc365.com/hzc";
+    public static String IMG_HEAD_PATH = "http://ht.kam365.com/kam";
 
     //通过appId获取TOKEN
     public static String getAccessToken(String appId) {

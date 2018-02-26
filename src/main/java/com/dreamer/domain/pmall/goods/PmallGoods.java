@@ -34,10 +34,11 @@ public class PmallGoods implements java.io.Serializable {
 
     private Double price;//上架价格
 
-    private Double retailPrice;//实际价格
+    private Double retailPrice;//现金价格
+
+    private Double ticketPrice;//置换券价格
 
     private Boolean canAdvance;//是否能置换
-
 
     private String imgFile;
 
@@ -59,6 +60,14 @@ public class PmallGoods implements java.io.Serializable {
 
     public Boolean getCanAdvance() {
         return canAdvance;
+    }
+
+    public Double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(Double ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 
     public void setCanAdvance(Boolean canAdvance) {

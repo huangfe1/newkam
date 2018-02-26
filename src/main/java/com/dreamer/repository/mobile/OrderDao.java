@@ -34,7 +34,7 @@ public class OrderDao extends BaseDaoImpl<Order> {
     public List<Order> findNewOrders(Integer limit) {
         DetachedCriteria dc = DetachedCriteria.forClass(Order.class);
         dc.add(Restrictions.eq("status", OrderStatus.NEW));
-        dc.add(Restrictions.or(Restrictions.eq("paymentStatus", PaymentStatus.PAID), Restrictions.eq("paymentStatus", PaymentStatus.PAIDERROR)));
+        dc.add(Restrictions.or(Restrictions.eq("paymentStatus", PaymentStatus.PAID), Restrictions.eq("paymentStatus", PaymentStatus.PAID_ERROR)));
         Criteria criteria = getCriteria(dc);
         criteria.setMaxResults(limit);
         //        SearchParameter<Order> parameter = new SearchParameter<>();

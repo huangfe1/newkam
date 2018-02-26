@@ -1,13 +1,18 @@
 package com.dreamer.service.mobile;
 
-import com.dreamer.domain.mall.securityCode.CodePrefix;
+import com.dreamer.domain.mall.securityCode.CodeSegment;
 import ps.mx.otter.utils.SearchParameter;
 
 import java.util.List;
 
 
-public interface CodePrefixHandler extends BaseHandler<CodePrefix>{
+public interface CodeSegmentHandler extends BaseHandler<CodeSegment>{
 
-    List<CodePrefix> findByPage(SearchParameter<CodePrefix> parameter);
+    List<CodeSegment> findByPage(SearchParameter<CodeSegment> parameter,Integer code);
+
+    Integer findLastestBox();
+
+    Integer findLastestCode();
+
 
 }

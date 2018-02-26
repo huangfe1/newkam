@@ -19,6 +19,7 @@ import com.dreamer.service.mobile.*;
 import com.dreamer.util.CommonUtil;
 import com.dreamer.util.PreciseComputeUtil;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.wxjssdk.util.DateUtil;
 import org.apache.commons.collections.map.HashedMap;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
@@ -31,6 +32,7 @@ import ps.mx.otter.utils.SearchParameter;
 
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by huangfei on 02/07/2017.
@@ -47,12 +49,12 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         StringBuffer sb = new StringBuffer();
         sb.append("利润--");
         sb.append(transfer.getToAgent().getRealName()).append("购买:");
-        Country country = countryHandler.get("name",transfer.getCountry());
+        Country country = countryHandler.get("name", transfer.getCountry());
         List<Double> cvs = new ArrayList<>();
         transfer.getItems().forEach(p -> {
-            if(country!=null){
-                CountryPrice cp = countryPriceHandler.getPrice(p.getGoods(),country);
-                Double cv = cp.getProfit()*p.getQuantity();
+            if (country != null) {
+                CountryPrice cp = countryPriceHandler.getPrice(p.getGoods(), country);
+                Double cv = cp.getProfit() * p.getQuantity();
                 cvs.add(cv);
             }
             sb.append(p.getGoods().getName()).append("X").append(p.getQuantity()).append("  ");
@@ -60,9 +62,9 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         String more = sb.toString();
         //获取整个国际的返利
         HashMap<Agent, Double> map = getAgentsWithVoucher(transfer.getToAgent(), transfer.getItems());
-        Double cvsum = PreciseComputeUtil.round(cvs.stream().mapToDouble(c->c).sum());
-        if(country!=null&&cvsum!=0){
-            map.put(country.getAgent(),cvsum);
+        Double cvsum = PreciseComputeUtil.round(cvs.stream().mapToDouble(c -> c).sum());
+        if (country != null && cvsum != 0) {
+            map.put(country.getAgent(), cvsum);
         }
         for (Agent agent : map.keySet()) {
             //增加返利库存
@@ -70,7 +72,6 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         }
         return records;
     }
-
 
 
     /**
@@ -129,8 +130,8 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         //开始返利
         items.forEach(
                 item -> {
-                    //装载所有返利
-                    CommonUtil.putAll(maps, accountsHandler.rewardVoucher(parents, item.getGoods().getVoucher(), item.getQuantity()));
+                    //装载所有返利 暂时不返利
+//                    CommonUtil.putAll(maps, accountsHandler.rewardVoucher(parents, item.getGoods().getVoucher(), item.getQuantity()));
                 }
         );
 
@@ -201,21 +202,7 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
     }
 
     public static void main(String[] args) {
-        Agent agent = new Agent();
-        agent.setId(1);
-        Agent agent1 = new Agent();
-        agent1.setId(2);
-        Map<Agent, Double> map = new HashedMap();
-        map.put(agent1, 1.0);
-        Map<Agent, Double> map1 = new HashedMap();
-        map1.put(agent, 2.0);
-        map1.put(agent1, 2.0);
-        Map<Agent, Double> map2 = new HashedMap();
-        CommonUtil.putAll(map2, map);
-        CommonUtil.putAll(map2, map1);
-        for (Double d : map2.values()) {
-            System.out.println(d);
-        }
+
 
     }
 
@@ -281,8 +268,8 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         Agent toAgent = agentDao.get(toUid);
         //生成订单
         Transfer transfer = new Transfer(toAgent, fromAgent, new Timestamp(new Date().getTime()), remark);
-        if(country==null){
-            country="中国";
+        if (country == null) {
+            country = "中国";
         }
         transfer.setCountry(country);
         buildItems(transfer, goodsIds, amounts);//组装货物
@@ -331,12 +318,12 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
             } else {
                 price = priceHandler.getPrice(toAgent, goods);
             }
-            dP=price.getPrice();
+            dP = price.getPrice();
             if (country != null) {
                 Country c = countryHandler.get("name", country);
                 if (c != null) {
                     CountryPrice cp = countryPriceHandler.getPrice(goods, c);
-                    dP+=cp.getPrice();
+                    dP += cp.getPrice();
                 }
             }
             item = new TransferItem(transfer, quantity, dP, goods, price.getAgentLevel().getName());
@@ -389,6 +376,8 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
     @Transactional
     public void transfer(Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark) {
         Transfer transfer = initTransfer(fromUid, toUid, goodsIds, amounts, remark, null);
+        //验证
+        validate(transfer.getFromAgent(), transfer.getToAgent());
         //提交订单
         applyTransfer(transfer);
         //主动转货
@@ -397,6 +386,38 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
         transfer = transferDao.merge(transfer);
         //通知 异步
         noticeHandler.noticeTransfer(transfer);
+    }
+
+
+    //验证 只能转给自己的股东  股东只能转给公司 或者自己的下家
+    private void validate(Agent from, Agent to) {
+        String ln = agentHandler.getLevelName(from);
+        if (ln.equals(AgentLevelName.联合股东.toString())) {//股东转货，转给公司 或者自己的下级
+            if (!to.isMutedUser()) {//如果不是转给公司
+                Agent tem = agentHandler.findBoss(to.getId());
+                if (tem == null) throw new ApplicationException("没有找到股东!");
+                if (!tem.getId().equals(from.getId())) throw new ApplicationException("只能转给自己的团队!");
+            }
+        } else {//其它人转货,只能抓给自己的股东
+//            Agent tem = agentHandler.findBoss(from.getId());
+//            if(tem==null)throw new ApplicationException("没有找到股东!");
+            //如果转给股东 只能转给自己的股东  如果不是股东 只能转给跟自己一条线的人
+            if (to.isMutedUser()) throw new ApplicationException("非股东不能转给公司!");
+            String tlv = agentHandler.getLevelName(to);//接收人的级别
+            Agent tem1 = agentHandler.findBoss(from.getId());
+            if (tem1 == null) throw new ApplicationException("没有找到您的团队股东,请联系管理员!");
+            if (tlv.equals(AgentLevelName.联合股东.toString())) {
+                if (!tem1.getId().equals(to.getId())) {
+                    throw new ApplicationException("只能转给自己团队的股东!");
+                }
+            } else {
+                Agent tem2 = agentHandler.findBoss(to.getId());
+                if (tem2 == null) throw new ApplicationException("没有找到接收人的团队股东!请联系管理员!");
+                if (!tem2.getId().equals(tem1.getId())) {
+                    throw new ApplicationException("只能转给自己团队的人!");
+                }
+            }
+        }
     }
 
 
@@ -610,9 +631,9 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
     @Transactional
     public void transferAutoConfirmAndDelivery(AddressMy address, Integer fromUid, Integer toUid, Integer[] goodsIds, Integer[] amounts, String remark) {
         String country = address.getCountry();
-        if(address.getId()!=null){
+        if (address.getId() != null) {
             Address add = addressMyHandler.get(address.getId());
-            country=add.getCountry();
+            country = add.getCountry();
         }
         transferAutoConfirm(fromUid, toUid, goodsIds, amounts, remark, country);//公司转出去
         if (address.getConsigneeCode() != null && !address.getConsigneeCode().equals("")) {//
@@ -659,6 +680,54 @@ public class TransferHandlerImpl extends BaseHandlerImpl<Transfer> implements Tr
     public List<Transfer> findRecords(SearchParameter<Transfer> p, User currentUser) {
         return transferDao.findRecords(p, currentUser);
     }
+
+    @Override
+    public List<Transfer> findRecords(String startTime, String endTime, String agentCode) {
+
+        if (startTime == null) startTime = "1994-09-01";
+        if (endTime == null) startTime = "2994-09-01";
+        Date st = DateUtil.formatStartTime(startTime);
+        Date et = DateUtil.formatEndTime(endTime);
+        Agent agent = null;
+
+        if (agentCode != null && !agentCode.equals("")) {
+            agent = agentHandler.get("agentCode", agentCode);
+            if (agent == null) return new ArrayList<>();
+        }
+        final Agent tem = agent;
+        List<Transfer> transfers = transferDao.findRecords(st, et);
+        transfers = transfers.stream().filter(p -> {
+            Agent toA = p.getToAgent();
+            Agent fromA = p.getFromAgent();
+            Boolean result = true;
+            if (p.getFromAgent().isMutedUser()) {
+                //接收人必须是股东
+//                String ln = agentHandler.getLevelName(toA);
+                if (tem != null) {//过滤团队
+                    if (!agentHandler.isUp(toA.getId(), tem.getId())) {
+                        result = false;
+                    }
+                }
+//                if (ln.contains(AgentLevelName.联合股东.toString())) {
+//                    result = true;
+//                }
+            } else if (toA.isMutedUser()) {
+                //转出人必须是股东
+//                String ln = agentHandler.getLevelName(fromA);
+                if (tem != null) {//过滤团队
+                    if (!agentHandler.isUp(fromA.getId(), tem.getId())) {
+                        result=false;
+                    }
+                }
+//                if (ln.contains(AgentLevelName.联合股东.toString())) {
+//                    result = true;
+//                }
+            }
+            return result;
+        }).collect(Collectors.toList());
+        return transfers;
+    }
+
 
     @Autowired
     private GoodsAccountHandler goodsAccountHandler;

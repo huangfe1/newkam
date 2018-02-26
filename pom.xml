@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.dreamer</groupId>
-    <artifactId>zmz-maven</artifactId>
+    <artifactId>newkam</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>zmz-maven Maven Webapp</name>
@@ -71,6 +71,18 @@
             <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!--&lt;!&ndash;socket&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-websocket</artifactId>-->
+            <!--<version>${spring.version}</version>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
         <!--test-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -122,7 +134,7 @@
             <artifactId>otter</artifactId>
             <version>1.0</version>
         </dependency>
-        <!--jackson 不知道有何用  agent用到-->
+        <!--jackson json对象转换-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -188,6 +200,17 @@
             <groupId>biz.paluch.redis</groupId>
             <artifactId>lettuce</artifactId>
             <version>${lettuce-session.version}</version>
+        </dependency>
+        <!--序列化-->
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-core</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-runtime</artifactId>
+            <version>1.0.8</version>
         </dependency>
     </dependencies>
 

@@ -34,6 +34,8 @@ public interface TransferHandler extends BaseHandler<Transfer> {
 
     List<Transfer> findRecords(SearchParameter<Transfer> p, User currentUser);
 
+    List<Transfer> findRecords(String startTime,String endTime,String agentCode);
+
     //申请退回
     void applyBackTransfer(Integer uid, Integer[] goodsIds, Integer[] amounts, String remark);
 

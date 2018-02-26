@@ -14,6 +14,7 @@ import com.dreamer.repository.mobile.OrderItemDao;
 import com.dreamer.service.mobile.*;
 import com.dreamer.service.mobile.factory.WxConfigFactory;
 import com.dreamer.util.CommonUtil;
+import com.dreamer.util.PreciseComputeUtil;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.wxjssdk.JSAPI;
 import com.wxjssdk.dto.SdkResult;
@@ -46,8 +47,9 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
         Order order = new Order(agent, addressClone, remark);
         Set<OrderItem> items = bulidItems(order, shopCart);
         order.setItems(items);
-        order.setAmount(shopCart.getAmount());
-        order.setQuantity(shopCart.getQuantity());
+        order.setAmount(PreciseComputeUtil.round(shopCart.getAmount()));//设置总金额
+        order.setTicket(PreciseComputeUtil.round(shopCart.getTicket()));//设置总券
+        order.setQuantity(shopCart.getQuantity());//设置总数量
         //提交订单
         commitOrder(order);
         //保存订单
@@ -71,14 +73,14 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
         if (sdkResult.isSuccess()) {//获取openId成功了  就去支付
             JSONObject jsonObject = (JSONObject) sdkResult.getData();
             try {
-                if (agent.getPayOpenid() == null || !agent.getPayOpenid().equals(jsonObject.getString("openid"))) {
-                    agent.setPayOpenid(jsonObject.getString("openid"));
-                    agentHandler.merge(agent);
-                }
+//                if (agent.getPayOpenid() == null || !agent.getPayOpenid().equals(jsonObject.getString("openid"))) {
+                agent.setPayOpenid(jsonObject.getString("openid"));
+//                    agentHandler.merge(agent);
+//                }
             } catch (Exception e) {
                 System.out.println("异常:" + e.getMessage());
             }
-            String jsApiParam = payHandler.toWxPay(wxConfig, agent.getPayOpenid(), order.getOrderNo(), order.getAmount(),WxConfig.PMALL_NOTICE_URL);
+            String jsApiParam = payHandler.toWxPay(wxConfig, agent.getPayOpenid(), order.getOrderNo(), order.getAmount(), WxConfig.PMALL_NOTICE_URL);
             return jsApiParam;
         } else {
             LOG.error("获取payOpenid失败:{}", sdkResult.getError());
@@ -86,27 +88,32 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
         }
     }
 
-    //支付
-    @Transactional
-    private void payOrder(Integer id, PaymentWay paymentWay) {
+
+    //非代金券支付方法
+    private void payOrder(Integer id, PaymentWay paymentWay, Integer cash) {
         Order order = get(id);
-        //支付状态
-        payOrder(order, paymentWay);
-        //减库存
-        deductMallGoodsAccount(order);
-        //增加消费
-        AccountsRecord accountsRecord = accountsHandler.increaseAccountAndRecord(AccountsType.CONSUME,order.getUser(),order.getUser(),order.getAmount(),"累积-优惠商城购物累积消费值");
-        //返利
-        List<AccountsRecord> records = rewardVoucher(order);
-        //保存返利记录
-        accountsRecordHandler.saveList(records);
-        //累积消费记录
-        accountsRecordHandler.save(accountsRecord);
-        //通知返利
-        noticeHandler.noticeAccountRecords(records);
+        Double ticket = order.getTicket();//管理员支付的时候没有金额
+        if (cash != null) {
+            //计算多支付的金额 就是抵扣积分
+            ticket = (cash - order.getAmount() * 100) / 100;//获取抵扣了的积分
+        }
+        Double tem = order.getTicket() - ticket;//获取实际要支付的积分
+        //获取自己的积分
+        Double myA = order.getUser().getAccounts().getAccount(AccountsType.ADVANCE);
+        if (myA < tem) {//券不够用
+            payOrder(order, paymentWay, PaymentStatus.NOT_ENOUGH);//支付失败,不够
+        } else {
+            if (tem > 0) {//需要扣券
+                payOrder(order, paymentWay, tem);//支付成功且支付券
+            } else {
+                payOrder(order, paymentWay, PaymentStatus.PAID);//成功支付
+            }
+
+        }
         //保存
         merge(order);
     }
+
 
     //支付 //接受微信支付回调 并支付  返回支付结果
     @Override
@@ -114,13 +121,14 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
     public String payOrderByWx(String body) {
         Map<String, String> xml = XmlUtil.xmlToMap(body);
         String out_trade_no = xml.get("out_trade_no");
+        Integer cash_fee = Integer.valueOf(xml.get("cash_fee"));//金额
         Order order = get("orderNo", out_trade_no);
         try {
-            payOrder(order.getId(), PaymentWay.WX);//微信支付
+            payOrder(order.getId(), PaymentWay.WX, cash_fee);//微信支付
         } catch (Exception e) {
             LOG.error("微信支付回调支付异常,{}", e.getMessage());
             LOG.error("订单id,{}", order.getId());
-            payOrderWithError(order.getId(), PaymentWay.WX);
+//            payOrderWithError(order.getId(), PaymentWay.WX);
         }
         //返回支付结果
         Map<String, Object> map = new HashMap();
@@ -135,7 +143,7 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
     @Override
     @Transactional
     public void payOrderByAdmin(Integer id) {
-        payOrder(id, PaymentWay.ADMIN);
+        payOrder(id, PaymentWay.ADMIN, null);
     }
 
 
@@ -149,13 +157,35 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
     private void payOrderWithError(Integer id, PaymentWay paymentWay) {
         Order order = get(id);
 //        payOrder(order, paymentWay);
-        order.setPaymentWay(paymentWay);
-        order.setPaymentStatus(PaymentStatus.PAIDERROR);
-        order.setPaymentTime(new Date());
+        payOrder(order, paymentWay, PaymentStatus.PAID_ERROR);
         merge(order);
     }
 
-    private void payOrder(Order order, PaymentWay paymentWay) {
+    //成功支付
+    private void payOrder(Order order, PaymentWay paymentWay, Double ticket) {
+        List<AccountsRecord> allRecords = new ArrayList<>();
+        payOrder(order, paymentWay, PaymentStatus.PAID);//设置支付状态
+        //支付成功后续动作
+        AccountsRecord accountsRecord = accountsHandler.deductAccountAndRecord(AccountsType.ADVANCE, order.getUser(), order.getUser(), ticket, "置换券-优惠商城购物消费!");
+        allRecords.add(accountsRecord);
+        //减库存
+        deductMallGoodsAccount(order);
+        if(order.getAmount()>0){
+            //增加消费
+            AccountsRecord accountsRecord1 = accountsHandler.increaseAccountAndRecord(AccountsType.CONSUME, order.getUser(), order.getUser(), order.getAmount(), "消费值-优惠商城购物累积消费值");
+            allRecords.add(accountsRecord1);
+        }
+        //返利
+        List<AccountsRecord> records = rewardVoucher(order);
+        allRecords.addAll(records);
+        //保存返利记录
+        accountsRecordHandler.saveList(allRecords);
+        //通知返利
+        noticeHandler.noticeAccountRecords(allRecords);
+    }
+
+    //设置支付状态
+    private void payOrder(Order order, PaymentWay paymentWay, PaymentStatus paymentStatus) {
         if (order == null) {
             logger.error("订单不存在id:{}", order.getId());
             throw new ApplicationException("订单不存在!id:" + order.getId());
@@ -165,27 +195,34 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
             throw new ApplicationException("订单已经支付!id:" + order.getId());
 
         }
-        order.setPaymentStatus(PaymentStatus.PAID);//设置已经支付
+        order.setPaymentStatus(paymentStatus);//设置支付状态
         order.setPaymentTime(new Date());
         order.setPaymentWay(paymentWay);
     }
 
+
     //扣减账户
     private AccountsRecord deductAccounts(Order order, AccountsType accountsType) {
-        if (accountsType == AccountsType.ADVANCE) {//置换券支付只能支付置换券类型的
-            if (!order.getCanAdvance()) {
-                throw new ApplicationException("包含不能置换券支付的产品!");
-            }
+//        if (accountsType == AccountsType.ADVANCE) {//置换券支付只能支付置换券类型的
+//            if (!order.getCanAdvance()) {
+//                throw new ApplicationException("包含不能置换券支付的产品!");
+//            }
+//        }
+        Double amount;
+        if (accountsType == AccountsType.ADVANCE) {
+            amount = order.getTicket();
+        } else {
+            amount = order.getAmount();
         }
         String more = "购物-优惠商城购物支付";
-        AccountsRecord accountsRecord = accountsHandler.deductAccountAndRecord(accountsType, order.getUser(), order.getUser(), order.getAmount(), more);
+        AccountsRecord accountsRecord = accountsHandler.deductAccountAndRecord(accountsType, order.getUser(), order.getUser(), amount, more);
         return accountsRecord;
     }
 
 
     //是否已经支付
     private boolean hasPaid(Order order) {
-        if (order.getPaymentStatus() == PaymentStatus.UNPAID) {
+        if (order.getPaymentStatus() != PaymentStatus.PAID) {
             return false;
         }
         return true;
@@ -200,13 +237,14 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
         return true;
     }
 
+    //置换券支付
     @Override
     @Transactional
     public void payOrderByAccounts(Integer id, Integer payOrderByAccounts) {
         AccountsType accountsType = AccountsType.stateOf(payOrderByAccounts);
         Order order = get(id);
         //减少库存
-        deductAccounts(order, accountsType);
+        deductMallGoodsAccount(order);
         PaymentWay paymentWay;
         //设置为支付状态
         if (accountsType == AccountsType.ADVANCE) {//置换券
@@ -215,20 +253,23 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
             paymentWay = PaymentWay.VOUCHER;
         }
         List<AccountsRecord> records = new ArrayList<>();
-        //减少代金券
+        //减少券
         records.add(deductAccounts(order, accountsType));
         //增加消费
-        AccountsRecord accountsRecord = accountsHandler.increaseAccountAndRecord(AccountsType.CONSUME,order.getUser(),order.getUser(),order.getAmount(),"累积-优惠商城购物累积消费值");
+        if (order.getAmount() > 0) {
+            AccountsRecord accountsRecord = accountsHandler.increaseAccountAndRecord(AccountsType.CONSUME, order.getUser(), order.getUser(), order.getAmount(), "累积-优惠商城购物累积消费值");
+            //累积消费记录
+            accountsRecordHandler.save(accountsRecord);
+        }
         //支付状态
-        payOrder(order, paymentWay);
+        payOrder(order, paymentWay, PaymentStatus.PAID);
         //返利
         records.addAll(rewardVoucher(order));
         //保存
         merge(order);
         //保存代金券记录
         accountsRecordHandler.saveList(records);
-        //累积消费记录
-        accountsRecordHandler.save(accountsRecord);
+
         //通知通知
         noticeHandler.noticeAccountRecords(records);
     }
@@ -301,6 +342,7 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
 
     private Set<OrderItem> bulidItems(Order order, ShopCart shopCart) {
         Set<OrderItem> items = new HashSet<>();
+        order.setCanAdvance(true);//首先默认可以置换
         shopCart.getItems().values().stream().forEach(p -> {
             //限制购买数量
             validateActitivty(p.getGoods(), order.getUser(), p.getQuantity());
@@ -355,7 +397,7 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
             parent = parent.getParent();
         }
         order.getItems().forEach(item -> {
-            CommonUtil.putAll(maps, accountsHandler.rewardPmallVoucher(parents, item.getQuantity(),item.getPmallGoods().getProfit()));
+//            CommonUtil.putAll(maps, accountsHandler.rewardPmallVoucher(parents, item.getQuantity(), item.getPmallGoods().getProfit()));
         });
         return maps;
     }
@@ -363,22 +405,22 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
 
     //返利
     private List<AccountsRecord> rewardVoucher(Order order) {
-        List<AccountsRecord> accountsRecords = new ArrayList<>();
-        StringBuffer sb = new StringBuffer();
-        sb.append("利润--");
-        sb.append(order.getUser().getRealName()).append("优惠商城购买:");
-        order.getItems().forEach(p -> {
-            if (p.getPmallGoods().getName().contains("避孕")) {
-                sb.append("******");
-            } else {
-                sb.append(p.getPmallGoods().getName());
-            }
-            sb.append("X").append(p.getQuantity()).append("  ");
-        });
-        Map<Agent, Double> map = getAgentsWithVoucher(order);
-        for (Agent agent : map.keySet()) {
-            accountsRecords.add(accountsHandler.increaseAccountAndRecord(AccountsType.VOUCHER, agent, order.getUser(), map.get(agent), sb.toString()));
-        }
+        List<AccountsRecord> accountsRecords = new ArrayList<>();//暂时不返利
+//        StringBuffer sb = new StringBuffer();
+//        sb.append("利润--");
+//        sb.append(order.getUser().getRealName()).append("优惠商城购买:");
+//        order.getItems().forEach(p -> {
+//            if (p.getPmallGoods().getName().contains("避孕")) {
+//                sb.append("******");
+//            } else {
+//                sb.append(p.getPmallGoods().getName());
+//            }
+//            sb.append("X").append(p.getQuantity()).append("  ");
+//        });
+//        Map<Agent, Double> map = getAgentsWithVoucher(order);
+//        for (Agent agent : map.keySet()) {
+//            accountsRecords.add(accountsHandler.increaseAccountAndRecord(AccountsType.VOUCHER, agent, order.getUser(), map.get(agent), sb.toString()));
+//        }
         return accountsRecords;
     }
 
@@ -399,6 +441,30 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
         });
     }
 
+
+    @Override
+    public Double getActualAmount(Order order) {
+//        if (order.getCanAdvance()) {
+        Double tem1 = getActualAdvance(order);//可用的券
+        Double tem2 = order.getTicket();//需要的券
+        //实际现金加上不够的券
+        Double result = PreciseComputeUtil.add(order.getAmount(), tem2 - tem1);
+        return PreciseComputeUtil.round(result);
+//        } else {
+//            return order.getAmount();
+//        }
+    }
+
+    //实际置换券 所需置换券
+    @Override
+    public Double getActualAdvance(Order order) {
+//        if (order.getCanAdvance()) {//如果可以置换
+        Double tem1 = order.getTicket();//所需置换券
+        Double tem2 = accountsHandler.getAvailableAccounts(order.getUser(), tem1, AccountsType.ADVANCE);
+        return tem2;//返回可用的置换券
+//        }
+//        return 0.0;
+    }
 
     //发货
     @Override
@@ -428,13 +494,13 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
     @Override
     public List<Order> findNewOrders(Integer limit) {
 
-        return orderDao.findNewOrders( limit);
+        return orderDao.findNewOrders(limit);
     }
 
     //获取所有没有发货的订单总数
     @Override
     public List<Object[]> getOrdersItemCount(Integer limit) {
-        return orderDao.getOrdersItemCount( limit);
+        return orderDao.getOrdersItemCount(limit);
     }
 
     private OrderDao orderDao;
@@ -471,7 +537,6 @@ public class OrderHandlerImpl extends BaseHandlerImpl<Order> implements OrderHan
 
     @Autowired
     private OrderItemDao orderItemDao;
-
 
 
     @Autowired

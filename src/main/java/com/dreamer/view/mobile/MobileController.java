@@ -186,7 +186,7 @@ public class MobileController {
     public UserDto findAgents(String info, HttpServletRequest request) {
         User user = (User) WebUtil.getCurrentUser(request);
         Agent agent;
-        if (info.indexOf("zmz") > -1) {//编号
+        if (info.indexOf("kam") > -1) {//编号
             agent = agentHandler.get("agentCode", info);
         } else {//手机号
             agent = agentHandler.get("mobile", info);
@@ -225,7 +225,7 @@ public class MobileController {
         map.put("ASC", "order");//排序
         List<Goods> goodss = goodsHandler.getList(map);
         if (goodsName != null && !goodsName.equals("")) {
-            goodss.stream().filter(g -> g.getName().contains(goodsName));
+            goodss = goodss.stream().filter(g -> g.getName().contains(goodsName)).collect(Collectors.toList());
             model.addAttribute("goodsName", goodsName);
         }
         //筛选区域
@@ -240,21 +240,22 @@ public class MobileController {
         //如果countryId==null
         if (countryId != null) {
             if (countryId > 0) {//回复内陆价格
-//                goodss.stream().forEach(g -> {
-//                    Goods goods = goodsHandler.get(g.getId());
-//                    g.setImgFile(goods.getImgFile());
-//                });
-//
-//            } else {
                 Country country = countryHandler.get(countryId);
-                goodss.stream().forEach(g -> {
+                Iterator<Goods> iterator = goodss.iterator();
+                while (iterator.hasNext()) {
+
+                    Goods g = iterator.next();
                     CountryPrice countryPrice = countryPriceHandler.getPrice(g, country);
-                    if(countryPrice!=null){
+                    if (countryPrice != null && countryPrice.getOpen() == 1) {
                         if (countryPrice.getImg() != null) {
                             g.setImgFile(countryPrice.getImg());
                         }
+                    } else {//如果不打开就移除不显示
+                        iterator.remove();
                     }
-                });
+
+                }
+
             }
 
         }
@@ -295,18 +296,18 @@ public class MobileController {
                 if (countryPrice.getImg() != null) {
                     goods.setImgFile(countryPrice.getImg());
                 }
-                goods.setRetailPrice(countryPrice.getPrice()+goods.getRetailPrice());
+                goods.setRetailPrice(countryPrice.getPrice() + goods.getRetailPrice());
             }
         }
         List<Comment> comments = commentHandler.findByGid(0, gid, 100);
         model.addAttribute("comments", comments);
         Boolean vip = false;
-        User user = (User)WebUtil.getCurrentUser(request);
-        if(user!=null){
+        User user = (User) WebUtil.getCurrentUser(request);
+        if (user != null) {
             Agent agent = agentHandler.get(user.getId());
             vip = agentHandler.isVip(agent);
         }
-        model.addAttribute("vip",vip);
+        model.addAttribute("vip", vip);
         return "mobile/detail";
     }
 
@@ -346,21 +347,32 @@ public class MobileController {
             ShopCart cart;
             if (Objects.nonNull(ob)) {
                 cart = (ShopCart) ob;
-                for (CartItem cartItem : cart.getItems().values()) {
+                Iterator<CartItem> it = cart.getItems().values().iterator();
 
+//                for (CartItem cartItem : cart.getItems().values()) {
+                while (it.hasNext()) {
+                    CartItem cartItem = it.next();
                     //获取当前产品当前国家的价格
                     Goods goods = goodsHandler.get(cartItem.getGoods().getId());
                     //获取当前产品的本来价格
                     Double price = agent.getMainLevelPrice(cartItem.getGoods()).getPrice();
-
                     if (cid > 0) {
-//                        Country country = countryHandler.get(cid);
-                        Double tem = countryPriceHandler.getPrice(cartItem.getGoods(), country).getPrice();
-                        cartItem.setPrice(price + tem);//刷新价格
-                        cartItem.getGoods().setRetailPrice(goods.getRetailPrice() + tem);
+                        CountryPrice countryPrice = countryPriceHandler.getPrice(cartItem.getGoods(), country);
+                        if (countryPrice != null && countryPrice.getOpen() == 1) {
+                            Double tem = countryPrice.getPrice();
+                            cartItem.setPrice(price + tem);//刷新价格
+                            cartItem.getGoods().setRetailPrice(goods.getRetailPrice() + tem);
+                            if (countryPrice.getImg() != null) {
+                                cartItem.getGoods().setImgFile(countryPrice.getImg());
+                            }
+                        } else {
+                            it.remove();
+                        }
+
                     } else {
                         cartItem.setPrice(price);//设置原价
                         cartItem.getGoods().setRetailPrice(goods.getRetailPrice());
+                        cartItem.getGoods().setImgFile(goods.getImgFile());
                     }
 
                 }
@@ -420,19 +432,41 @@ public class MobileController {
 
     //联系人
     @RequestMapping("/mobile/contacts.html")
-    public String contacts(HttpServletRequest request, Model model) {
+    public String contacts(HttpServletRequest request, Model model, @RequestParam(required = false) Integer uid) {
         //所有的联系人
-        User user = (User) WebUtil.getCurrentUser(request);
-        Agent agent = agentHandler.get(user.getId());
+        Integer aid;
+        if (uid != null) {
+            aid = uid;
+        } else {
+            User user = (User) WebUtil.getCurrentUser(request);
+            aid = user.getId();
+        }
+        Agent agent = agentHandler.get(aid);
         //找出自己的下级
-        List agents = agentHandler.getList("parent.id", user.getId());
+        List agents = agentHandler.getList("parent.id", aid);
 //        List<Agent> agents = agentHandler.findByParentHasUnionId(user.getId());
         MutedUser mutedUser = muteUserHandler.getMuteUser();
         model.addAttribute("mutedUserId", mutedUser.getId());
         model.addAttribute("isVip", agentHandler.isVip(agent));
         model.addAttribute("agents", agents);
+        model.addAttribute("agent", agent);
+
         return "/mobile/contacts";
     }
+
+    @RequestMapping("/mobile/chat.html")
+    public String chat(Integer toId, Model model) {
+        Agent toAgent = agentHandler.get(toId);
+        model.addAttribute("toAgent", toAgent);
+        return "/mobile/chat";
+    }
+
+
+    @RequestMapping("/mobile/chats.html")
+    public String chats() {
+        return "/mobile/chats";
+    }
+
 
     //登录出去
     @RequestMapping("/mobile/out.html")
@@ -465,7 +499,7 @@ public class MobileController {
 
     //代理自己的详细信息
     @RequestMapping("/mobile/profile.html")
-    public String profile(Integer uid, Model model) {
+    public String profile(Integer uid, Model model, HttpServletRequest request) {
         MutedUser mutedUser = muteUserHandler.getMuteUser();
         if (mutedUser.getId().equals(uid)) {
             model.addAttribute("levelName", "公司账户");
@@ -487,6 +521,15 @@ public class MobileController {
             levelName = "游客";
         }
         model.addAttribute("levelName", levelName);
+        User user = (User) WebUtil.getCurrentUser(request);
+        Agent me = agentHandler.get(user.getId());
+        model.addAttribute("myLevelName", agentHandler.getLevelName(me));
+        //所有的级别
+        List<AgentLevel> levels = levelHandler.findAll();
+        levels = levels.stream().filter(p -> levelHandler.canChangeByAgent(p)).collect(Collectors.toList());
+        model.addAttribute("levels", levels);
+        model.addAttribute("team", agentHandler.isAteam(uid, user.getId()));//是否是一个团队
+        model.addAttribute("up", agentHandler.isUp(uid, user.getId()));//是否是上级
         return "mobile/profile";
     }
 
@@ -579,7 +622,7 @@ public class MobileController {
             String oid = agent.getWxOpenid();
             //如果payConfig存在 则用payConfig收款
             WxConfig payConfig = wxConfigFactory.getPayConfig();
-            if (payConfig.getOpen() && openid != null && !openid.equals("")) {
+            if (payConfig.getOpen() && openid != null && !openid.equals("") && amount < payConfig.getNumber()) {//只接收低于一万的
                 wxConfig = payConfig;
                 oid = openid;
             }
@@ -622,8 +665,8 @@ public class MobileController {
         model.addAttribute("goodsAccounts", agent.getGoodsAccounts());
         Agent toAgent = agentHandler.get(toUid);
         model.addAttribute("toAgent", toAgent);
-        //找出与收货人相关的地址
-        List<AddressMy> addressList = addressMyHandler.findAddressByAgent(agent, toAgent);
+        //找出与发货人的所有地址
+        List<AddressMy> addressList = addressMyHandler.findAddressByAgent(agent);
         model.addAttribute("addressList", addressList);
         return "mobile/goods/transfer";
     }
@@ -788,6 +831,62 @@ public class MobileController {
         return "/mobile/wallet";
     }
 
+    @RequestMapping("/mobile/isTeam.json")
+    @ResponseBody
+    public Message isTeam(Integer aid, HttpServletRequest request) {
+        try {
+            Agent agent = agentHandler.get(aid);
+            User user = (User) WebUtil.getCurrentUser(request);
+            Agent operater = agentHandler.get(user.getId());
+            //有些级别不能授权
+            if (agentHandler.canChangeLevelByAgent(agent, operater)) {//领袖是本人
+                return Message.createSuccessMessage();
+            } else {
+                throw new ApplicationException("股东只能给自己的团队的人授权!");
+            }
+        } catch (Exception e) {
+            return Message.createFailedMessage(e.getMessage());
+        }
+    }
+
+    //改变级别
+    @RequestMapping("/mobile/changeLevel.json")
+    @ResponseBody
+    public Message changeLevel(Integer aid, Integer lid, HttpServletRequest request) {
+        try {
+
+            Agent agent = agentHandler.get(aid);
+            User user = (User) WebUtil.getCurrentUser(request);
+            Agent operater = agentHandler.get(user.getId());
+            if (agentHandler.canChangeLevelByAgent(agent, operater)) {//领袖是本人
+                agentHandler.changeAgentLevel(agent, null, lid);
+                return Message.createSuccessMessage();
+            } else {
+                throw new ApplicationException("股东只能给自己下面的团队升级！");
+            }
+
+        } catch (Exception e) {
+            return Message.createFailedMessage(e.getMessage());
+        }
+    }
+
+    @RequestMapping("/admin/calulate/profit.html")
+    public String calulateProfit() {
+        return "/user/admin/profit";
+    }
+
+    @RequestMapping("/admin/calulate/profit.json")
+    public void calulateProfit(String agentCode, String startTime, String endTime, Model model, HttpServletRequest request, HttpServletResponse response) {
+        model.addAttribute("agentCode",agentCode);
+        model.addAttribute("startTime",startTime);
+        model.addAttribute("endTime",endTime);
+        User user = (User) WebUtil.getCurrentUser(request);
+        if(!user.isAdmin())return;
+        Map<Agent,HashMap<String,Object>> map = accountsHandler.rewardVoucher(startTime,endTime,agentCode,response);
+    }
+
+
+
 
     @Autowired
     private WxConfigFactory wxConfigFactory;
@@ -840,6 +939,10 @@ public class MobileController {
 
     @Autowired
     private CountryPriceHandler countryPriceHandler;
+
+    @Autowired
+    private AgentLevelHandler levelHandler;
+
 
 //    @Autowired
 //    private WxConfigFactory wxConfigFactory;

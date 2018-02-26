@@ -1,11 +1,9 @@
 package com.dreamer.service.mobile.impl;
 
-import com.dreamer.domain.mall.securityCode.CodePrefix;
-import com.dreamer.repository.goods.CodePrefixDao;
-import com.dreamer.service.mobile.CodePrefixHandler;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Example;
-import org.hibernate.criterion.MatchMode;
+import com.dreamer.domain.mall.securityCode.CodeSegment;
+import com.dreamer.repository.goods.CodeSegmentDao;
+import com.dreamer.service.mobile.CodeSegmentHandler;
+import org.hibernate.criterion.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ps.mx.otter.utils.SearchParameter;
@@ -13,25 +11,42 @@ import ps.mx.otter.utils.SearchParameter;
 import java.util.List;
 
 @Service
-public class CodePrefixHandlerImpl extends BaseHandlerImpl<CodePrefix> implements CodePrefixHandler {
+public class CodeSegmentHandlerImpl extends BaseHandlerImpl<CodeSegment> implements CodeSegmentHandler {
 
     @Override
-    public List<CodePrefix> findByPage(SearchParameter<CodePrefix> parameter) {
-        DetachedCriteria criteria = DetachedCriteria.forClass(CodePrefix.class);
+    public List<CodeSegment> findByPage(SearchParameter<CodeSegment> parameter, Integer code) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(CodeSegment.class);
         Example example = Example.create(parameter.getEntity()).enableLike(MatchMode.ANYWHERE);
         criteria.add(example);
-        return codePrefixDao.findByCriteria(criteria,null,null);
+        if (code != null) {
+            Disjunction disjunction = Restrictions.disjunction();
+            disjunction.add(Restrictions.and(Restrictions.ge("endCode", code), Restrictions.le("startCode", code)));
+            disjunction.add(Restrictions.and(Restrictions.ge("endBox", code), Restrictions.le("startBox", code)));
+            criteria.add(disjunction);
+        }
+        criteria.addOrder(Order.desc("id"));
+        return codeSegmentDao.searchByPage(parameter, criteria);
     }
 
-    private CodePrefixDao codePrefixDao;
+    @Override
+    public Integer findLastestBox() {
+        return codeSegmentDao.findLastestBox();
+    }
 
-    public CodePrefixDao getCodePrefixDao() {
-        return codePrefixDao;
+    @Override
+    public Integer findLastestCode() {
+        return codeSegmentDao.findLastestCode();
+    }
+
+    private CodeSegmentDao codeSegmentDao;
+
+    public CodeSegmentDao getCodeSegmentDao() {
+        return codeSegmentDao;
     }
 
     @Autowired
-    public void setCodePrefixDao(CodePrefixDao codePrefixDao) {
-        super.setBaseDao(codePrefixDao);
-        this.codePrefixDao = codePrefixDao;
+    public void setCodeSegmentDao(CodeSegmentDao codeSegmentDao) {
+        super.setBaseDao(codeSegmentDao);
+        this.codeSegmentDao = codeSegmentDao;
     }
 }

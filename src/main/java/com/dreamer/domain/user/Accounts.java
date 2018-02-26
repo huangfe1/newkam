@@ -19,86 +19,12 @@ public class Accounts implements java.io.Serializable {
     private Date updateTime;
     private Double pointsBalance;
     private Double voucherBalance;
-    private Double advanceBalance;//预存款
+    private Double advanceBalance;//置换券
     private Double benefitPointsBalance;
     private Double payBalance;//消费金额
     private Double purchaseBalance;//进货券
 
 
-
-//    /**
-//     * 代金券转移
-//     *
-//     * @param acs
-//     * @param voucher
-//     */
-//    public void payVoucherTo(Accounts acs, Double voucher) {
-//        String more = user.getRealName() + "转货支付给" + acs.getUser().getRealName();
-////		deductVoucher(voucher,more);
-////		acs.increaseVoucher(voucher,more);
-//        payVoucherTo(acs, voucher, more);
-//    }
-
-//    /**
-//     * 代金券转移
-//     *
-//     * @param acs
-//     * @param voucher
-//     */
-//    public void payVoucherTo(Accounts acs, Double voucher, String more) {
-//        deductVoucher(voucher, more);
-////        acs.increaseVoucher(voucher, more);
-//    }
-
-//    /**
-//     * 预存款支付
-//     *
-//     * @param acs
-//     * @param advance
-//     */
-//    public void payAdvanceTo(Accounts acs, Double advance) {
-//        String more = user.getRealName() + "转货支付给" + acs.getUser().getRealName();
-//        deductAdvance(advance, more);//减少自己的
-//        acs.increaseAdvance(advance, more);//增加收款人的
-//    }
-
-//    /**
-//     * 预存款转移
-//     *
-//     * @param acs
-//     * @param more
-//     */
-//    public void transferAdvanceToAnother(Accounts acs, Double advance) {
-//        String more = user.getRealName() + "主动转移预存款到" + acs.getUser().getRealName();
-//        this.deductAdvance(advance, more);//本人减少
-//        acs.increaseAdvance(advance, more);//接收方增加
-//    }
-
-//    /**
-//     * 进货券支付
-//     *
-//     * @param acs
-//     * @param advance
-//     */
-//    public void payPurchaseTo(Accounts acs, Double purchase) {
-//        String more = user.getRealName() + "转货支付给" + acs.getUser().getRealName();
-//        deductPurchase(purchase, more);//减少自己的
-//        acs.increasePurchase(purchase, more);//增加收款人的
-//    }
-
-//    /**
-//     * 进货券转移
-//     *
-//     * @param acs
-//     * @param more
-//     */
-//    public void transferPurchaseToAnother(Accounts acs, Double purchase) {
-//        String more = user.getRealName() + "主动转移进货券到" + acs.getUser().getRealName();
-//        if (!this.getUser().isMutedUser()) {
-//            this.deductPurchase(purchase, more);
-//        }
-//        acs.increasePurchase(purchase, more);//接收方增加
-//    }
 
     /**
      * 积分转移
@@ -111,19 +37,6 @@ public class Accounts implements java.io.Serializable {
         acs.increasePoints(points);
     }
 
-//    /**
-//     * 代金券转移
-//     *
-//     * @param acs
-//     * @param points
-//     */
-//    public void transferVoucherToAnoher(Accounts acs, Double voucher) {
-//        String more = user.getRealName() + "主动转移代金券到" + acs.getUser().getRealName();
-//        if (!this.getUser().isMutedUser()) {
-//            this.deductVoucher(voucher, more);
-//        }
-//        acs.increaseVoucher(voucher, more);
-//    }
 
 
     public Double increasePayBalance(Double payBalance) {

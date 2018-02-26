@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/zmz-maven.iml" filepath="$PROJECT_DIR$/zmz-maven.iml" />
+      <module fileurl="file://$PROJECT_DIR$/newkam.iml" filepath="$PROJECT_DIR$/newkam.iml" />
     </modules>
   </component>
 </project>

@@ -17,6 +17,13 @@
      <comment>操作员</comment>
    </column>
   </property>
+
+  <property name="notShow" type="java.lang.Boolean">
+   <column name="notShow" default="0">
+    <comment>不显示</comment>
+   </column>
+  </property>
+
   <property name="country" type="java.lang.String">
     <column name="country" default="中国" not-null="false">
      <comment>国家订单</comment>

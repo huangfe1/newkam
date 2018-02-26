@@ -1,29 +1,26 @@
 package com.dreamer.service.mobile.impl;
 
-import com.dreamer.domain.user.*;
-import com.dreamer.domain.user.enums.AccountsTransferStatus;
+import com.dreamer.domain.mall.goods.Goods;
+import com.dreamer.domain.mall.transfer.Transfer;
+import com.dreamer.domain.user.Accounts;
+import com.dreamer.domain.user.AccountsRecord;
+import com.dreamer.domain.user.Agent;
 import com.dreamer.domain.user.enums.AccountsType;
-import com.dreamer.domain.user.enums.AgentStatus;
-import com.dreamer.domain.user.enums.UserStatus;
 import com.dreamer.repository.mobile.AccountsDao;
-import com.dreamer.repository.mobile.AccountsRecordDao;
-import com.dreamer.repository.mobile.AccountsTransferDao;
-import com.dreamer.repository.mobile.AgentDao;
+import com.dreamer.repository.mobile.TransferDao;
 import com.dreamer.service.mobile.AccountsHandler;
 import com.dreamer.service.mobile.AgentHandler;
-import com.dreamer.service.mobile.GoodsAccountHandler;
-import com.dreamer.service.user.agentCode.AgentCodeGenerator;
+import com.dreamer.service.mobile.TransferHandler;
+import com.dreamer.util.CommonUtil;
+import com.dreamer.util.ExcelFile;
 import com.dreamer.util.PreciseComputeUtil;
 import com.dreamer.util.RewardUtil;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ps.mx.otter.exception.ApplicationException;
-import ps.mx.otter.exception.ValidationException;
 
-import javax.sound.midi.Soundbank;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
@@ -152,6 +149,30 @@ public class AccountsHandlerImpl extends BaseHandlerImpl<Accounts> implements Ac
     }
 
 
+//    /**
+//     * 返回可用的代金券
+//     *
+//     * @param agent
+//     * @param amount
+//     * @return
+//     */
+//    public Double getAvailableVoucher(Agent agent, Double amount) {
+//       return getAvailableAccounts(agent,amount,AccountsType.VOUCHER);
+//    }
+
+    //返回可用的券
+    @Override
+    public Double getAvailableAccounts(Agent agent, Double amount, AccountsType accountsType) {
+        Double tem = agent.getAccounts().getAccount(accountsType);
+        amount = PreciseComputeUtil.round(amount);//进货使用3%
+        if (tem >= amount) {
+            return amount;
+        } else {
+            return tem;//全用了
+        }
+    }
+
+
     /**
      * 返回可用的代金券
      *
@@ -168,6 +189,7 @@ public class AccountsHandlerImpl extends BaseHandlerImpl<Accounts> implements Ac
         }
     }
 
+
     /**
      * 返回可用的进货券
      *
@@ -176,75 +198,157 @@ public class AccountsHandlerImpl extends BaseHandlerImpl<Accounts> implements Ac
      * @return
      */
     public Double getAvailablePurchase(Agent agent, Double amount) {
-        Double purchase = agent.getAccounts().getAccount(AccountsType.PURCHASE);
-        amount = PreciseComputeUtil.round(amount * 0.03);//进货使用3%
-        if (purchase >= amount) {
-            return amount;
-        } else {
-            return purchase;//全用了
-        }
+        return getAvailableAccounts(agent, amount, AccountsType.PURCHASE);
     }
 
 
     @Override
-    public Map<Agent, Double> rewardVoucher(List<Agent> parents, String voucherStr, Integer qunantity) {
-        HashMap<Agent, Double> maps = new HashMap<>();
+    public Map<Agent, HashMap<String, Object>> rewardVoucher(Agent agent, Goods goods, List<Agent> parents, String voucherStr, Integer qunantity, Boolean isAdd) {
+        Map<Agent, HashMap<String, Object>> maps = new HashMap<>();
         //返利参数
         Double[] vs = RewardUtil.getVsFromStr(voucherStr);
-        //装载特殊返利级别对应的返利
-        String[] tvipNames = new String[AgentLevelName.values().length - 1];
-        for (int i = 0; i < AgentLevelName.values().length - 1; i++) {
-            tvipNames[i] = AgentLevelName.values()[i].toString();
-        }
-        Map<String, Double> mapV = new HashMap<>();
-        for (int i = 0; i < tvipNames.length; i++) {
-            mapV.put(tvipNames[i], vs[i]);//特别vip的返利
-        }
-        //截流总数
-        Double sumReward = 0.0;
-        //崔秀娟 特殊处理
-        Boolean hasFenGs = false;
         //循环返利
         for (int i = 0; i < parents.size(); i++) {
             Double result = 0.0;//该返的奖金
-            String levelName = goodsAccountHandler.getMainGoodsAccount(parents.get(i)).getAgentLevel().getName();
-            //如果是特殊vip
-            if (mapV.containsKey(levelName)) {
-                //增加返利
-                Double tem = PreciseComputeUtil.round(mapV.get(levelName) * qunantity);
-                result = tem - sumReward;
-                if (result < 0) {//减去已经返了的利润
-                    result = 0.0;
-                }
-                sumReward += result;//累积已经返了的利
-                //如果是崔秀娟 且有如果有分公司
-                if (levelName.contains(AgentLevelName.分公司.toString())) {
-                    hasFenGs = true;
-                }
-                if (parents.get(i).getAgentCode().equals("zmz126786") && hasFenGs) {
-                    result = result / 2;
-                }
-            }
             //加上基础的返利
-            result += RewardUtil.getVipVoucher(vs, i, qunantity);
+            result += RewardUtil.getVipVoucher(vs, i, qunantity, parents.get(i).getJoinDate());
             //如果返利为0不加入
             if (result.equals(0.0)) {
                 continue;
             }
+            String more;
+            if (isAdd) {
+                more = agent.getRealName() + "买" + goods.getId() + "X" + qunantity + "=" + result + "   ";
+            } else {
+                more = agent.getRealName() + "退" + goods.getId() + "X" + qunantity + "=" + result + "   ";
+            }
+
             //加入返利map
             if (maps.containsKey(parents.get(i))) {
-                Double temp = maps.get(parents.get(i));
-                maps.put(parents.get(i), PreciseComputeUtil.add(temp, result));
+                HashMap<String, Object> temsb = maps.get(parents.get(i));
+                Double temp = (Double) temsb.get("v");
+                if (isAdd) {
+                    temsb.put("v", PreciseComputeUtil.add(temp, result));
+                } else {
+                    temsb.put("v", PreciseComputeUtil.sub(temp, result));
+                }
+
+                temsb.put("s", temsb.get("s") + more);
+                maps.put(parents.get(i), temsb);
             } else {
-                maps.put(parents.get(i), result);
+                HashMap<String, Object> temsb = new HashMap<>();
+
+                temsb.put("s", more);
+                if (isAdd) {
+                    temsb.put("v", result);
+                } else {
+                    temsb.put("v", -result);
+                }
+                maps.put(parents.get(i), temsb);
             }
         }
         return maps;
     }
 
+    @Override
+    public Map<Agent, HashMap<String, Object>> rewardVoucher(String startTime, String endTime, String agentCode, HttpServletResponse response) {
+        //转出所有股东的已成交的退货或者转货
+        List<Transfer> transfers = transferHandler.findRecords(startTime, endTime, agentCode);
+        HashMap<Agent, HashMap<String, Object>> map = new HashMap<>();
+        HashMap<String, HashMap<Agent, Integer>> qmap = new HashMap<>();
+        for (Transfer transfer : transfers) {
+            HashMap<Agent, HashMap<String, Object>> tem = new HashMap<>();
+            HashMap<String, HashMap<Agent, Integer>> qtem = new HashMap<>();
+            List<Agent> parents = new ArrayList<>();
+            Agent agent;
+            //进货
+            if (transfer.getFromAgent().isMutedUser()) {
+                agent = transfer.getToAgent();
+            } else {//退货
+                agent = transfer.getFromAgent();
+            }
+            final Boolean isAdd = transfer.getFromAgent().isMutedUser();//转出人是公司就是进货
+            Agent parent = agent.getParent();
+            //返利的上级
+            while (parent != null && !parent.isMutedUser()) {
+                if (agentHandler.canReward(parent)) parents.add(parent);
+                parent = parent.getParent();
+            }
+            transfer.getItems().forEach(item -> {
+                //返利
+                Map<Agent, HashMap<String, Object>> mapMap = rewardVoucher(agent, item.getGoods(), parents, item.getGoods().getVoucher(), item.getQuantity(), isAdd);
+                CommonUtil.putAll(tem, mapMap);//订单内汇总
+                //产品数量
+                String key = item.getGoods().getName();
+                Integer qv = item.getQuantity();
+                if(!isAdd)qv=-qv;
+                if (qtem.containsKey(key)) {//有当前产品统计
+                    HashMap<Agent, Integer> qt = qtem.get(key);
+                    if (qt.containsKey(agent)) {
+                        Integer nowq = qt.get(agent);
+                        qt.put(agent, nowq + qv);
+                    } else {
+                        qt.put(agent, qv);
+                    }
+                } else {
+                    HashMap<Agent, Integer> qt = new HashMap<>();
+                    qt.put(agent, qv);
+                    qtem.put(key, qt);
+                }
+                CommonUtil.putAllN(qmap,qtem);//产品总数汇总
+            });
+            CommonUtil.putAll(map, tem);//返利数汇总
+        }
+
+        //导出
+        List<String> headers = new ArrayList<>();
+
+        headers.add("名字");
+        headers.add("金额");
+        headers.add("明细");
+
+        List<String> ss = new ArrayList<>();
+        ss.add("返利详情");
+        List<Map> datas = new ArrayList<>();
+        List<List> sh = new ArrayList<>();
+        sh.add(headers);
+        map.keySet().forEach(p->{
+            Map m=new HashedMap();
+            m.put(0,p.getAgentCode()+p.getRealName());
+            m.put(1,map.get(p).get("v"));
+            m.put(2,map.get(p).get("s"));
+            datas.add(m);
+//            System.out.println(p.getRealName()+"---"+map.get(p).get("v")+"---"+map.get(p).get("s"));
+        });
+        List<List<Map>> ds = new ArrayList<>();
+        ds.add(datas);
+        qmap.keySet().forEach(p->{
+            HashMap<Agent,Integer> tem = qmap.get(p);
+            ss.add(p+"购买数量");
+            List<String> ht = new ArrayList<>();
+            ht.add("名字");
+            ht.add("数量");
+            List<Map> dt = new ArrayList<>();
+            tem.keySet().forEach(t->{
+                Map m=new HashedMap();
+//                m.put(0,t.getAgentCode()+t.getRealName());
+                m.put(0,t.getAgentCode()+t.getRealName());
+                m.put(1,tem.get(t));
+                dt.add(m);
+            });
+            ds.add(dt);
+            sh.add(ht);
+        });
+
+
+
+        ExcelFile.ExpExs("", ss, sh, ds, response);
+
+        return map;
+    }
 
     @Override
-    public Map<Agent, Double> rewardPmallVoucher(List<Agent> parents, Integer qunantity,Double profit) {
+    public Map<Agent, Double> rewardPmallVoucher(List<Agent> parents, Integer qunantity, Double profit) {
         HashMap<Agent, Double> maps = new HashMap<>();
 //        Map<String, Double> mapV = new HashMap<>();
         //截流总数
@@ -256,23 +360,16 @@ public class AccountsHandlerImpl extends BaseHandlerImpl<Accounts> implements Ac
             Double result;//该返的奖金
             String levelName = agentHandler.getLevelName(parents.get(i));
             //增加返利
-            Double tem = getVipPerCent(parents.get(i))*profit*qunantity;//获取额外的返利
+            Double tem = getVipPerCent(parents.get(i)) * profit * qunantity;//获取额外的返利
             result = tem - sumReward;
             if (result < 0) {//减去已经返了的利润
                 result = 0.0;
             }
             sumReward += result;//累积已经返了的利
-            //如果是崔秀娟 且有如果有分公司
-            if (levelName.contains(AgentLevelName.分公司.toString())) {
-                hasFenGs = true;
-            }
-            if (parents.get(i).getAgentCode().equals("zmz126786") && hasFenGs) {
-                result = result / 2;
-            }
 
             if (i < basePercent.length) {
                 //加上基础的返利
-                result +=basePercent[i]*profit*qunantity;//返利比*毛利润*数量
+                result += basePercent[i] * profit * qunantity;//返利比*毛利润*数量
             }
 
             result = PreciseComputeUtil.round(result);
@@ -294,7 +391,7 @@ public class AccountsHandlerImpl extends BaseHandlerImpl<Accounts> implements Ac
 
     private final String[] levelNames = {"VIP", "市代", "省代", "大区", "董事", "金董", "分公司", "联盟单位"};
 
-    private final Integer[] paySum = {310, 2500, 4200, 16000, 32000, 64000, 128000,1000000000};
+    private final Integer[] paySum = {310, 2500, 4200, 16000, 32000, 64000, 128000, 1000000000};
 
     private final Double[] vipPercent = {0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6};
 
@@ -369,9 +466,10 @@ public class AccountsHandlerImpl extends BaseHandlerImpl<Accounts> implements Ac
 
 
     public static void main(String[] args) {
+        System.out.println(2.2 / 2);
         final String[] levelNames = {"VIP", "市代", "省代", "大区", "董事", "金董", "分公司", "联盟单位"};
 
-        final Integer[] paySum = {310, 2500, 4200, 16000, 32000, 64000, 128000,1000000000};
+        final Integer[] paySum = {310, 2500, 4200, 16000, 32000, 64000, 128000, 1000000000};
 
         final Double[] percent = {0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6};
 
@@ -413,11 +511,13 @@ public class AccountsHandlerImpl extends BaseHandlerImpl<Accounts> implements Ac
 
     private AccountsDao accountsDao;
 
-    @Autowired
-    private GoodsAccountHandler goodsAccountHandler;
+    private TransferDao transferDao;
 
     @Autowired
     private AgentHandler agentHandler;
+
+    @Autowired
+    private TransferHandler transferHandler;
 
 
     public AccountsDao getAccountsDao() {

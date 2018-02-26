@@ -21,7 +21,7 @@ public class GoodsController {
 
 
     @RequestMapping(value = "/edit.json", method = RequestMethod.POST)
-    public Message edit(@ModelAttribute("parameter") Goods goods, MultipartHttpServletRequest request, Double[] levelPrice, Integer[] levelThreshold, Integer[] levelId, Integer[] priceId, Integer cId, Integer[] cids, Integer[] cpids, Double[] cps, Double[] profits, MultipartFile[] cfiles) {
+    public Message edit(@ModelAttribute("parameter") Goods goods, MultipartHttpServletRequest request, Double[] levelPrice, Integer[] levelThreshold, Integer[] levelId, Integer[] priceId, Integer cId, Integer[] cids, Integer[] cpids, Double[] cps, Double[] profits, MultipartFile[] cfiles,Integer[] opens) {
         try {
             if (goods.getAuthorizationType() != null) {
                 goods.getAuthorizationType().setGoods(goods);
@@ -47,7 +47,7 @@ public class GoodsController {
             GoodsCategory category = new GoodsCategory();
             category.setId(cId);
             goods.setCategory(category);
-            goodsHandler.saveOrUpdateGoods(goods, levelPrice, levelThreshold, levelId, priceId, cids, cpids, cps, profits, cfNames);
+            goodsHandler.saveOrUpdateGoods(goods, levelPrice, levelThreshold, levelId, priceId, cids, cpids, cps, profits, cfNames,opens);
             return Message.createSuccessMessage();
         } catch (Exception exp) {
             exp.printStackTrace();

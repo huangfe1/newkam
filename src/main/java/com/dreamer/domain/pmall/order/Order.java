@@ -26,6 +26,7 @@ public class Order implements java.io.Serializable {
 	private Date updateTime;
 	private String remark;
 	private Double amount;//总消费需要的金额
+	private Double ticket;//总消费需要的券
 	private Integer quantity;//总数量
 	private PaymentWay paymentWay;
 	private AcknowledgmentWay acknowledgmentWay;
@@ -59,6 +60,14 @@ public class Order implements java.io.Serializable {
 
 	public Boolean getCanAdvance() {
 		return canAdvance;
+	}
+
+	public Double getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(Double ticket) {
+		this.ticket = ticket;
 	}
 
 	public void setCanAdvance(Boolean canAdvance) {

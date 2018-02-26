@@ -3,6 +3,7 @@ package com.dreamer.domain.pmall.shopcart;
 import com.dreamer.domain.pmall.goods.PmallGoods;
 import com.dreamer.domain.pmall.goods.GoodsStandard;
 import com.dreamer.domain.pmall.order.OrderItem;
+import com.dreamer.util.PreciseComputeUtil;
 
 import java.io.Serializable;
 import java.util.*;
@@ -32,6 +33,8 @@ public class ShopCart implements Serializable {
         return quantity.get();
     }
 
+
+    //实际价格
     public Double getAmount() {
         Iterator<String> keyIte = items.keySet().iterator();
         Double amount = 0.0D;
@@ -39,6 +42,20 @@ public class ShopCart implements Serializable {
             CartItem item = items.get(keyIte.next());
             amount += item.getAmount();
         }
+        amount = PreciseComputeUtil.round(amount);
+        return amount;
+    }
+
+
+    //所有券的价格
+    public Double getTicket() {
+        Iterator<String> keyIte = items.keySet().iterator();
+        Double amount = 0.0D;
+        while (keyIte.hasNext()) {
+            CartItem item = items.get(keyIte.next());
+            amount += item.getTicket();
+        }
+        amount = PreciseComputeUtil.round(amount);
         return amount;
     }
 

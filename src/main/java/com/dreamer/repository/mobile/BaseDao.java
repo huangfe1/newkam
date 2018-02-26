@@ -40,6 +40,9 @@ public interface BaseDao<T> {
     //根据一组参数获取
     List<T> getList(Map<String,Object> map);
 
+    //根据参数获取
+    List<T> getListIn(String name,List<Object> value);
+
     //或语句
     List<T> getOr(Map<String,Object> map);
 

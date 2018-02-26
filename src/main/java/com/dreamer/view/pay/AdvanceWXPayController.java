@@ -80,7 +80,7 @@ public class AdvanceWXPayController {
             //}
             //String notifyUrl = ServletUriComponentsBuilder.fromContextPath(request).path("/voucher/pay/notify.html").build().toUriString();
             String notifyUrl = "http://www.zmz365.com/dreamer/advance/pay/dmz/notify.html";
-            UnifiedOrderResData unifiedOrder = unifiedOrderHandler.unifiedOrder(notifyUrl, advanceTransfer.getOut_trade_no(), advanceTransfer.getAdvance() - advanceTransfer.getUseVoucher(), null, agent, "和之初生物科技预存款充值");
+            UnifiedOrderResData unifiedOrder = unifiedOrderHandler.unifiedOrder(notifyUrl, advanceTransfer.getOut_trade_no(), advanceTransfer.getAdvance() - advanceTransfer.getUseVoucher(), null, agent, "咖盟生物科技预存款充值");
 
             if (unifiedOrder.getReturn_code().equals("FAIL")) {
                 model.addAttribute("errorMsg", "统一下单支付失败,请稍后重试");

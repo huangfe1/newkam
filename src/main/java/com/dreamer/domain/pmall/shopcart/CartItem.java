@@ -37,10 +37,18 @@ public class CartItem implements Serializable{
 	}
 
 
+	//真实价格
 	public Double getAmount() {
 		BigDecimal p=new BigDecimal(goods.getRetailPrice() * this.getQuantity());
 		return p.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
+
+	//券的价格
+	public Double getTicket(){
+	    if(!goods.getCanAdvance())return 0.0;//不能置换券的话设置为0
+        BigDecimal p=new BigDecimal(goods.getTicketPrice() * this.getQuantity());
+        return p.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
 
 
 	public Integer getQuantity() {

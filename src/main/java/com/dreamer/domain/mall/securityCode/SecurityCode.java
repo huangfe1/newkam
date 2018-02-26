@@ -9,10 +9,11 @@ public class SecurityCode implements java.io.Serializable {
 	private Integer version;
 	private String code;
 	private String owner;
+	private String agentCode;
 	private String goodsName;
 	private Date updateTime;
 	private String recorder;
-	private String agentCode;
+	private String box;
 
 	// Constructors
 
@@ -67,7 +68,15 @@ public class SecurityCode implements java.io.Serializable {
 		return this.owner;
 	}
 
-	public void setOwner(String owner) {
+    public String getBox() {
+        return box;
+    }
+
+    public void setBox(String box) {
+        this.box = box;
+    }
+
+    public void setOwner(String owner) {
 		this.owner = owner;
 	}
 

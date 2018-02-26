@@ -1,8 +1,7 @@
 package com.dreamer.domain.user;
 
 public enum AgentLevelName {
-
-    独立核算,联盟单位,分公司,金董,董事,大区;
+    联合股东,官方,眼博士,眼卫士,眼护士,VIP顾客;
 
     public static boolean contains(String name){
         for(AgentLevelName s : values()){

@@ -57,6 +57,11 @@ public class BaseHandlerImpl<T> implements BaseHandler<T> {
     }
 
     @Override
+    public List<T> getListIn(String name, List<Object> value) {
+        return baseDao.getListIn(name,value);
+    }
+
+    @Override
     public List<T> getList(String name, Object value) {
         return baseDao.getList(name,value);
     }

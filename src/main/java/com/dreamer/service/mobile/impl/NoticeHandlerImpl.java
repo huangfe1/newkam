@@ -40,16 +40,16 @@ public class NoticeHandlerImpl implements NoticeHandler {
      * @param records
      */
     public void noticeAccountRecords(List<AccountsRecord> records) {
-        String template_id = "IyNA0AXOEuiBRwZlu92hyuQ8kcZTiU4vaTAlNEPiTVg";
+        String template_id = "E3rO4uIgZS1StrffcWJHxLwK7wfkY8AJFNunvvyMgQs";
         Map<String, Object> data;
         for (AccountsRecord record : records) {
-            String url = "http://ht.hzc365.com/hzc/mobile/accounts/records.html?stateType=" + record.getAccountsType().getState();
+            String url = "http://ht.kam365.com/kam/mobile/accounts/records.html?stateType=" + record.getAccountsType().getState();
             data = new HashMap<>();
             data.put("first", createItemMap(record.getInfo()));//变动原因
             data.put("keyword2", createItemMap(record.getAmount()));
             data.put("keyword1", createItemMap(DateUtil.formatDate(record.getUpdateTime())));
             data.put("keyword3", createItemMap(record.getNowAmount()));
-            data.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品！"));
+            data.put("remark", createItemMap("咖盟，让这个世界心生爱目！"));
             sendTemplateMessage(record.getAgent().getWxOpenid(), template_id, url, data);
 
         }
@@ -61,11 +61,11 @@ public class NoticeHandlerImpl implements NoticeHandler {
      * @param records
      */
     public void noticeTransfer(Transfer transfer) {
-        String url = "http://ht.hzc365.com/hzc/mobile/transfer/records.html";
+        String url = "http://ht.kam365.com/kam/mobile/transfer/records.html";
         Agent fromAgent = transfer.getFromAgent();
         Agent toAgent = transfer.getToAgent();
         //入库通知
-        String template_id = "8bOuv5fBGTMsbjws4s1zemIRaSRHqF-RtxiI_AjroCc";
+        String template_id = "gIopagcLf7H_87HSWWtnuvGiCkC6lUVnd0PWGUxSHCk";
         Map<String, Object> toData = new HashedMap();
         Map<String, Object> fromData = new HashedMap();
         toData.put("first", createItemMap("您好，您有一批产品入库，请查看!"));
@@ -78,15 +78,15 @@ public class NoticeHandlerImpl implements NoticeHandler {
         });
         toData.put("keyword1", createItemMap(stringBuffer.toString()));
         toData.put("keyword2", createItemMap("请前往系统查看!"));
-        toData.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品!感谢您的使用！"));
+        toData.put("remark", createItemMap("咖盟，让这个世界心生爱目！"));
         sendTemplateMessage(toAgent.getWxOpenid(), template_id, url, toData);
         //出库通知
 
-        template_id = "ADSjFzuEUgQub-Ul-7DSCfnyMNMCDpQ_F0vdoM4Ay44";
+        template_id = "QuSDx2Fthk9BHGuPwTLq_IUVh5g_wFP9SmVGJbgfwOA";
         fromData.put("first", createItemMap("您好，您有一批产品出库，请查看!"));
         fromData.put("keyword1", createItemMap(transfer.getId()));
         fromData.put("keyword2", createItemMap(stringBuffer.toString()));
-        fromData.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品!感谢您的使用！"));
+        fromData.put("remark", createItemMap("咖盟，让这个世界心生爱目！"));
         sendTemplateMessage(fromAgent.getWxOpenid(), template_id, url, fromData);
     }
 
@@ -98,8 +98,8 @@ public class NoticeHandlerImpl implements NoticeHandler {
     public void noticeDeliveryNote(DeliveryNote note) {
         Agent fromAgent = note.getFromAgent();
         Agent toAgent = note.getToAgent();
-        String template_id = "IebNNaSjv78DkWY6aup-NtB1TxiEdsyU-AG6FmHIjfY";
-        String url = "http://ht.hzc365.com/hzc/mobile/delivery/records.html";
+        String template_id = "QfaXo9siEWxXbvA3jyuHZmZOpgjn1hbv8ZzpHGOunqY";
+        String url = "http://ht.kam365.com/kam/mobile/delivery/records.html";
         Map<String, Object> fromAgentData = new HashedMap();
         Map<String, Object> toAgentData = new HashedMap();
         //出货人
@@ -109,14 +109,14 @@ public class NoticeHandlerImpl implements NoticeHandler {
 
         fromAgentData.put("keyword1", createItemMap(stringBuffer));
         fromAgentData.put("keyword2", createItemMap(DateUtil.formatDate(note.getUpdateTime())));
-        fromAgentData.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品！如果多收了物流费，系统会在发货的时候退还！"));
+        fromAgentData.put("remark", createItemMap("咖盟，让这个世界心生爱目"));
         sendTemplateMessage(fromAgent.getWxOpenid(), template_id, url, fromAgentData);
         if (fromAgent.getId().equals(toAgent.getId())) return;//如果是自己给自己发货就不用提醒了
         //收货人
         toAgentData.put("first", createItemMap("您好," + note.getApplyAgent().getRealName() + "给您的发货订单已经提交，即将发货！"));
         toAgentData.put("keyword1", createItemMap(stringBuffer));
         toAgentData.put("keyword2", createItemMap(DateUtil.formatDate(note.getUpdateTime())));
-        toAgentData.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品！请耐心等待发货^.^"));
+        toAgentData.put("remark", createItemMap("咖盟，让这个世界心生爱目!"));
         sendTemplateMessage(toAgent.getWxOpenid(), template_id, url, toAgentData);
     }
 
@@ -143,8 +143,8 @@ public class NoticeHandlerImpl implements NoticeHandler {
     public void noticeDeliveryNoteDeleted(DeliveryNote note) {
         Agent fromAgent = note.getFromAgent();
         Agent toAgent = note.getToAgent();
-        String template_id = "IebNNaSjv78DkWY6aup-NtB1TxiEdsyU-AG6FmHIjfY";
-        String url = "http://ht.hzc365.com/hzc/mobile/delivery/records.html";
+        String template_id = "QfaXo9siEWxXbvA3jyuHZmZOpgjn1hbv8ZzpHGOunqY";
+        String url = "http://ht.kam365.com/kam/mobile/delivery/records.html";
         Map<String, Object> fromAgentData = new HashedMap();
         Map<String, Object> toAgentData = new HashedMap();
         //出货人
@@ -154,13 +154,13 @@ public class NoticeHandlerImpl implements NoticeHandler {
 
         fromAgentData.put("keyword1", createItemMap(stringBuffer));
         fromAgentData.put("keyword2", createItemMap(DateUtil.formatDate(note.getUpdateTime())));
-        fromAgentData.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品！如果多收了物流费，系统会在发货的时候退还！"));
+        fromAgentData.put("remark", createItemMap("咖盟，让这个世界心生爱目!"));
         sendTemplateMessage(fromAgent.getWxOpenid(), template_id, url, fromAgentData);
         //收货人
         toAgentData.put("first", createItemMap("您好," + fromAgent.getRealName() + "给您的发货订单已经取消，不会发货！"));
         toAgentData.put("keyword1", createItemMap(stringBuffer));
         toAgentData.put("keyword2", createItemMap(DateUtil.formatDate(note.getUpdateTime())));
-        toAgentData.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品！请耐心等待发货^.^"));
+        toAgentData.put("remark", createItemMap("咖盟，让这个世界心生爱目!"));
         sendTemplateMessage(toAgent.getWxOpenid(), template_id, url, toAgentData);
     }
 
@@ -173,8 +173,8 @@ public class NoticeHandlerImpl implements NoticeHandler {
     public void noticeDelived(DeliveryNote note) {
         Agent fromAgent = note.getFromAgent();
         Agent toAgent = note.getToAgent();
-        String template_id = "Ldh6ZCDnrCFEGJ2HOmOVlv4uMEsz0wA1JE2tkddCIwg";
-        String url = "http://ht.hzc365.com/hzc/mobile/delivery/records.html";
+        String template_id = "mBng3sOfkaRDy9e1mHhIsXxQx2iuSDcVX76EBDAABx8";
+        String url = "http://ht.kam365.com/kam/mobile/delivery/records.html";
         Map<String, Object> fromAgentData = new HashedMap();
         Map<String, Object> toAgentData = new HashedMap();
         //出货人
@@ -185,7 +185,7 @@ public class NoticeHandlerImpl implements NoticeHandler {
         fromAgentData.put("keyword2", createItemMap(note.getLogistics()));
         fromAgentData.put("keyword3", createItemMap(note.getLogisticsCode()));
         fromAgentData.put("keyword4", createItemMap(note.getAddress().getAddress()));
-        fromAgentData.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品！如果多收了物流费，系统会在发货的时候退还！"));
+        fromAgentData.put("remark", createItemMap("咖盟，让这个世界心生爱目!"));
         sendTemplateMessage(fromAgent.getWxOpenid(), template_id, url, fromAgentData);
         if (fromAgent.getId().equals(toAgent.getId())) return;
         //收货人
@@ -194,7 +194,7 @@ public class NoticeHandlerImpl implements NoticeHandler {
         toAgentData.put("keyword2", createItemMap(DateUtil.formatDate(note.getUpdateTime())));
         fromAgentData.put("keyword3", createItemMap(note.getLogisticsCode()));
         fromAgentData.put("keyword4", createItemMap(note.getAddress().getProvince() + note.getAddress().getCity() + note.getAddress().getCounty() + note.getAddress().getAddress()));
-        toAgentData.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品！请耐心等待配送哦^.^"));
+        toAgentData.put("remark", createItemMap("咖盟，让这个世界心生爱目!"));
         sendTemplateMessage(toAgent.getWxOpenid(), template_id, url, toAgentData);
     }
 
@@ -204,8 +204,8 @@ public class NoticeHandlerImpl implements NoticeHandler {
         Agent toAgent = order.getUser();
         AddressClone addressClone = order.getAddressClone();
         String name = addressClone.getConsignee();
-        String template_id = "Ldh6ZCDnrCFEGJ2HOmOVlv4uMEsz0wA1JE2tkddCIwg";
-        String url = "http://ht.hzc365.com/hzc/pm/order/myOrder.html";
+        String template_id = "mBng3sOfkaRDy9e1mHhIsXxQx2iuSDcVX76EBDAABx8";
+        String url = "http://ht.kam365.com/kam/pm/order/myOrder.html";
         Map<String, Object> fromAgentData = new HashedMap();
         //出货人
         fromAgentData.put("first", createItemMap("您好，您发给" + name + "订单已经发货！"));
@@ -215,19 +215,19 @@ public class NoticeHandlerImpl implements NoticeHandler {
         fromAgentData.put("keyword2", createItemMap(order.getLogistics()));
         fromAgentData.put("keyword3", createItemMap(order.getLogisticsCode()));
         fromAgentData.put("keyword4", createItemMap(addressClone.getProvince() + addressClone.getCity() + addressClone.getCounty() + addressClone.getAddress()));
-        fromAgentData.put("remark", createItemMap("和之初一站式购物，让更多的人用上优惠的好产品！如果多收了物流费，系统会在发货的时候退还！"));
+        fromAgentData.put("remark", createItemMap("咖盟，让这个世界心生爱目!"));
         sendTemplateMessage(toAgent.getWxOpenid(), template_id, url, fromAgentData);
     }
 
     @Override
     public void noticeNewUser(Agent agent) {
-        String template_id = "dAtw17iu3iqLcBPzMDaK3nLRUpdU6oZkjA8d13G0OJo";
-        String url = "http://ht.hzc365.com/hzc/mobile/contacts.html";
+        String template_id = "FdYs3cLbTY7YZFoY179p8tfFQbrIMoEqpYmh7wXT-YA";
+        String url = "http://ht.kam365.com/kam/mobile/contacts.html";
         Map<String, Object> data = new HashedMap();
         data.put("first", createItemMap("您好，您新增了一位新的客户，请跟进服务！"));
         data.put("keyword1", createItemMap(agent.getRealName()));
         data.put("keyword2", createItemMap(DateUtil.formatDate(new Date())));
-        data.put("remark", createItemMap("不完善信息也可以直接购买,也可以转发分享优惠商城，也可以返利！"));
+        data.put("remark", createItemMap("咖盟，让这个世界心生爱目!"));
         sendTemplateMessage(agent.getParent().getWxOpenid(), template_id, url, data);
     }
 

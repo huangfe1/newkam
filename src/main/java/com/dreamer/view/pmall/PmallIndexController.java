@@ -93,7 +93,7 @@ public class PmallIndexController {
                 dto.setStockQuantity(g.getStockQuantity());
                 //保留最高级
                 String strV = g.getVouchers();
-                dto.setVouchers(strV.substring(strV.length()-5, strV.length()-4));
+//                dto.setVouchers(strV.substring(strV.length()-5, strV.length()-4));
                 String imgUrl = g.getImgFile();
                 String wallImgUrl = g.getWallFile();
                 dto.setImgUrl(imgUrl);
@@ -143,7 +143,7 @@ public class PmallIndexController {
             dto.setGoodsStandard(g.getGoodsStandards());
             //保留最高级
             String strV = g.getVouchers();
-            dto.setVouchers(strV.substring(strV.length()-5, strV.length()-4));
+//            dto.setVouchers(strV.substring(strV.length()-5, strV.length()-4));
             dto.setImgUrl(g.getImgFile());
             List<String> list = new ArrayList<>();
             if (g.getDetailImg() != null) {

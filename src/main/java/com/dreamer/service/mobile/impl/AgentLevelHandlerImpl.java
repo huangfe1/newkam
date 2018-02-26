@@ -21,6 +21,15 @@ public class AgentLevelHandlerImpl extends BaseHandlerImpl<AgentLevel> implement
         return agentLevelDao.findAllOrderByLevel();
     }
 
+    //股东，官方不能被授权
+    @Override
+    public Boolean canChangeByAgent(AgentLevel level) {
+        if(level.getLevel()>2){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * 找出最低的级别的等级
      *

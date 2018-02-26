@@ -38,4 +38,8 @@ public interface OrderHandler extends BaseHandler<Order>{
 
     List<Object[]> getOrdersItemCount(Integer limit);//所有新订单的总数
 
+    Double getActualAmount(Order order);//获取实际需要支付的金额
+
+    Double getActualAdvance(Order order);//获取实际可以支付的置换券
+
 }
