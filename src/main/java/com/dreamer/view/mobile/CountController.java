@@ -21,7 +21,14 @@ public class CountController {
     //按照团队统计所有人的账户余额
     @RequestMapping("/goodsAccounts.json")
     public void countGA(HttpServletResponse response) {
-        List<Agent> agents = agentHandler.getList("parent.id", 03);//找出公司所有的直接代理
+//        List<Agent> agents = agentHandler.getList("parent.id", 03);//找出公司所有的直接代理
+        Map<String,Object> params = new HashMap<>();
+//        params.put("id",237975);
+//        params.put("id",87721);
+//        params.put("id",86375);
+        params.put("id",86440);
+        List<Agent> agents = agentHandler.getOr(params);
+        System.out.println(agents.size()+"--");
         List<String> ss = new ArrayList<>();//页名
         List<List> hs = new ArrayList<>();//列名
         List<List<Map>> ds = new ArrayList<>();//数据
